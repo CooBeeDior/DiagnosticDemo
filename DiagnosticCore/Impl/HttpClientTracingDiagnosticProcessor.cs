@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DiagnosticAdapter;
 using Microsoft.Extensions.Logging;
 using System;
@@ -52,7 +53,7 @@ namespace DiagnosticCore
         }
         protected virtual void HttpRequestStartHandle(HttpRequestMessage request)
         {
-
+         
         }
         protected virtual void HttpRequestHandle(HttpRequestMessage request)
         {

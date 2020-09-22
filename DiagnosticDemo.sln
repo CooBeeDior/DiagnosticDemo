@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiagnosticApiDemo", "Diagno
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiagnosticCore", "DiagnosticCore\DiagnosticCore.csproj", "{CAA9E63E-AF70-430A-8F79-B8A0416BE83D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongodbCore", "MongodbCore\MongodbCore.csproj", "{820D68AA-F5EC-4120-8A02-CDD5752EDFC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongodbCore", "MongodbCore\MongodbCore.csproj", "{820D68AA-F5EC-4120-8A02-CDD5752EDFC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

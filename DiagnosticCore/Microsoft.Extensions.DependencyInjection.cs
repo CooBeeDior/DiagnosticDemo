@@ -1,7 +1,9 @@
 ﻿using DiagnosticCore;
+using DiagnosticCore.LogCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 services.AddSingleton<IHttpClientTracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
             }
+            services.AddSingleton<ILoggerProvider, DiagnosticLogProvider>();
             services.AddHttpContextAccessor();
 
 

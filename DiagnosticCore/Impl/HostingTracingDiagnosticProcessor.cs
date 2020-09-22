@@ -246,7 +246,7 @@ namespace DiagnosticCore
 
         protected virtual void AfterOnResultExecutingHandle(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext)
         {
-            
+
         }
 
 
@@ -261,21 +261,23 @@ namespace DiagnosticCore
 
         protected virtual void AfterOnResultExecutedHandle(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext)
         {
-            var httpContextAccessor= ServiceProvider.GetService<IHttpContextAccessor>();
-            httpContextAccessor.HttpContext.ToLogInfoBuilder().BuildResponse(resultExecutedContext?.Result?.ToJson()).Build().ToPersistence(ServiceProvider);
+            //后期加一个LogProvider
+            var httpContextAccessor = ServiceProvider.GetService<IHttpContextAccessor>();
+            var loginfo = httpContextAccessor.HttpContext.ToLogInfoBuilder().BuildResponse(resultExecutedContext?.Result?.ToJson()).Build();//.ToPersistence(ServiceProvider);
 
+            Logger.LogInformation(loginfo.ToJson());
         }
 
 
         protected virtual void AfterActionHandle(ActionDescriptor actionDescriptor, HttpContext httpContext, RouteData routeData)
         {
-  
+
         }
 
 
         protected virtual void EndRequestHandle(HttpContext httpContext)
         {
-             
+
         }
 
 

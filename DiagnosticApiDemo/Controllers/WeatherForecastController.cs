@@ -63,7 +63,7 @@ namespace DiagnosticApiDemo.Controllers
             HttpClient client = new HttpClient();
             var resp = await client.GetAsync("http://www.baidu.com");
             var result = await resp.Content.ReadAsStringAsync();
-            return result;
+            return "123";
         }
     }
 }
