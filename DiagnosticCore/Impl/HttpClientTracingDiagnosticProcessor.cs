@@ -1,15 +1,18 @@
-﻿using Microsoft.Extensions.DiagnosticAdapter;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DiagnosticAdapter;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
-
 namespace DiagnosticCore
 {
-    public class HttpClientTracingDiagnosticProcessor: IHttpClientTracingDiagnosticProcessor
+    public class HttpClientTracingDiagnosticProcessor : IHttpClientTracingDiagnosticProcessor
     {
+        protected ILogger<HttpClientTracingDiagnosticProcessor> Logger { get; }
         protected IServiceProvider ServiceProvider { get; }
         public HttpClientTracingDiagnosticProcessor(IServiceProvider serviceProvider)
         {
             ServiceProvider = serviceProvider;
+            Logger = serviceProvider.GetService<ILogger<HttpClientTracingDiagnosticProcessor>>();
         }
 
 
