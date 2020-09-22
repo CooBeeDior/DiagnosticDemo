@@ -36,11 +36,11 @@ namespace MongodbCore
         public static string ToStr(this Stream sm, Encoding encoding = null)
         {
             if (sm.CanRead && sm.CanSeek)
-            { 
+            {
                 encoding = encoding ?? Encoding.UTF8;
                 StreamReader reader = new StreamReader(sm, encoding);
-                var result= reader.ReadToEndAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-               
+                var result = reader.ReadToEndAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+
                 return result;
             }
             return null;
@@ -64,18 +64,18 @@ namespace MongodbCore
             return buffer;
         }
 
-        public static LogInfo ToLogInfo(this HttpContext context, Exception exception)
+        public static LogInfoBuilder ToLogInfo(this HttpContext context, Exception exception)
         {
-            return context.ToLogInfo(null, exception);
+            return context.ToLogInfoBuilder(null, exception);
         }
 
-        public static LogInfo ToLogInfo(this HttpContext context, string id)
+        public static LogInfoBuilder ToLogInfo(this HttpContext context, string id)
         {
-            return context.ToLogInfo(id, null);
+            return context.ToLogInfoBuilder(id, null);
         }
 
 
-        public static LogInfo ToLogInfo(this HttpContext context, string id = null, Exception exception = null)
+        public static LogInfoBuilder ToLogInfoBuilder(this HttpContext context, string id = null, Exception exception = null)
         {
             var request = context.Request;
             var parentTrackId = request.Headers["parent-track-id"].FirstOrDefault();
@@ -95,9 +95,9 @@ namespace MongodbCore
             var elapsedTime = (DateTime.Now.Ticks - Convert.ToInt64(trackTime)) / 1000000;//转换为ms
 
 
-            var loginfo = LogInfoBuilder.CreateBuilder().LogInfoBuild(id).BuildParentId(parentid).BuildTrackId(trackId, parentTrackId)
-                   .BuildHttpContext(context).BuildElapsedTime(elapsedTime).BuildLog(LogLevel.Trace.ToString(), "", exception).Build();
-            return loginfo;
+            var logInfoBuilder = LogInfoBuilder.CreateBuilder().LogInfoBuild(id).BuildParentId(parentid).BuildTrackId(trackId, parentTrackId)
+                   .BuildHttpContext(context).BuildElapsedTime(elapsedTime).BuildLog(LogLevel.Trace.ToString(), "", exception);
+            return logInfoBuilder;
         }
 
         public static void ToPersistence(this LogInfo loginfo, IServiceProvider serviceProvider)
@@ -110,7 +110,7 @@ namespace MongodbCore
 
 
         #region 
-    
+
 
         private static Encoding GetRequestEncoding(HttpRequest request)
         {

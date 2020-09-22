@@ -22,8 +22,9 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 services.AddSingleton<IHttpClientTracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
             }
+            services.AddHttpContextAccessor();
 
-         
+
         }
     }
 

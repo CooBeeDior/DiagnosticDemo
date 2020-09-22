@@ -55,29 +55,18 @@ namespace DiagnosticCore
             BeforeActionHandle(actionDescriptor, actionExecutingContext, routeData);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuting")]
-        public void BeforeOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext actionExecutingContext, UnsupportedContentTypeFilter filter)
-        {
-            BeforeOnActionExecutingHandle(actionDescriptor, actionExecutingContext, filter);
 
+
+        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuting")]
+        public void BeforeOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext actionExecutingContext)
+        {
+            BeforeOnActionExecutingHandle(actionDescriptor, actionExecutingContext);
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuting")]
-        public void AfterOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext actionExecutingContext, UnsupportedContentTypeFilter filter)
+        public void AfterOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext actionExecutingContext)
         {
-            AfterOnActionExecutingHandle(actionDescriptor, actionExecutingContext, filter);
-        }
-
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuting")]
-        public void BeforeOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext actionExecutingContext, ModelStateInvalidFilter filter)
-        {
-            BeforeOnActionExecutingHandle(actionDescriptor, actionExecutingContext, filter);
-        }
-
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuting")]
-        public void AfterOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext actionExecutingContext, ModelStateInvalidFilter filter)
-        {
-            AfterOnActionExecutingHandle(actionDescriptor, actionExecutingContext, filter);
+            AfterOnActionExecutingHandle(actionDescriptor, actionExecutingContext);
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeActionMethod")]
@@ -106,28 +95,17 @@ namespace DiagnosticCore
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuted")]
-        public void EndpointMatched(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, ModelStateInvalidFilter filter)
+        public void BeforeOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext)
         {
-            EndpointMatchedHandle(actionDescriptor, actionExecutedContext, filter);
+            BeforeOnActionExecutedHandle(actionDescriptor, actionExecutedContext);
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuted")]
-        public void AfterOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, ModelStateInvalidFilter filter)
+        public void AfterOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext)
         {
-            AfterOnActionExecutedHandle(actionDescriptor, actionExecutedContext, filter);
+            AfterOnActionExecutedHandle(actionDescriptor, actionExecutedContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuted")]
-        public void BeforeOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, UnsupportedContentTypeFilter filter)
-        {
-            BeforeOnActionExecutedHandle(actionDescriptor, actionExecutedContext, filter);
-        }
-
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuted")]
-        public void AfterOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, UnsupportedContentTypeFilter filter)
-        {
-            AfterOnActionExecutedHandle(actionDescriptor, actionExecutedContext, filter);
-        }
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnResultExecuting")]
         public void BeforeOnResultExecuting(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext)
@@ -140,18 +118,19 @@ namespace DiagnosticCore
         public void AfterOnResultExecuting(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext)
         {
             AfterOnResultExecutingHandle(actionDescriptor, resultExecutingContext);
+
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeActionResult")]
-        public void BeforeActionResult(ActionContext actionContext, ObjectResult objectResult)
+        public void BeforeActionResult(ActionContext actionContext)
         {
-            BeforeActionResultHandle(actionContext, objectResult);
+            BeforeActionResultHandle(actionContext);
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterActionResult")]
-        public void AfterActionResult(ActionContext actionContext, ObjectResult objectResult)
+        public void AfterActionResult(ActionContext actionContext)
         {
-            AfterActionResultHandle(actionContext, objectResult);
+            AfterActionResultHandle(actionContext);
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnResultExecuted")]
@@ -235,16 +214,12 @@ namespace DiagnosticCore
         protected virtual void BeforeActionHandle(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, RouteData routeData) { }
 
 
-        protected virtual void BeforeOnActionExecutingHandle(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, UnsupportedContentTypeFilter filter) { }
+        protected virtual void BeforeOnActionExecutingHandle(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext) { }
 
 
-        protected virtual void AfterOnActionExecutingHandle(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, UnsupportedContentTypeFilter filter) { }
+        protected virtual void AfterOnActionExecutingHandle(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext) { }
 
 
-        protected virtual void BeforeOnActionExecutingHandle(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, ModelStateInvalidFilter filter) { }
-
-
-        protected virtual void AfterOnActionExecutingHandle(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, ModelStateInvalidFilter filter) { }
 
 
         protected virtual void BeforeActionMethodHandle(ActionContext actionContext) { }
@@ -259,41 +234,48 @@ namespace DiagnosticCore
         protected virtual void AfterActionMethodHandle(ActionContext actionContext) { }
 
 
-        protected virtual void EndpointMatchedHandle(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, ModelStateInvalidFilter filter) { }
+        protected virtual void BeforeOnActionExecutedHandle(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext) { }
 
 
-        protected virtual void AfterOnActionExecutedHandle(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, ModelStateInvalidFilter filter) { }
 
 
-        protected virtual void BeforeOnActionExecutedHandle(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, UnsupportedContentTypeFilter filter) { }
-
-
-        protected virtual void AfterOnActionExecutedHandle(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, UnsupportedContentTypeFilter filter) { }
+        protected virtual void AfterOnActionExecutedHandle(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext) { }
 
         protected virtual void BeforeOnResultExecutingHandle(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext) { }
 
 
-        protected virtual void AfterOnResultExecutingHandle(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext) { }
+        protected virtual void AfterOnResultExecutingHandle(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext)
+        {
+            
+        }
 
 
-        protected virtual void BeforeActionResultHandle(ActionContext actionContext, ObjectResult objectResult) { }
+        protected virtual void BeforeActionResultHandle(ActionContext actionContext) { }
 
 
-        protected virtual void AfterActionResultHandle(ActionContext actionContext, ObjectResult objectResult) { }
+        protected virtual void AfterActionResultHandle(ActionContext actionContext) { }
 
 
         protected virtual void BeforeOnResultExecutedHandle(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext) { }
 
 
-        protected virtual void AfterOnResultExecutedHandle(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext) { }
+        protected virtual void AfterOnResultExecutedHandle(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext)
+        {
+            var httpContextAccessor= ServiceProvider.GetService<IHttpContextAccessor>();
+            httpContextAccessor.HttpContext.ToLogInfoBuilder().BuildResponse(resultExecutedContext?.Result?.ToJson()).Build().ToPersistence(ServiceProvider);
+
+        }
 
 
-        protected virtual void AfterActionHandle(ActionDescriptor actionDescriptor, HttpContext httpContext, RouteData routeData) { }
+        protected virtual void AfterActionHandle(ActionDescriptor actionDescriptor, HttpContext httpContext, RouteData routeData)
+        {
+  
+        }
 
 
         protected virtual void EndRequestHandle(HttpContext httpContext)
         {
-            httpContext.ToLogInfo().ToPersistence(ServiceProvider);
+             
         }
 
 
@@ -303,7 +285,7 @@ namespace DiagnosticCore
         protected virtual void DiagnosticUnhandledExceptionHandle(HttpContext httpContext, Exception exception)
         {
             var id = Guid.NewGuid().ToString();
-            httpContext.ToLogInfo(id, exception).ToPersistence(ServiceProvider);
+            httpContext.ToLogInfoBuilder(id, exception).Build().ToPersistence(ServiceProvider);
         }
 
 
@@ -312,7 +294,7 @@ namespace DiagnosticCore
         protected virtual void HostingUnhandledExceptionHandle(HttpContext httpContext, Exception exception)
         {
             var id = Guid.NewGuid().ToString();
-            httpContext.ToLogInfo(id, exception).ToPersistence(ServiceProvider);
+            httpContext.ToLogInfoBuilder(id, exception).Build().ToPersistence(ServiceProvider);
         }
 
 

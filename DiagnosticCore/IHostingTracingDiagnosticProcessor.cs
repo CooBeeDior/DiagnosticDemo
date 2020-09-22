@@ -24,18 +24,13 @@ namespace DiagnosticCore
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeAction")]
         void BeforeAction(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, RouteData routeData);
+ 
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuting")]
-        void BeforeOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, UnsupportedContentTypeFilter filter);
+        void BeforeOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext);
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuting")]
-        void AfterOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, UnsupportedContentTypeFilter filter);
-
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuting")]
-        void BeforeOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, ModelStateInvalidFilter filter);
-
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuting")]
-        void AfterOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, ModelStateInvalidFilter filter);
+        void AfterOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext);
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeActionMethod")]
         void BeforeActionMethod(ActionContext actionContext);
@@ -50,16 +45,12 @@ namespace DiagnosticCore
         void AfterActionMethod(ActionContext actionContext);
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuted")]
-        void EndpointMatched(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, ModelStateInvalidFilter filter);
+        void BeforeOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext);
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuted")]
-        void AfterOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, ModelStateInvalidFilter filter);
+        void AfterOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext);
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuted")]
-        void BeforeOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, UnsupportedContentTypeFilter filter);
-
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuted")]
-        void AfterOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext, UnsupportedContentTypeFilter filter);
+ 
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnResultExecuting")]
         void BeforeOnResultExecuting(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext);
@@ -68,20 +59,20 @@ namespace DiagnosticCore
         void AfterOnResultExecuting(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext);
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeActionResult")]
-        void BeforeActionResult(ActionContext actionContext, ObjectResult objectResult);
+        void BeforeActionResult(ActionContext actionContext);
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterActionResult")]
-        void AfterActionResult(ActionContext actionContext, ObjectResult objectResult);
+        void AfterActionResult(ActionContext actionContext);
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnResultExecuted")]
         void BeforeOnResultExecuted(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext);
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnResultExecuted")]
         void AfterOnResultExecuted(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext);
-      
+
         [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterAction")]
         void AfterAction(ActionDescriptor actionDescriptor, HttpContext httpContext, RouteData routeData);
-        
+
         [DiagnosticName("Microsoft.AspNetCore.Hosting.EndRequest")]
         void EndRequest(HttpContext httpContext);
 
@@ -95,7 +86,7 @@ namespace DiagnosticCore
 
         [DiagnosticName("Microsoft.AspNetCore.Hosting.UnhandledException")]
         void HostingUnhandledException(HttpContext httpContext, Exception exception);
-        
+
 
 
 

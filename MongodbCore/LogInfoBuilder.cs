@@ -55,6 +55,17 @@ namespace MongodbCore
             _loginfo.ClientIpAddress = context.Connection.RemoteIpAddress.MapToIPv4().ToString();
             return this;
         }
+        public LogInfoBuilder BuildRequest(string request)
+        {
+            _loginfo.Request = request;
+            return this;
+        }
+        public LogInfoBuilder BuildResponse(string response)
+        {
+            _loginfo.Response = response;
+            return this;
+        }
+
         public LogInfoBuilder BuildParentId(string parentId)
         {
             _loginfo.ParentId = parentId;

@@ -37,21 +37,11 @@ namespace DiagnosticCore
             {
                 if (listener.Name == HostingTracingDiagnosticProcessor.ListenerName)
                 {
-                    listener.Subscribe(new HostingTracingDiagnosticObserver<KeyValuePair<string, object>>(listenerData =>
-                    {
-                        var key = listenerData.Key;
-                        string type = listenerData.Value.GetType().FullName;
-
-                        
-                        string text = $"{key} 【{type}】";
-
-
-
-                        File.AppendAllText("d:/a.txt", text + "\n");
-
-                    }));
-                    //var target = serviceProvider.GetService<IHostingTracingDiagnosticProcessor>() ?? new HostingTracingDiagnosticProcessor(serviceProvider);
-                    //listener.SubscribeWithAdapter(target);
+                    //listener.Subscribe(new HostingTracingDiagnosticObserver<KeyValuePair<string, object>>(listenerData =>
+ 
+                    //                 }));
+                    var target = serviceProvider.GetService<IHostingTracingDiagnosticProcessor>() ?? new HostingTracingDiagnosticProcessor(serviceProvider);
+                    listener.SubscribeWithAdapter(target);
                 }
 
             }));
