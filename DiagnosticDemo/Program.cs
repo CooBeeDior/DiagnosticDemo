@@ -139,7 +139,7 @@ namespace DiagnosticDemo
                 if (listener.Name == "HttpHandlerDiagnosticListener")
                 {
                     ///**重要** 注:1 通过常规对象订阅
-                    listener.Subscribe(new MyObserver<KeyValuePair<string, object>>(listenerData =>
+                    listener.Subscribe(new MyObserver< KeyValuePair<string, object>>(listenerData =>
                     {
                         var data = listenerData;
                     }));

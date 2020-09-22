@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using MongodbCore;
+
 namespace DiagnosticCore
 {
     public class DiagnosticInitialization
@@ -40,11 +42,12 @@ namespace DiagnosticCore
                         var key = listenerData.Key;
                         string type = listenerData.Value.GetType().FullName;
 
+                        
                         string text = $"{key} 【{type}】";
-                  
 
 
-                        File.AppendAllText("d:/a.txt", text+"\n");
+
+                        File.AppendAllText("d:/a.txt", text + "\n");
 
                     }));
                     //var target = serviceProvider.GetService<IHostingTracingDiagnosticProcessor>() ?? new HostingTracingDiagnosticProcessor(serviceProvider);
