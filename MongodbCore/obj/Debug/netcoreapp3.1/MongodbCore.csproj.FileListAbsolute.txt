@@ -1,0 +1,12 @@
+D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\MongodbCore.deps.json
+D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\MongodbCore.dll
+D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.AssemblyInfoInputs.cache
+D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.AssemblyInfo.cs
+D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\snappy32.dll
+D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\snappy64.dll
+D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\libzstd.dll
+D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\MongodbCore.pdb
+D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.dll
+D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.pdb
+D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.csproj.CoreCompileInputs.cache
+D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.csprojAssemblyReference.cache

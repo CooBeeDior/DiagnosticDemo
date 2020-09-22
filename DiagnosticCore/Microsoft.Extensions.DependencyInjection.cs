@@ -1,4 +1,7 @@
 ﻿using DiagnosticCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,22 +22,11 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 services.AddSingleton<IHttpClientTracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
             }
-             
+            services.AddHttpContextAccessor();
+
+
         }
     }
 
-    public class DiagnosticOptions
-    {
-        /// <summary>
-        /// 是否开启httpclient追踪
-        /// </summary>
-        public bool IsEnableHttpClientTracing { get; set; } = true;
 
-        /// <summary>
-        /// 是否开启hsoting追踪
-        /// </summary>
-        public bool IsEnableHostingTracing { get; set; } = true;
-
-
-    }
 }

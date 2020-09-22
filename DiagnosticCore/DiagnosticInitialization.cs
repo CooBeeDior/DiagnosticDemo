@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using MongodbCore;
+
 namespace DiagnosticCore
 {
     public class DiagnosticInitialization
@@ -33,9 +37,13 @@ namespace DiagnosticCore
             {
                 if (listener.Name == HostingTracingDiagnosticProcessor.ListenerName)
                 {
+                    //listener.Subscribe(new HostingTracingDiagnosticObserver<KeyValuePair<string, object>>(listenerData =>
+ 
+                    //                 }));
                     var target = serviceProvider.GetService<IHostingTracingDiagnosticProcessor>() ?? new HostingTracingDiagnosticProcessor(serviceProvider);
                     listener.SubscribeWithAdapter(target);
                 }
+
             }));
 
         }

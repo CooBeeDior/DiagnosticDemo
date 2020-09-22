@@ -27,6 +27,7 @@ namespace DiagnosticApiDemo.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            //throw new Exception("dd");
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -39,6 +40,25 @@ namespace DiagnosticApiDemo.Controllers
 
         [HttpGet("baidu")]
         public async Task<string> BaiDu()
+        {
+            HttpClient client = new HttpClient();
+            var resp = await client.GetAsync("http://www.baidu.com");
+            var result = await resp.Content.ReadAsStringAsync();
+            return result;
+        }
+
+
+        [HttpPost("baidu")]
+        public async Task<string> BaiDuPost()
+        {
+            HttpClient client = new HttpClient();
+            var resp = await client.GetAsync("http://www.baidu.com");
+            var result = await resp.Content.ReadAsStringAsync();
+            return result;
+        }
+
+        [HttpPut("baidu")]
+        public async Task<string> BaiDuPut()
         {
             HttpClient client = new HttpClient();
             var resp = await client.GetAsync("http://www.baidu.com");

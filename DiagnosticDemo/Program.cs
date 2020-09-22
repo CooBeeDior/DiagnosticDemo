@@ -106,34 +106,47 @@ namespace DiagnosticDemo
             //AllListeners获取所有发布者，Subscribe为发布者注册订阅者MyObserver
             DiagnosticListener.AllListeners.Subscribe(new MyObserver<DiagnosticListener>(listener =>
             {
+                ////判断发布者的名字
+                //if (listener.Name == "MyTest")
+                //{
+                //    ///**重要** 注:1 通过常规对象订阅
+                //    listener.Subscribe(new MyObserver<KeyValuePair<string, object>>(listenerData =>
+                //    {
+                //        System.Console.WriteLine($"监听名称:{listenerData.Key}");
+                //        dynamic data = listenerData.Value;
+                //        //打印发布的消息
+                //        System.Console.WriteLine($"获取的信息为:{data.Name}的地址是{data.Address}");
+                //    }));
+
+                //    //listener.SubscribeWithAdapter(new MyDiagnosticListener());
+                //}
+
+                //if (listener.Name == "MyTest1")
+                //{
+                //    listener.SubscribeWithAdapter(new MyDiagnosticListener());
+
+
+                //} 
+
+                //if (listener.Name == "HttpHandlerDiagnosticListener")
+                //{
+                //    ///**重要**  注：2通过适配器模式去订阅
+                //    listener.SubscribeWithAdapter(new HttpClientTracingDiagnosticProcessor());
+                //}
+
+
                 //判断发布者的名字
-                if (listener.Name == "MyTest")
+                if (listener.Name == "HttpHandlerDiagnosticListener")
                 {
                     ///**重要** 注:1 通过常规对象订阅
-                    listener.Subscribe(new MyObserver<KeyValuePair<string, object>>(listenerData =>
+                    listener.Subscribe(new MyObserver< KeyValuePair<string, object>>(listenerData =>
                     {
-                        System.Console.WriteLine($"监听名称:{listenerData.Key}");
-                        dynamic data = listenerData.Value;
-                        //打印发布的消息
-                        System.Console.WriteLine($"获取的信息为:{data.Name}的地址是{data.Address}");
+                        var data = listenerData;
                     }));
 
                     //listener.SubscribeWithAdapter(new MyDiagnosticListener());
                 }
 
-                if (listener.Name == "MyTest1")
-                {
-                    listener.SubscribeWithAdapter(new MyDiagnosticListener());
-
-
-                } 
-              
-                if (listener.Name == "HttpHandlerDiagnosticListener")
-                {
-                    ///**重要**  注：2通过适配器模式去订阅
-                    listener.SubscribeWithAdapter(new HttpClientTracingDiagnosticProcessor());
-                }
-                
             }));
 
 
