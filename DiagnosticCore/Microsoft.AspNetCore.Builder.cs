@@ -1,26 +1,26 @@
-﻿using DiagnosticCore;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-//[assembly: PreApplicationStartMethod(typeof(DiagnosticInitialization), "InitializeDiagnostic")]
-namespace Microsoft.AspNetCore.Builder
+namespace DiagnosticCore
 {
     public static class DiagnosticExtensions
     {
-      
-        public static void UseAllDiagnostic(this IApplicationBuilder app)
+        public static void UserAllDiagnostics(this IApplicationBuilder app)
         {
-            app.UseHttpClientDiagnostic();
-            app.UseHostingDiagnostic();
+            DiagnosticInitialization.InitializeDiagnostic(app.ApplicationServices);
         }
-        public static void UseHttpClientDiagnostic(this IApplicationBuilder app)
+
+        public static void UserHttpClientDiagnostics(this IApplicationBuilder app)
         {
             DiagnosticInitialization.InitializeHttpClientDiagnostic(app.ApplicationServices);
-        } 
+        }
 
-        public static void UseHostingDiagnostic(this IApplicationBuilder app)
+
+        public static void UserHostingDiagnostics(this IApplicationBuilder app)
         {
             DiagnosticInitialization.InitializeHostingDiagnostic(app.ApplicationServices);
-        } 
-
+        }
     }
 }

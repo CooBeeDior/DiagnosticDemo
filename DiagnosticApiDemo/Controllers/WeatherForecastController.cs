@@ -45,5 +45,24 @@ namespace DiagnosticApiDemo.Controllers
             var result = await resp.Content.ReadAsStringAsync();
             return result;
         }
+
+
+        [HttpPost("baidu")]
+        public async Task<string> BaiDuPost()
+        {
+            HttpClient client = new HttpClient();
+            var resp = await client.GetAsync("http://www.baidu.com");
+            var result = await resp.Content.ReadAsStringAsync();
+            return result;
+        }
+
+        [HttpPut("baidu")]
+        public async Task<string> BaiDuPut()
+        {
+            HttpClient client = new HttpClient();
+            var resp = await client.GetAsync("http://www.baidu.com");
+            var result = await resp.Content.ReadAsStringAsync();
+            return result;
+        }
     }
 }

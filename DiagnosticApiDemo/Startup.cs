@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DiagnosticCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,7 +17,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DiagnosticApiDemo
 {
- 
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -29,24 +30,24 @@ namespace DiagnosticApiDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDiagnostics();
             services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-    
+          
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseAllDiagnostic();
-            app.UseHttpsRedirection();
+
+            app.UserAllDiagnostics();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+        
 
             app.UseEndpoints(endpoints =>
             {

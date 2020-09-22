@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DiagnosticAdapter;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 using System.Net.Http;
 namespace DiagnosticCore
 {
@@ -20,7 +21,7 @@ namespace DiagnosticCore
 
         [DiagnosticName("System.Net.Http.Request")]
         public void HttpRequest(HttpRequestMessage request)
-        {
+        { 
             HttpRequestHandle(request);
         }
 
@@ -39,6 +40,7 @@ namespace DiagnosticCore
 
         protected virtual void HttpRequestHandle(HttpRequestMessage request)
         {
+           
         }
 
         protected virtual void HttpResponseHandle(HttpResponseMessage response)

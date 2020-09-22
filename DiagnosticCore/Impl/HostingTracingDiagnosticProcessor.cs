@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DiagnosticAdapter;
 using Microsoft.Extensions.Logging;
+using MongodbCore;
 using System;
+using System.Linq;
 namespace DiagnosticCore
 {
 
@@ -62,21 +64,36 @@ namespace DiagnosticCore
         #region protected      
         protected void BeginRequestHandle(HttpContext httpContext)
         {
+            var request = httpContext.Request;
+            var parentTrackId = request.Headers["track-id"].FirstOrDefault();
+            if (!string.IsNullOrWhiteSpace(parentTrackId))
+            {
+                request.Headers.Add("parent-track-id", parentTrackId);
+            }
+            request.Headers.Add("chain-id", Guid.NewGuid().ToString());
+            request.Headers.Add("track-id", Guid.NewGuid().ToString());
+
+            request.Headers.Add("track-time", DateTime.Now.Ticks.ToString());
         }
 
 
         protected void EndRequestHandle(HttpContext httpContext)
         {
+            httpContext.ToLogInfo().ToPersistence(ServiceProvider);
         }
 
 
         protected void DiagnosticUnhandledExceptionHandle(HttpContext httpContext, Exception exception)
         {
+            var id = Guid.NewGuid().ToString();
+            httpContext.ToLogInfo(id, exception).ToPersistence(ServiceProvider);
         }
 
 
         protected void HostingUnhandledExceptionHandle(HttpContext httpContext, Exception exception)
         {
+            var id = Guid.NewGuid().ToString();
+            httpContext.ToLogInfo(id, exception).ToPersistence(ServiceProvider);
         }
 
 
@@ -87,7 +104,12 @@ namespace DiagnosticCore
 
         protected void AfterActionHandle(ActionDescriptor actionDescriptor, HttpContext httpContext)
         {
+            //httpContext.ToLogInfo().ToPersistence(ServiceProvider);
         }
+
+
+
+
         #endregion
     }
 }
