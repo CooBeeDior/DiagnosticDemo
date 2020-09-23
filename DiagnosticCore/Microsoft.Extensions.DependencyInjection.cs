@@ -27,8 +27,6 @@ namespace Microsoft.Extensions.DependencyInjection
             }       
             services.AddSingleton<ILoggerProvider, DiagnosticLogProvider>();
             services.Add(new ServiceDescriptor(typeof(IDiagnosticTraceLogger<>), typeof(DiagnosticTraceLogger<>), ServiceLifetime.Singleton));
-            services.AddHttpContextAccessor();
-
 
         }
     }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using DiagnosticCore.Models;
-
+using PersistenceAbstraction;
 namespace DiagnosticCore.LogCore
 {
     public class DiagnosticLogger : ILogger
@@ -56,7 +56,7 @@ namespace DiagnosticCore.LogCore
 
                     }
                     logInfo.ErrorMessage = logInfo.Exception?.Message;
-                    logInfo.ErrorStackTrace = logInfo.Exception?.StackTrace;
+   
                     _persistence.Insert(logInfo);
 
                 }

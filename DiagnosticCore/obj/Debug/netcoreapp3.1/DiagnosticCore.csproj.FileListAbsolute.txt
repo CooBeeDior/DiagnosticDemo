@@ -22,3 +22,5 @@ D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\MongodbCore.dll
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\MongodbCore.pdb
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.csproj.CopyComplete
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.csproj.CoreCompileInputs.cache
+D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\PersistenceAbstraction.dll
+D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb

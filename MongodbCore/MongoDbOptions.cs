@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MongodbCore
 {
-    public class MongoDbOptions
+    public class MongoDbOptions  
     {
         public string ConnectionString { get; set; }
 
@@ -12,5 +13,6 @@ namespace MongodbCore
 
         public string ConnectionName { get; set; }
 
+ 
     }
 }

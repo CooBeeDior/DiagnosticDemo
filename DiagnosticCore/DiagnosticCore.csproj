@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MongodbCore\MongodbCore.csproj" />
+    <ProjectReference Include="..\PersistenceAbstraction\PersistenceAbstraction.csproj" />
   </ItemGroup>
 
 </Project>

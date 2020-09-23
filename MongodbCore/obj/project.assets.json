@@ -1767,6 +1767,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "PersistenceAbstraction/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/PersistenceAbstraction.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PersistenceAbstraction.dll": {}
+        }
       }
     }
   },
@@ -5827,6 +5837,11 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "PersistenceAbstraction/1.0.0": {
+      "type": "project",
+      "path": "../PersistenceAbstraction/PersistenceAbstraction.csproj",
+      "msbuildProject": "../PersistenceAbstraction/PersistenceAbstraction.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5838,7 +5853,8 @@
       "Microsoft.Extensions.Logging >= 3.1.8",
       "MongoDB.Driver >= 2.11.2",
       "MongoDB.Driver.Core >= 2.11.2",
-      "Newtonsoft.Json >= 12.0.3"
+      "Newtonsoft.Json >= 12.0.3",
+      "PersistenceAbstraction >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5871,7 +5887,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj": {
+              "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

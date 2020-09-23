@@ -15,7 +15,8 @@
           "Microsoft.Extensions.Logging": "3.1.8",
           "MongoDB.Driver": "2.11.2",
           "MongoDB.Driver.Core": "2.11.2",
-          "Newtonsoft.Json": "12.0.3"
+          "Newtonsoft.Json": "12.0.3",
+          "PersistenceAbstraction": "1.0.0"
         },
         "runtime": {
           "MongodbCore.dll": {}
@@ -1167,6 +1168,11 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
         }
+      },
+      "PersistenceAbstraction/1.0.0": {
+        "runtime": {
+          "PersistenceAbstraction.dll": {}
+        }
       }
     }
   },
@@ -1980,6 +1986,11 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "PersistenceAbstraction/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
