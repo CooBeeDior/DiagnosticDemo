@@ -1,4 +1,7 @@
-﻿using ElasticSearchCore;
+﻿using DiagnosticCore.Models;
+using ElasticSearchCore;
+using ElasticSearchCore.Models;
+using Microsoft.AspNetCore.Builder;
 using PersistenceAbstraction;
 using System;
 using System.Collections.Generic;
@@ -17,5 +20,11 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<IEsClientProvider, EsClientProvider>();
             services.AddSingleton<IPersistence, ElasticSearchPersistence>();
         }
+
+        //public static void UseElasticsearch(this IApplicationBuilder app)
+        //{
+        //    var esClientProvider = app.ApplicationServices.GetService<IEsClientProvider>();
+        //    esClientProvider.GetClient().CreateIndex<EsLogInfo>();
+        //}
     }
 }

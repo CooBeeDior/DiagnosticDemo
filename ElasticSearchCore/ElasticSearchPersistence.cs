@@ -1,4 +1,5 @@
-﻿using Nest;
+﻿using ElasticSearchCore.Models;
+using Nest;
 using PersistenceAbstraction;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ElasticSearchCore
 
         public void Insert<T>(T data) where T : class
         {
-            var indexName = data.ToIndexName();
+            var indexName = typeof(T).ToIndexName();
             var client = _esClientProvider.GetClient(indexName);
             var resp = client.CreateDocument(data);
 

@@ -58,8 +58,7 @@ namespace ElasticSearchCore
             var connectionPool = new StaticConnectionPool(uris);
             var connectionSetting = new ConnectionSettings(connectionPool);
             if (!string.IsNullOrWhiteSpace(defaultIndex))
-            {
-
+            { 
                 IIndexState indexState = new IndexState
                 {
                     Settings = new IndexSettings

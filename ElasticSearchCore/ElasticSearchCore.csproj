@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DiagnosticCore\DiagnosticCore.csproj" />
     <ProjectReference Include="..\PersistenceAbstraction\PersistenceAbstraction.csproj" />
   </ItemGroup>
 

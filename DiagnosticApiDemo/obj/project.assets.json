@@ -2640,6 +2640,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "DiagnosticCore": "1.0.0",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.Options": "3.1.8",
           "NEST": "7.9.0",

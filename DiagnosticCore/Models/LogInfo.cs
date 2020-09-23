@@ -40,7 +40,7 @@ namespace DiagnosticCore.Models
         public virtual long ElapsedTime { get; set; }
 
         public virtual DateTimeOffset CreateAt { get; set; }
-
+      
         public virtual Exception Exception { get; set; }
 
         public virtual string ErrorMessage { get; set; }

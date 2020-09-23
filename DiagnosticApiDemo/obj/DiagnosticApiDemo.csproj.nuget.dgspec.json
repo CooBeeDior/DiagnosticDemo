@@ -196,6 +196,9 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+              "D:\\Work\\DiagnosticDemo\\DiagnosticCore\\DiagnosticCore.csproj": {
+                "projectPath": "D:\\Work\\DiagnosticDemo\\DiagnosticCore\\DiagnosticCore.csproj"
+              },
               "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj": {
                 "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj"
               }

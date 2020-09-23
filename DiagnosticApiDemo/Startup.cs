@@ -18,7 +18,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DiagnosticApiDemo
 {
-   
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -33,7 +33,7 @@ namespace DiagnosticApiDemo
         {
             services.AddControllers(options =>
             {
- 
+
                 options.SuppressAsyncSuffixInActionNames = false;
             });
         }
@@ -49,6 +49,7 @@ namespace DiagnosticApiDemo
             }
 
             app.UserAllDiagnostics();
+
 
             app.UseRouting();
 

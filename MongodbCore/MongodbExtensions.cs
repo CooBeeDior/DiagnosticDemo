@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
             action?.Invoke(options);
     
  
-            services.ConfigureOptions(options);
+            services.AddSingleton(options);
             services.AddSingleton<IPersistence,MongodbPersistence>();
 
         }
