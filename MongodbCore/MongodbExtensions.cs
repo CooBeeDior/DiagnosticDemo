@@ -25,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<IMongoClient>(client);
             services.AddSingleton<IMongoDatabase>(mydb);
             services.AddSingleton<IMongoCollection<BsonDocument>>(collection);
-
+            services.AddSingleton<IPersistence,MongodbPersistence>();
 
         }
     }

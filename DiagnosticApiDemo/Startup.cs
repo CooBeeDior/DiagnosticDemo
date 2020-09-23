@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DiagnosticAdapter;
@@ -17,7 +18,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DiagnosticApiDemo
 {
-
+   
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -30,13 +31,17 @@ namespace DiagnosticApiDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+ 
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-          
+
 
             if (env.IsDevelopment())
             {
@@ -47,7 +52,7 @@ namespace DiagnosticApiDemo
 
             app.UseRouting();
 
-        
+
 
             app.UseEndpoints(endpoints =>
             {

@@ -14,18 +14,7 @@ namespace MongodbCore
         {
             return new LogInfoBuilder();
         }
-
-        public LogInfoBuilder FromLogInfo(LogInfo loginfo)
-        {
-            if (loginfo == null)
-            {
-                throw new ArgumentException($"loginfo not null");
-            }
-            _loginfo = loginfo;
-            return this;
-        }
-
-        public LogInfoBuilder LogInfoBuild(string Id)
+        public LogInfoBuilder BuildLogInfo(string Id)
         {
             _loginfo = new LogInfo(Id);
             _loginfo.ServerName = AppDomain.CurrentDomain.FriendlyName;
@@ -36,16 +25,38 @@ namespace MongodbCore
 
             return this;
         }
+        public LogInfoBuilder BuildFromLogInfo(LogInfo loginfo)
+        {
+            if (loginfo == null)
+            {
+                throw new ArgumentException($"loginfo not null");
+            }
+            _loginfo = loginfo.Clone();
+            _loginfo.ThreadId = Thread.CurrentThread.ManagedThreadId;
+            _loginfo.ThreadName = Thread.CurrentThread.Name;
+            _loginfo.CreateAt= DateTimeOffset.Now;
+            return this;
+        }
+
+        public LogInfoBuilder ClearLogInfo()
+        {
+            _loginfo = null;
+            return this;
+        }
 
 
+        public LogInfoBuilder ChangeId(string Id)
+        {
+            _loginfo.Id = Id;
+            return this;
+        }
 
-
-        public LogInfoBuilder BuildHttpContext(HttpContext context)
+        public LogInfoBuilder HttpContext(HttpContext context)
         {
             context.Request.EnableBuffering();
 
             _loginfo.Request = context.Request?.ToStr().Result;
-            _loginfo.Response = context.Response?.Body?.ToStr();
+            _loginfo.Response = context.Response?.ToStr();
             _loginfo.Header = context.Request?.Headers?.ToJson();
             _loginfo.Cookies = context.Request?.Cookies?.ToJson();
             _loginfo.Method = context.Request?.Method;
@@ -55,23 +66,23 @@ namespace MongodbCore
             _loginfo.ClientIpAddress = context.Connection.RemoteIpAddress.MapToIPv4().ToString();
             return this;
         }
-        public LogInfoBuilder BuildRequest(string request)
+        public LogInfoBuilder Request(string request)
         {
             _loginfo.Request = request;
             return this;
         }
-        public LogInfoBuilder BuildResponse(string response)
+        public LogInfoBuilder Response(string response)
         {
             _loginfo.Response = response;
             return this;
         }
 
-        public LogInfoBuilder BuildParentId(string parentId)
+        public LogInfoBuilder ParentId(string parentId)
         {
             _loginfo.ParentId = parentId;
             return this;
         }
-        public LogInfoBuilder BuildLog(string logLevel, string logName, Exception exception = null)
+        public LogInfoBuilder Log(string logLevel, string logName, Exception exception = null)
         {
             _loginfo.LogName = logName;
             _loginfo.LogLevel = logLevel;
@@ -80,31 +91,35 @@ namespace MongodbCore
         }
 
 
-        public LogInfoBuilder BuildException(Exception exception)
+        public LogInfoBuilder Exception(Exception exception)
         {
             _loginfo.Exception = exception;
             return this;
         }
 
-        public LogInfoBuilder BuildTrackId(string trackId, string parentTrackId = null)
+        public LogInfoBuilder TrackId(string trackId, string parentTrackId = null)
         {
             _loginfo.TrackId = trackId;
             _loginfo.ParentTrackId = parentTrackId;
             return this;
         }
 
-        public LogInfoBuilder BuildParentTrackId(string parentTrackId)
+        public LogInfoBuilder ParentTrackId(string parentTrackId)
         {
             _loginfo.ParentTrackId = parentTrackId;
             return this;
         }
 
-        public LogInfoBuilder BuildElapsedTime(long elapsedTime)
+        public LogInfoBuilder ElapsedTime(long elapsedTime)
         {
             _loginfo.ElapsedTime = elapsedTime;
             return this;
         }
-
+        public LogInfoBuilder StatusCode(int? statusCode)
+        {
+            _loginfo.StatusCode = statusCode;
+            return this;
+        }
 
         public LogInfo Build()
         {

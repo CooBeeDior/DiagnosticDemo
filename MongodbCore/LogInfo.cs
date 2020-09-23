@@ -35,13 +35,18 @@ namespace MongodbCore
 
         public string Cookies { get; set; }
 
-        public int StatusCode { get; set; }
+        public int? StatusCode { get; set; }
 
         public long ElapsedTime { get; set; }
 
         public DateTimeOffset CreateAt { get; set; }
 
         public Exception Exception { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public string ErrorStackTrace { get; set; }
+
 
         public string HostIPAddress { get; set; }
 
@@ -52,6 +57,11 @@ namespace MongodbCore
 
 
         public string ThreadName { get; set; }
+
+        public LogInfo Clone()
+        {
+            return this.MemberwiseClone() as LogInfo;
+        }
 
     }
 }

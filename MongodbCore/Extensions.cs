@@ -27,18 +27,19 @@ namespace MongodbCore
             return JsonConvert.DeserializeObject(str, jsonSerializerSettings);
         }
 
-        public static object ToObj<T>(this string str, JsonSerializerSettings jsonSerializerSettings = null)
+        public static T ToObj<T>(this string str, JsonSerializerSettings jsonSerializerSettings = null)
         {
             return JsonConvert.DeserializeObject<T>(str, jsonSerializerSettings);
         }
 
 
-        public static string ToStr(this Stream sm, Encoding encoding = null)
+        public static string ToStr(this HttpResponse response, Encoding encoding = null)
         {
-            if (sm.CanRead && sm.CanSeek)
+
+            if (response.Body.CanRead && response.Body.CanSeek)
             {
                 encoding = encoding ?? Encoding.UTF8;
-                StreamReader reader = new StreamReader(sm, encoding);
+                StreamReader reader = new StreamReader(response.Body, encoding);
                 var result = reader.ReadToEndAsync().ConfigureAwait(false).GetAwaiter().GetResult();
 
                 return result;
@@ -95,8 +96,8 @@ namespace MongodbCore
             var elapsedTime = (DateTime.Now.Ticks - Convert.ToInt64(trackTime)) / 1000000;//转换为ms
 
 
-            var logInfoBuilder = LogInfoBuilder.CreateBuilder().LogInfoBuild(id).BuildParentId(parentid).BuildTrackId(trackId, parentTrackId)
-                   .BuildHttpContext(context).BuildElapsedTime(elapsedTime).BuildLog(LogLevel.Trace.ToString(), "", exception);
+            var logInfoBuilder = LogInfoBuilder.CreateBuilder().BuildLogInfo(id).ParentId(parentid).TrackId(trackId, parentTrackId)
+                   .HttpContext(context).ElapsedTime(elapsedTime).Log(LogLevel.Trace.ToString(), "", exception);
             return logInfoBuilder;
         }
 

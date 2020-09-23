@@ -23,8 +23,8 @@ namespace DiagnosticCore
 
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeAction")]
-        void BeforeAction(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext, RouteData routeData);
- 
+        void BeforeAction(ActionDescriptor actionDescriptor, RouteData routeData);
+
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuting")]
         void BeforeOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext httpContext);
@@ -50,7 +50,7 @@ namespace DiagnosticCore
         [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuted")]
         void AfterOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext);
 
- 
+
 
         [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnResultExecuting")]
         void BeforeOnResultExecuting(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext);

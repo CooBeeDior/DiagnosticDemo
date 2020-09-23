@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DiagnosticAdapter;
 using Microsoft.Extensions.Logging;
+using MongodbCore;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -9,6 +10,7 @@ namespace DiagnosticCore
 {
     public class HttpClientTracingDiagnosticProcessor : IHttpClientTracingDiagnosticProcessor
     {
+        public readonly static string ListenerName = "HttpHandlerDiagnosticListener";
         protected ILogger<HttpClientTracingDiagnosticProcessor> Logger { get; }
         protected IServiceProvider ServiceProvider { get; }
         public HttpClientTracingDiagnosticProcessor(IServiceProvider serviceProvider)
@@ -16,11 +18,6 @@ namespace DiagnosticCore
             ServiceProvider = serviceProvider;
             Logger = serviceProvider.GetService<ILogger<HttpClientTracingDiagnosticProcessor>>();
         }
-
-
-        public readonly static string ListenerName = "HttpHandlerDiagnosticListener";
-
-
 
         [DiagnosticName("System.Net.Http.HttpRequestOut.Start")]
         public void HttpRequestStart(HttpRequestMessage request)
@@ -51,9 +48,16 @@ namespace DiagnosticCore
         {
             HttpExceptionHandle(request, exception);
         }
+
+        #region protected
+
+        private LogInfoBuilder _logInfoBuilder = LogInfoBuilder.CreateBuilder();
         protected virtual void HttpRequestStartHandle(HttpRequestMessage request)
         {
-         
+            _logInfoBuilder.ClearLogInfo();
+
+
+
         }
         protected virtual void HttpRequestHandle(HttpRequestMessage request)
         {
@@ -72,6 +76,7 @@ namespace DiagnosticCore
         protected virtual void HttpExceptionHandle(HttpRequestMessage request, Exception exception)
         {
         }
+        #endregion
     }
 
 }
