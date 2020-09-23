@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DiagnosticCore.Models;
+using Microsoft.Extensions.Logging;
 using MongodbCore;
 using System;
 using System.Collections.Generic;

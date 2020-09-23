@@ -1,4 +1,5 @@
 ﻿using DiagnosticCore.LogCore;
+using DiagnosticCore.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;

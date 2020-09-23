@@ -9,4 +9,3 @@ D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\MongodbCore.pdb
 D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.dll
 D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.pdb
 D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.csproj.CoreCompileInputs.cache
-D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.csprojAssemblyReference.cache

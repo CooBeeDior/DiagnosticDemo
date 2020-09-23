@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using DiagnosticCore.Models;
+
 namespace DiagnosticCore.LogCore
 {
     public class DiagnosticLogger : ILogger

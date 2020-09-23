@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DiagnosticCore.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DiagnosticAdapter;
 using Microsoft.Extensions.Logging;

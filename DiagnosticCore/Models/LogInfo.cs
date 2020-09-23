@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MongodbCore
+namespace DiagnosticCore.Models
 {
     public class LogInfo
     {

@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Threading;
-namespace MongodbCore
+namespace DiagnosticCore.Models
 {
     public class LogInfoBuilder
     {
@@ -34,7 +34,7 @@ namespace MongodbCore
             _loginfo = loginfo.Clone();
             _loginfo.ThreadId = Thread.CurrentThread.ManagedThreadId;
             _loginfo.ThreadName = Thread.CurrentThread.Name;
-            _loginfo.CreateAt= DateTimeOffset.Now;
+            _loginfo.CreateAt = DateTimeOffset.Now;
             return this;
         }
 
