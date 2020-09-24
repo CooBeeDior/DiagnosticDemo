@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DiagnosticModel\DiagnosticModel.csproj" />
     <ProjectReference Include="..\PersistenceAbstraction\PersistenceAbstraction.csproj" />
   </ItemGroup>
 

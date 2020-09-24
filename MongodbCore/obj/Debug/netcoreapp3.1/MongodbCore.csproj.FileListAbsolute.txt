@@ -13,3 +13,5 @@ D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\PersistenceAbstractio
 D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
 D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.csprojAssemblyReference.cache
 D:\Work\DiagnosticDemo\MongodbCore\obj\Debug\netcoreapp3.1\MongodbCore.csproj.CopyComplete
+D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\DiagnosticModel.dll
+D:\Work\DiagnosticDemo\MongodbCore\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb

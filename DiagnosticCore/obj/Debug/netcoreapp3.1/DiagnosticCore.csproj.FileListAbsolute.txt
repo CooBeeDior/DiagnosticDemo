@@ -15,12 +15,9 @@ D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.Ass
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.AssemblyInfo.cs
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.dll
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.pdb
-D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\snappy32.dll
-D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\snappy64.dll
-D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\libzstd.dll
-D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\MongodbCore.dll
-D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\MongodbCore.pdb
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.csproj.CopyComplete
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.csproj.CoreCompileInputs.cache
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\PersistenceAbstraction.dll
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
+D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\DiagnosticModel.dll
+D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb

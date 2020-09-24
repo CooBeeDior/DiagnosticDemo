@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PersistenceAbstraction;
 
 namespace DiagnosticApiDemo.Controllers
 {
@@ -19,15 +20,15 @@ namespace DiagnosticApiDemo.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,Func<string, IPersistence> func)
         {
             _logger = logger;
+ 
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            throw new Exception("达娃大发我发我我");
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -60,9 +61,7 @@ namespace DiagnosticApiDemo.Controllers
         [HttpPost("exception")]
         public async Task<string> Exception()
         {
-            throw new Exception("手动错误");
-        
-            return "123";
+            throw new Exception("手动错误");        
         }
 
         [HttpPut("baidu")]

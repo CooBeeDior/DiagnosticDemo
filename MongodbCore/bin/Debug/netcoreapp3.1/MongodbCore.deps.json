@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "MongodbCore/1.0.0": {
         "dependencies": {
+          "DiagnosticModel": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
@@ -1169,7 +1170,22 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "DiagnosticModel/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "DiagnosticModel.dll": {}
+        }
+      },
       "PersistenceAbstraction/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
+        },
         "runtime": {
           "PersistenceAbstraction.dll": {}
         }
@@ -1986,6 +2002,11 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "DiagnosticModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "PersistenceAbstraction/1.0.0": {
       "type": "project",

@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
-namespace DiagnosticCore.Models
+namespace DiagnosticModel
 {
+    [Serializable]
     public class LogInfo
     {
         public LogInfo(string id)
@@ -40,7 +42,7 @@ namespace DiagnosticCore.Models
         public virtual long ElapsedTime { get; set; }
 
         public virtual DateTimeOffset CreateAt { get; set; }
-      
+
         public virtual Exception Exception { get; set; }
 
         public virtual string ErrorMessage { get; set; }
@@ -60,8 +62,24 @@ namespace DiagnosticCore.Models
 
         public virtual LogInfo Clone()
         {
-            return this.MemberwiseClone() as LogInfo;
+            return ToTLogInfo<LogInfo>();
         }
+
+
+        public virtual TLogInfo ToTLogInfo<TLogInfo>()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new MemoryStream();
+            using (stream)
+            {
+                formatter.Serialize(stream, this);
+                stream.Seek(0, SeekOrigin.Begin);
+                return (TLogInfo)formatter.Deserialize(stream);
+            }
+        }
+
+
+
 
     }
 }

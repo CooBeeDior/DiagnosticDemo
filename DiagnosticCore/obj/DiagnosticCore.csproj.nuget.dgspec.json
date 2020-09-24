@@ -31,8 +31,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj": {
-                "projectPath": "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj"
+              "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj": {
+                "projectPath": "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj"
               },
               "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj": {
                 "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj"
@@ -97,14 +97,14 @@
         }
       }
     },
-    "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj": {
+    "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj",
-        "projectName": "MongodbCore",
-        "projectPath": "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj",
+        "projectUniqueName": "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj",
+        "projectName": "DiagnosticModel",
+        "projectPath": "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj",
         "packagesPath": "C:\\Users\\coobe\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\DiagnosticDemo\\MongodbCore\\obj\\",
+        "outputPath": "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -123,11 +123,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {
-              "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj": {
-                "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -139,10 +135,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "Microsoft.AspNetCore.Http": {
-              "target": "Package",
-              "version": "[2.2.2, )"
-            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -151,21 +143,9 @@
               "target": "Package",
               "version": "[2.2.5, )"
             },
-            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+            "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[3.1.8, )"
-            },
-            "Microsoft.Extensions.Logging": {
-              "target": "Package",
-              "version": "[3.1.8, )"
-            },
-            "MongoDB.Driver": {
-              "target": "Package",
-              "version": "[2.11.2, )"
-            },
-            "MongoDB.Driver.Core": {
-              "target": "Package",
-              "version": "[2.11.2, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -228,6 +208,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

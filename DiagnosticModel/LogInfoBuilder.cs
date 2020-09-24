@@ -3,7 +3,8 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Threading;
-namespace DiagnosticCore.Models
+
+namespace DiagnosticModel
 {
     public class LogInfoBuilder
     {

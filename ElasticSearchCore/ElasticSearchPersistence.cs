@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ElasticSearchCore
 { 
-    public class ElasticSearchPersistence : IPersistence
+    public class ElasticSearchPersistence : IElasticSearchPersistence
     {
         private readonly IEsClientProvider _esClientProvider;
         public ElasticSearchPersistence(IEsClientProvider esClientProvider)

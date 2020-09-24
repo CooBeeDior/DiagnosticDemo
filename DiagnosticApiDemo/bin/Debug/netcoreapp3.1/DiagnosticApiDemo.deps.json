@@ -27,6 +27,7 @@
           "DiagnosticCore": "1.0.0",
           "ElasticSearchCore": "1.0.0",
           "Microsoft.Extensions.DiagnosticAdapter": "3.1.8",
+          "MongodbCore": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery.Reference": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -1900,6 +1901,7 @@
       },
       "DiagnosticCore/1.0.0": {
         "dependencies": {
+          "DiagnosticModel": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc": "2.2.0",
@@ -1907,7 +1909,6 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
           "Microsoft.Extensions.DiagnosticAdapter": "3.1.8",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
-          "MongodbCore": "1.0.0",
           "PersistenceAbstraction": "1.0.0"
         },
         "runtime": {
@@ -1917,9 +1918,23 @@
           "DiagnosticCore.dll": {}
         }
       },
+      "DiagnosticModel/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "DiagnosticModel.dll": {}
+        },
+        "compile": {
+          "DiagnosticModel.dll": {}
+        }
+      },
       "ElasticSearchCore/1.0.0": {
         "dependencies": {
-          "DiagnosticCore": "1.0.0",
+          "DiagnosticModel": "1.0.0",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.Options": "3.1.8",
           "NEST": "7.9.0",
@@ -1934,6 +1949,7 @@
       },
       "MongodbCore/1.0.0": {
         "dependencies": {
+          "DiagnosticModel": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
@@ -1952,6 +1968,10 @@
         }
       },
       "PersistenceAbstraction/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
+        },
         "runtime": {
           "PersistenceAbstraction.dll": {}
         },
@@ -4811,6 +4831,11 @@
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
     },
     "DiagnosticCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DiagnosticModel/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -2619,6 +2619,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "DiagnosticModel": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc": "2.2.0",
@@ -2626,7 +2627,6 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
           "Microsoft.Extensions.DiagnosticAdapter": "3.1.8",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
-          "MongodbCore": "1.0.0",
           "PersistenceAbstraction": "1.0.0"
         },
         "compile": {
@@ -2636,11 +2636,27 @@
           "bin/placeholder/DiagnosticCore.dll": {}
         }
       },
+      "DiagnosticModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "bin/placeholder/DiagnosticModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DiagnosticModel.dll": {}
+        }
+      },
       "ElasticSearchCore/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "DiagnosticCore": "1.0.0",
+          "DiagnosticModel": "1.0.0",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.Options": "3.1.8",
           "NEST": "7.9.0",
@@ -2657,6 +2673,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "DiagnosticModel": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
@@ -2677,6 +2694,10 @@
       "PersistenceAbstraction/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
+        },
         "compile": {
           "bin/placeholder/PersistenceAbstraction.dll": {}
         },
@@ -8059,6 +8080,11 @@
       "path": "../DiagnosticCore/DiagnosticCore.csproj",
       "msbuildProject": "../DiagnosticCore/DiagnosticCore.csproj"
     },
+    "DiagnosticModel/1.0.0": {
+      "type": "project",
+      "path": "../DiagnosticModel/DiagnosticModel.csproj",
+      "msbuildProject": "../DiagnosticModel/DiagnosticModel.csproj"
+    },
     "ElasticSearchCore/1.0.0": {
       "type": "project",
       "path": "../ElasticSearchCore/ElasticSearchCore.csproj",
@@ -8079,7 +8105,8 @@
     ".NETCoreApp,Version=v3.1": [
       "DiagnosticCore >= 1.0.0",
       "ElasticSearchCore >= 1.0.0",
-      "Microsoft.Extensions.DiagnosticAdapter >= 3.1.8"
+      "Microsoft.Extensions.DiagnosticAdapter >= 3.1.8",
+      "MongodbCore >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -8118,6 +8145,9 @@
             },
             "D:\\Work\\DiagnosticDemo\\ElasticSearchCore\\ElasticSearchCore.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\ElasticSearchCore\\ElasticSearchCore.csproj"
+            },
+            "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj": {
+              "projectPath": "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj"
             }
           }
         }

@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DiagnosticCore\DiagnosticCore.csproj" />
     <ProjectReference Include="..\ElasticSearchCore\ElasticSearchCore.csproj" />
+    <ProjectReference Include="..\MongodbCore\MongodbCore.csproj" />
   </ItemGroup>
 
 

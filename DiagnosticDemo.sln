@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiagnosticCore", "Diagnosti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongodbCore", "MongodbCore\MongodbCore.csproj", "{820D68AA-F5EC-4120-8A02-CDD5752EDFC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchCore", "ElasticSearchCore\ElasticSearchCore.csproj", "{9D304835-4F21-467C-AF71-713C96CBB9D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearchCore", "ElasticSearchCore\ElasticSearchCore.csproj", "{9D304835-4F21-467C-AF71-713C96CBB9D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistenceAbstraction", "PersistenceAbstraction\PersistenceAbstraction.csproj", "{D509C727-BAE7-4657-811C-03DB165E513C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersistenceAbstraction", "PersistenceAbstraction\PersistenceAbstraction.csproj", "{D509C727-BAE7-4657-811C-03DB165E513C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiagnosticModel", "DiagnosticModel\DiagnosticModel.csproj", "{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D509C727-BAE7-4657-811C-03DB165E513C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D509C727-BAE7-4657-811C-03DB165E513C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D509C727-BAE7-4657-811C-03DB165E513C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

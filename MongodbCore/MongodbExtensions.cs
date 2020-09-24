@@ -5,6 +5,8 @@ using MongoDB.Driver;
 using MongodbCore;
 using PersistenceAbstraction;
 using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -15,10 +17,18 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             MongoDbOptions options = new MongoDbOptions();
             action?.Invoke(options);
-    
- 
+
+
             services.AddSingleton(options);
-            services.AddSingleton<IPersistence,MongodbPersistence>();
+            services.AddSingleton<IMongodbPersistence, MongodbPersistence>();
+            PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>
+            {
+                if (name.Equals("Mongodb", StringComparison.OrdinalIgnoreCase))
+                {
+                    return serviceProvider.GetService<IMongodbPersistence>();
+                }
+                return null;
+            });
 
         }
     }

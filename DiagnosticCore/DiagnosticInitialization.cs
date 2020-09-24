@@ -1,10 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
-using MongodbCore;
 
 namespace DiagnosticCore
 {
@@ -25,10 +22,16 @@ namespace DiagnosticCore
 
                 if (listener.Name == HttpClientTracingDiagnosticProcessor.ListenerName)
                 {
-                    var target = serviceProvider.GetService<IHttpClientTracingDiagnosticProcessor>() ?? new HttpClientTracingDiagnosticProcessor(serviceProvider);
-                    listener.SubscribeWithAdapter(target);
+                    listener.Subscribe(new HttpClientTracingDiagnosticObserver<KeyValuePair<string, object>>(listenerData =>
+                    {
+
+                    }));
+                    //var target = serviceProvider.GetService<IHttpClientTracingDiagnosticProcessor>() ?? new HttpClientTracingDiagnosticProcessor(serviceProvider);
+                    //listener.SubscribeWithAdapter(target, (a, b, c) => { return true; });
                 }
             }));
+
+         
         }
 
         public static void InitializeHostingDiagnostic(IServiceProvider serviceProvider)
@@ -38,10 +41,11 @@ namespace DiagnosticCore
                 if (listener.Name == HostingTracingDiagnosticProcessor.ListenerName)
                 {
                     //listener.Subscribe(new HostingTracingDiagnosticObserver<KeyValuePair<string, object>>(listenerData =>
- 
-                    //                 }));
+                    //{
+
+                    //}));
                     var target = serviceProvider.GetService<IHostingTracingDiagnosticProcessor>() ?? new HostingTracingDiagnosticProcessor(serviceProvider);
-                    listener.SubscribeWithAdapter(target);
+                    listener.SubscribeWithAdapter(target, (a, b, c) => { return true; });
                 }
 
             }));

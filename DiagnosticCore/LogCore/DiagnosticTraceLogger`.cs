@@ -1,9 +1,6 @@
-﻿using DiagnosticCore.Models;
+﻿using DiagnosticModel;
 using Microsoft.Extensions.Logging;
-using MongodbCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DiagnosticCore.LogCore
 {

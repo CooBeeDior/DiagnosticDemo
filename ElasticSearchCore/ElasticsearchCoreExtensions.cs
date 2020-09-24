@@ -1,11 +1,6 @@
-﻿using DiagnosticCore.Models;
-using ElasticSearchCore;
-using ElasticSearchCore.Models;
-using Microsoft.AspNetCore.Builder;
+﻿using ElasticSearchCore;
 using PersistenceAbstraction;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -17,14 +12,18 @@ namespace Microsoft.Extensions.DependencyInjection
             action?.Invoke(options);
 
             services.AddSingleton(options);
-            services.AddSingleton<IEsClientProvider, EsClientProvider>();
-            services.AddSingleton<IPersistence, ElasticSearchPersistence>();
+            services.AddSingleton<IEsClientProvider, EsClientProvider>(); 
+            services.AddSingleton<IElasticSearchPersistence, ElasticSearchPersistence>();
+            PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>
+            {
+                if (name.Equals("ElasticSearch", StringComparison.OrdinalIgnoreCase))
+                {
+                    return serviceProvider.GetService<IElasticSearchPersistence>();
+                }
+                return null;
+            });
         }
 
-        //public static void UseElasticsearch(this IApplicationBuilder app)
-        //{
-        //    var esClientProvider = app.ApplicationServices.GetService<IEsClientProvider>();
-        //    esClientProvider.GetClient().CreateIndex<EsLogInfo>();
-        //}
+
     }
 }

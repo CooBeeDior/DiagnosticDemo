@@ -7,9 +7,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace MongodbCore
-{
-
-    public class MongodbPersistence : IPersistence
+{ 
+    public class MongodbPersistence : IMongodbPersistence
     {
         private readonly IMongoCollection<BsonDocument> _mongoCollection;
         public MongodbPersistence(MongoDbOptions options)

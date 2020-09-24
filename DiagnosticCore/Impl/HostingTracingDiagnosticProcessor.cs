@@ -1,16 +1,12 @@
 ﻿using DiagnosticCore.LogCore;
-using DiagnosticCore.Models;
+using DiagnosticModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DiagnosticAdapter;
-using Microsoft.Extensions.Logging;
-using MongodbCore;
 using System;
 using System.Linq;
 using System.Net;
@@ -21,6 +17,31 @@ namespace DiagnosticCore
     public class HostingTracingDiagnosticProcessor : IHostingTracingDiagnosticProcessor
     {
         public readonly static string ListenerName = "Microsoft.AspNetCore";
+
+        public const string HttpRequestInStartName = "Microsoft.AspNetCore.Hosting.HttpRequestIn.Start";
+        public const string BeginRequestName = "Microsoft.AspNetCore.Hosting.BeginRequest";
+        public const string EndpointMatchedName = "Microsoft.AspNetCore.Routing.EndpointMatched";
+        public const string BeforeActionName = "Microsoft.AspNetCore.Mvc.BeforeAction";
+        public const string BeforeOnActionExecutingName = "Microsoft.AspNetCore.Mvc.BeforeOnActionExecuting";
+        public const string AfterOnActionExecutingName = "Microsoft.AspNetCore.Mvc.AfterOnActionExecuting";
+        public const string BeforeActionMethodName = "Microsoft.AspNetCore.Mvc.BeforeActionMethod";
+        public const string BeforeControllerActionMethodName = "Microsoft.AspNetCore.Mvc.BeforeControllerActionMethod";
+        public const string AfterControllerActionMethodName = "Microsoft.AspNetCore.Mvc.AfterControllerActionMethod";
+        public const string AfterActionMethodName = "Microsoft.AspNetCore.Mvc.AfterActionMethod";
+        public const string BeforeOnActionExecutedName = "Microsoft.AspNetCore.Mvc.BeforeOnActionExecuted";
+        public const string AfterOnActionExecutedName = "Microsoft.AspNetCore.Mvc.AfterOnActionExecuted";
+        public const string BeforeOnResultExecutingName = "Microsoft.AspNetCore.Mvc.BeforeOnResultExecuting";
+        public const string AfterOnResultExecutingName = "Microsoft.AspNetCore.Mvc.AfterOnResultExecuting";
+        public const string BeforeActionResultName = "Microsoft.AspNetCore.Mvc.BeforeActionResult";
+        public const string AfterActionResultName = "Microsoft.AspNetCore.Mvc.AfterActionResult";
+        public const string BeforeOnResultExecutedName = "Microsoft.AspNetCore.Mvc.BeforeOnResultExecuted";
+        public const string AfterOnResultExecutedName = "Microsoft.AspNetCore.Mvc.AfterOnResultExecuted";
+        public const string AfterActionName = "Microsoft.AspNetCore.Mvc.AfterAction";
+        public const string EndRequestName = "Microsoft.AspNetCore.Hosting.EndRequest";
+        public const string HttpRequestInStopName = "Microsoft.AspNetCore.Hosting.HttpRequestIn.Stop";
+        public const string DiagnosticsUnhandledExceptionName = "Microsoft.AspNetCore.Diagnostics.UnhandledException";
+        public const string HostingUnhandledExceptionName = "Microsoft.AspNetCore.Hosting.UnhandledException";
+
         protected IServiceProvider ServiceProvider { get; }
         protected IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> Logger { get; }
 
@@ -34,26 +55,26 @@ namespace DiagnosticCore
         }
 
 
-        [DiagnosticName("Microsoft.AspNetCore.Hosting.HttpRequestIn.Start")]
+        [DiagnosticName(HttpRequestInStartName)]
         public void HttpRequestInStart(DefaultHttpContext httpContext)
         {
 
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Hosting.BeginRequest")]
+        [DiagnosticName(BeginRequestName)]
         public void BeginRequest(HttpContext httpContext)
         {
             BeginRequestHandle(httpContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Routing.EndpointMatched")]
+        [DiagnosticName(EndpointMatchedName)]
         public void EndpointMatched(HttpContext httpContext)
         {
             EndpointMatchedHandle(httpContext);
         }
 
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeAction")]
+        [DiagnosticName(BeforeActionName)]
         public void BeforeAction(ActionDescriptor actionDescriptor, RouteData routeData)
         {
             BeforeActionHandle(actionDescriptor, routeData);
@@ -61,44 +82,44 @@ namespace DiagnosticCore
 
 
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuting")]
+        [DiagnosticName(BeforeOnActionExecutingName)]
         public void BeforeOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext actionExecutingContext)
         {
             BeforeOnActionExecutingHandle(actionDescriptor, actionExecutingContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuting")]
+        [DiagnosticName(AfterOnActionExecutingName)]
         public void AfterOnActionExecuting(ActionDescriptor actionDescriptor, ActionExecutingContext actionExecutingContext)
         {
             AfterOnActionExecutingHandle(actionDescriptor, actionExecutingContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeActionMethod")]
+        [DiagnosticName(BeforeActionMethodName)]
         public void BeforeActionMethod(ActionContext actionContext)
         {
             BeforeActionMethodHandle(actionContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeControllerActionMethod")]
+        [DiagnosticName(BeforeControllerActionMethodName)]
         public void BeforeControllerActionMethod(ActionContext actionContext)
         {
 
             BeforeControllerActionMethodHandle(actionContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterControllerActionMethod")]
+        [DiagnosticName(AfterControllerActionMethodName)]
         public void AfterControllerActionMethod(ActionContext actionContext, ObjectResult result)
         {
             AfterControllerActionMethodHandle(actionContext, result);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterActionMethod")]
+        [DiagnosticName(AfterActionMethodName)]
         public void AfterActionMethod(ActionContext actionContext)
         {
             AfterActionMethodHandle(actionContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnActionExecuted")]
+        [DiagnosticName(BeforeOnActionExecutedName)]
         public void BeforeOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext)
         {
             BeforeOnActionExecutedHandle(actionDescriptor, actionExecutedContext);
@@ -107,46 +128,46 @@ namespace DiagnosticCore
 
 
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnActionExecuted")]
+        [DiagnosticName(AfterOnActionExecutedName)]
         public void AfterOnActionExecuted(ActionDescriptor actionDescriptor, ActionExecutedContext actionExecutedContext)
         {
             AfterOnActionExecutedHandle(actionDescriptor, actionExecutedContext);
         }
 
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnResultExecuting")]
+        [DiagnosticName(BeforeOnResultExecutingName)]
         public void BeforeOnResultExecuting(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext)
         {
             BeforeOnResultExecutingHandle(actionDescriptor, resultExecutingContext);
 
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnResultExecuting")]
+        [DiagnosticName(AfterOnResultExecutingName)]
         public void AfterOnResultExecuting(ActionDescriptor actionDescriptor, ResultExecutingContext resultExecutingContext)
         {
             AfterOnResultExecutingHandle(actionDescriptor, resultExecutingContext);
 
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeActionResult")]
+        [DiagnosticName(BeforeActionResultName)]
         public void BeforeActionResult(ActionContext actionContext)
         {
             BeforeActionResultHandle(actionContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterActionResult")]
+        [DiagnosticName(AfterActionResultName)]
         public void AfterActionResult(ActionContext actionContext)
         {
             AfterActionResultHandle(actionContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.BeforeOnResultExecuted")]
+        [DiagnosticName(BeforeOnResultExecutedName)]
         public void BeforeOnResultExecuted(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext)
         {
             BeforeOnResultExecutedHandle(actionDescriptor, resultExecutedContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterOnResultExecuted")]
+        [DiagnosticName(AfterOnResultExecutedName)]
         public void AfterOnResultExecuted(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext)
         {
             AfterOnResultExecutedHandle(actionDescriptor, resultExecutedContext);
@@ -155,25 +176,25 @@ namespace DiagnosticCore
 
 
 
-        [DiagnosticName("Microsoft.AspNetCore.Mvc.AfterAction")]
+        [DiagnosticName(AfterActionName)]
         public void AfterAction(ActionDescriptor actionDescriptor, HttpContext httpContext, RouteData routeData)
         {
             AfterActionHandle(actionDescriptor, httpContext, routeData);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Hosting.EndRequest")]
+        [DiagnosticName(EndRequestName)]
         public void EndRequest(HttpContext httpContext)
         {
             EndRequestHandle(httpContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Hosting.HttpRequestIn.Stop")]
+        [DiagnosticName(HttpRequestInStopName)]
         public void HttpRequestInStop(HttpContext httpContext)
         {
             HttpRequestInStopHandle(httpContext);
         }
 
-        [DiagnosticName("Microsoft.AspNetCore.Diagnostics.UnhandledException")]
+        [DiagnosticName(DiagnosticUnhandledExceptionName)]
         public void DiagnosticUnhandledException(HttpContext httpContext, Exception exception)
         {
             DiagnosticUnhandledExceptionHandle(httpContext, exception);
@@ -181,7 +202,7 @@ namespace DiagnosticCore
 
 
 
-        [DiagnosticName("Microsoft.AspNetCore.Hosting.UnhandledException")]
+        [DiagnosticName(HostingUnhandledExceptionName)]
         public void HostingUnhandledException(HttpContext httpContext, Exception exception)
         {
             HostingUnhandledExceptionHandle(httpContext, exception);
@@ -281,7 +302,7 @@ namespace DiagnosticCore
             var builder = resultExecutedContext.HttpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(this.GetType().FullName)];
             if (builder != null && builder is LogInfoBuilder logInfoBuilder && resultExecutedContext.Result != null)
             {
-                setActionResult(resultExecutedContext.Result, logInfoBuilder);
+                setLogResponse(resultExecutedContext.Result, logInfoBuilder);
 
             }
         }
@@ -358,8 +379,8 @@ namespace DiagnosticCore
             return null;
         }
 
-        private void setActionResult(IActionResult actionResult, LogInfoBuilder logInfoBuilder)
-        { 
+        private void setLogResponse(IActionResult actionResult, LogInfoBuilder logInfoBuilder)
+        {
             if (actionResult is AntiforgeryValidationFailedResult antiforgeryValidationFailedResult)
             {
                 logInfoBuilder.Response(antiforgeryValidationFailedResult?.ToJson()).StatusCode(antiforgeryValidationFailedResult.StatusCode);
@@ -399,7 +420,7 @@ namespace DiagnosticCore
             }
             else if (actionResult is StatusCodeResult statusCodeResult)
             {
-              
+
                 logInfoBuilder.Response(statusCodeResult?.ToJson()).StatusCode(statusCodeResult.StatusCode);
             }
             else if (actionResult is ViewComponentResult viewComponentResult)

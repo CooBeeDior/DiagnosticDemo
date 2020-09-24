@@ -1,8 +1,6 @@
-﻿using DiagnosticCore.Models;
+﻿using DiagnosticModel;
 using Nest;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ElasticSearchCore.Models
 {

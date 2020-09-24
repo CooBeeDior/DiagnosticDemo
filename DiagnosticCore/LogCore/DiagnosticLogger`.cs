@@ -1,23 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DiagnosticModel;
 using Microsoft.Extensions.Logging;
-using MongodbCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
-using DiagnosticCore.Models;
-using PersistenceAbstraction;
 namespace DiagnosticCore.LogCore
 {
     public class DiagnosticLogger : ILogger
     {
         private readonly string _categoryName;
-        private readonly IPersistence _persistence;
+   
 
         public DiagnosticLogger(string categoryName, IServiceProvider serviceProvider)
         {
-            _categoryName = categoryName;
-            _persistence = serviceProvider.GetService<IPersistence>();
+            _categoryName = categoryName; 
         }
         public IDisposable BeginScope<TState>(TState state)
         {
@@ -57,7 +50,8 @@ namespace DiagnosticCore.LogCore
                     }
                     logInfo.ErrorMessage = logInfo.Exception?.Message;
    
-                    _persistence.Insert(logInfo);
+                    //通过异步发送LogInfo
+           
 
                 }
 

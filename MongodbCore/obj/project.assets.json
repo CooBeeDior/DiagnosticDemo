@@ -1768,9 +1768,29 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
+      "DiagnosticModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "bin/placeholder/DiagnosticModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DiagnosticModel.dll": {}
+        }
+      },
       "PersistenceAbstraction/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
+        },
         "compile": {
           "bin/placeholder/PersistenceAbstraction.dll": {}
         },
@@ -5838,6 +5858,11 @@
         "system.xml.xdocument.nuspec"
       ]
     },
+    "DiagnosticModel/1.0.0": {
+      "type": "project",
+      "path": "../DiagnosticModel/DiagnosticModel.csproj",
+      "msbuildProject": "../DiagnosticModel/DiagnosticModel.csproj"
+    },
     "PersistenceAbstraction/1.0.0": {
       "type": "project",
       "path": "../PersistenceAbstraction/PersistenceAbstraction.csproj",
@@ -5846,6 +5871,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "DiagnosticModel >= 1.0.0",
       "Microsoft.AspNetCore.Http >= 2.2.2",
       "Microsoft.AspNetCore.Http.Abstractions >= 2.2.0",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5",
@@ -5888,6 +5914,9 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+            "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj": {
+              "projectPath": "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj"
+            },
             "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj"
             }
