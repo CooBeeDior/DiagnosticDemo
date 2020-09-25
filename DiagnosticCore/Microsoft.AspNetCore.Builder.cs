@@ -7,18 +7,18 @@ namespace DiagnosticCore
 {
     public static class DiagnosticExtensions
     {
-        public static void UserAllDiagnostics(this IApplicationBuilder app)
+        public static void UseAllDiagnostics(this IApplicationBuilder app)
         {
             DiagnosticInitialization.InitializeDiagnostic(app.ApplicationServices);
         }
 
-        public static void UserHttpClientDiagnostics(this IApplicationBuilder app)
+        public static void UseHttpClientDiagnostics(this IApplicationBuilder app)
         {
             DiagnosticInitialization.InitializeHttpClientDiagnostic(app.ApplicationServices);
         }
 
 
-        public static void UserHostingDiagnostics(this IApplicationBuilder app)
+        public static void UseHostingDiagnostics(this IApplicationBuilder app)
         {
             DiagnosticInitialization.InitializeHostingDiagnostic(app.ApplicationServices);
         }

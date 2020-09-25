@@ -1,8 +1,12 @@
-﻿using DiagnosticModel;
+﻿using DiagnosticCore.Constant;
+using DiagnosticCore.LogCore;
+using DiagnosticModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DiagnosticAdapter;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 namespace DiagnosticCore
 {
@@ -14,14 +18,17 @@ namespace DiagnosticCore
         public const string HttpRequestStopName = "System.Net.Http.HttpRequestOut.Stop";
         public const string HttpResponseName = "System.Net.Http.Response";
         public const string HttpExceptionName = "System.Net.Http.Exception";
- 
 
-        protected ILogger<HttpClientTracingDiagnosticProcessor> Logger { get; }
+
+        protected IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor> Logger { get; }
         protected IServiceProvider ServiceProvider { get; }
+
+        protected HttpContext HttpContext { get; }
         public HttpClientTracingDiagnosticProcessor(IServiceProvider serviceProvider)
         {
             ServiceProvider = serviceProvider;
-            Logger = serviceProvider.GetService<ILogger<HttpClientTracingDiagnosticProcessor>>();
+            Logger = serviceProvider.GetService<IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor>>();
+            HttpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
         }
 
         [DiagnosticName(HttpRequestStartName)]
@@ -55,14 +62,20 @@ namespace DiagnosticCore
         }
 
 
-    
+
 
         #region protected
 
-        private LogInfoBuilder _logInfoBuilder = LogInfoBuilder.CreateBuilder();
+
         protected virtual void HttpRequestStartHandle(HttpRequestMessage request)
         {
-            _logInfoBuilder.ClearLogInfo();
+            var loginfoBuilder = HttpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName)] as LogInfoBuilder;
+            if (loginfoBuilder != null)
+            {
+                var loginfo = loginfoBuilder.Build();
+                request.Headers.Add(HttpConstant.TRACK_ID, loginfo.TrackId);
+            }
+
 
 
 
@@ -78,11 +91,32 @@ namespace DiagnosticCore
 
         protected virtual void HttpResponseHandle(HttpResponseMessage response)
         {
+            var parentLoginfoBuilder = HttpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName)] as LogInfoBuilder;
+            if (parentLoginfoBuilder != null)
+            {
+                var parentLogInfo = parentLoginfoBuilder.Build();
+                var loginfoBuilder = LogInfoBuilder.CreateBuilder().BuildFromLogInfo(parentLogInfo).ParentId(parentLogInfo.Id).HttpRequestMessage(response.RequestMessage)
+                    .HttpResponseMessage(response).ElapsedTime(getElapsedTime(HttpContext));
+                Logger.LogTrace(loginfoBuilder);
+
+            }
         }
 
 
         protected virtual void HttpExceptionHandle(HttpRequestMessage request, Exception exception)
         {
+        }
+        #endregion
+
+        #region
+        private long getElapsedTime(HttpContext context)
+        {
+            var stopwatch = context.Items[DiagnosticConstant.GetItemKeyToLogBuilder(HttpConstant.TRACK_TIME)] as Stopwatch;
+            if (stopwatch != null)
+            {
+                return stopwatch.ElapsedMilliseconds;
+            }
+            return 0;
         }
         #endregion
     }

@@ -21,3 +21,5 @@ D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\PersistenceAbstrac
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\DiagnosticModel.dll
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb
+D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\MessageQueueAbstraction.dll
+D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\MessageQueueAbstraction.pdb

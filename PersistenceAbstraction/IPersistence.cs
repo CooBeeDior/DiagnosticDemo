@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace PersistenceAbstraction
 {
     public interface IPersistence
     {
-        void Insert<T>(T data) where T : class;
+        Task InsertAsync<T>(T data) where T : class;
 
-        void Update<T>(T data) where T : class;
+        Task UpdateAsync<T>(T data) where T : class;
 
-        void Delete<T>(T data) where T : class;
+        Task DeleteAsync<T>(T data) where T : class;
     }
 }

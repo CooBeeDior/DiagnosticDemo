@@ -9,6 +9,7 @@
       "DiagnosticCore/1.0.0": {
         "dependencies": {
           "DiagnosticModel": "1.0.0",
+          "MessageQueueAbstraction": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc": "2.2.0",
@@ -1724,6 +1725,14 @@
           "DiagnosticModel.dll": {}
         }
       },
+      "MessageQueueAbstraction/1.0.0": {
+        "dependencies": {
+          "PersistenceAbstraction": "1.0.0"
+        },
+        "runtime": {
+          "MessageQueueAbstraction.dll": {}
+        }
+      },
       "PersistenceAbstraction/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
@@ -2883,6 +2892,11 @@
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
     },
     "DiagnosticModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MessageQueueAbstraction/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

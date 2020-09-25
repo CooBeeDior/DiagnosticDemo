@@ -477,6 +477,18 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Mvc.Versioning/4.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Mvc.ViewFeatures/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -2620,6 +2632,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "DiagnosticModel": "1.0.0",
+          "MessageQueueAbstraction": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc": "2.2.0",
@@ -2667,6 +2680,19 @@
         },
         "runtime": {
           "bin/placeholder/ElasticSearchCore.dll": {}
+        }
+      },
+      "MessageQueueAbstraction/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "PersistenceAbstraction": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MessageQueueAbstraction.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MessageQueueAbstraction.dll": {}
         }
       },
       "MongodbCore/1.0.0": {
@@ -3169,6 +3195,22 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.TagHelpers.xml",
         "microsoft.aspnetcore.mvc.taghelpers.2.2.0.nupkg.sha512",
         "microsoft.aspnetcore.mvc.taghelpers.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Mvc.Versioning/4.1.1": {
+      "sha512": "ioFhRz5gm2Ny+t758Jab638eTG8Uui++klcH00EgBuU/BQbjkbFY+9xw/CkoAChIcrJsoQP2NKDYJ09zN5jR0g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.mvc.versioning/4.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "icon.png",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Versioning.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Versioning.pdb",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Versioning.xml",
+        "microsoft.aspnetcore.mvc.versioning.4.1.1.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.versioning.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Mvc.ViewFeatures/2.2.0": {
@@ -8090,6 +8132,11 @@
       "path": "../ElasticSearchCore/ElasticSearchCore.csproj",
       "msbuildProject": "../ElasticSearchCore/ElasticSearchCore.csproj"
     },
+    "MessageQueueAbstraction/1.0.0": {
+      "type": "project",
+      "path": "../MessageQueueAbstraction/MessageQueueAbstraction.csproj",
+      "msbuildProject": "../MessageQueueAbstraction/MessageQueueAbstraction.csproj"
+    },
     "MongodbCore/1.0.0": {
       "type": "project",
       "path": "../MongodbCore/MongodbCore.csproj",
@@ -8105,6 +8152,9 @@
     ".NETCoreApp,Version=v3.1": [
       "DiagnosticCore >= 1.0.0",
       "ElasticSearchCore >= 1.0.0",
+      "MessageQueueAbstraction >= 1.0.0",
+      "Microsoft.AspNetCore.Localization >= 2.2.0",
+      "Microsoft.AspNetCore.Mvc.Versioning >= 4.1.1",
       "Microsoft.Extensions.DiagnosticAdapter >= 3.1.8",
       "MongodbCore >= 1.0.0"
     ]
@@ -8146,6 +8196,9 @@
             "D:\\Work\\DiagnosticDemo\\ElasticSearchCore\\ElasticSearchCore.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\ElasticSearchCore\\ElasticSearchCore.csproj"
             },
+            "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj": {
+              "projectPath": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj"
+            },
             "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj"
             }
@@ -8161,6 +8214,14 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Microsoft.AspNetCore.Localization": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
+          "Microsoft.AspNetCore.Mvc.Versioning": {
+            "target": "Package",
+            "version": "[4.1.1, )"
+          },
           "Microsoft.Extensions.DiagnosticAdapter": {
             "target": "Package",
             "version": "[3.1.8, )"

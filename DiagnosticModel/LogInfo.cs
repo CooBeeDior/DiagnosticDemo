@@ -60,12 +60,15 @@ namespace DiagnosticModel
 
         public virtual string ThreadName { get; set; }
 
+        public string Description { get; set; }
+
+
         public virtual LogInfo Clone()
         {
             return ToTLogInfo<LogInfo>();
         }
 
-
+         
         public virtual TLogInfo ToTLogInfo<TLogInfo>()
         {
             IFormatter formatter = new BinaryFormatter();

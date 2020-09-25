@@ -12,7 +12,7 @@ namespace DiagnosticCore.LogCore
 
         public static string GetItemKeyToLogBuilder(string name)
         {
-            return $"{name}_LogBuilder";
+            return $"{name}_Key";
         }
     }
 }

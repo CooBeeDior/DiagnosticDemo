@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearchCore", "Elasti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersistenceAbstraction", "PersistenceAbstraction\PersistenceAbstraction.csproj", "{D509C727-BAE7-4657-811C-03DB165E513C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiagnosticModel", "DiagnosticModel\DiagnosticModel.csproj", "{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiagnosticModel", "DiagnosticModel\DiagnosticModel.csproj", "{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageQueueAbstraction", "MessageQueueAbstraction\MessageQueueAbstraction.csproj", "{F9405D3A-15C3-4F1C-8234-A50359E10CF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C36E8E3-1A0C-4A97-936C-67D90B9C0084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9405D3A-15C3-4F1C-8234-A50359E10CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9405D3A-15C3-4F1C-8234-A50359E10CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9405D3A-15C3-4F1C-8234-A50359E10CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9405D3A-15C3-4F1C-8234-A50359E10CF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

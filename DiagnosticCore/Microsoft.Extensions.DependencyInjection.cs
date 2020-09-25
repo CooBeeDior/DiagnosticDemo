@@ -13,15 +13,15 @@ namespace Microsoft.Extensions.DependencyInjection
             options?.Invoke(diagnosticOptions);
             if (diagnosticOptions.IsEnableHostingTracing)
             {
-                services.AddSingleton<IHostingTracingDiagnosticProcessor, HostingTracingDiagnosticProcessor>();
+                services.AddScoped<IHostingTracingDiagnosticProcessor, HostingTracingDiagnosticProcessor>();
             }
             if (diagnosticOptions.IsEnableHttpClientTracing)
             {
-                services.AddSingleton<IHttpClientTracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
+                services.AddScoped<IHttpClientTracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
             }       
-            services.AddSingleton<ILoggerProvider, DiagnosticLogProvider>();
+            services.AddSingleton<ILoggerProvider, DiagnosticLogProvider>();          
             services.Add(new ServiceDescriptor(typeof(IDiagnosticTraceLogger<>), typeof(DiagnosticTraceLogger<>), ServiceLifetime.Singleton));
-
+            services.AddHttpContextAccessor();
         }
     }
 

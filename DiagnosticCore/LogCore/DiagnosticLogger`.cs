@@ -1,16 +1,19 @@
 ﻿using DiagnosticModel;
+using MessageQueueAbstraction;
 using Microsoft.Extensions.Logging;
 using System;
+using Microsoft.Extensions.DependencyInjection;
 namespace DiagnosticCore.LogCore
 {
     public class DiagnosticLogger : ILogger
     {
         private readonly string _categoryName;
-   
 
+        private readonly IPublisher<LogInfo> _publisher;
         public DiagnosticLogger(string categoryName, IServiceProvider serviceProvider)
         {
-            _categoryName = categoryName; 
+            _categoryName = categoryName;
+            _publisher = serviceProvider.GetService<IPublisher<LogInfo>>();
         }
         public IDisposable BeginScope<TState>(TState state)
         {
@@ -49,9 +52,9 @@ namespace DiagnosticCore.LogCore
 
                     }
                     logInfo.ErrorMessage = logInfo.Exception?.Message;
-   
+
                     //通过异步发送LogInfo
-           
+                    _publisher.Publish(logInfo).GetAwaiter().GetResult();
 
                 }
 

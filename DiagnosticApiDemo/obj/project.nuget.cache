@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "odh0Rnhn7AKMfYxrbOwqOJtJZVPKDPqCVuGd/gHZc3mCzAIGtF0ATOmbJ6ctZuNoN1Lvbb9QtzNUoja7OnUqgw==",
+  "dgSpecHash": "dvRnBBvEgf1vQ1otQeHG54mRbnTcyj7+mrmbqKZ7sO0dMLybe9+/uyXevmvPwNuQdsSNPaGup1yPgXR/3+V6/A==",
   "success": true,
   "projectFilePath": "D:\\Work\\DiagnosticDemo\\DiagnosticApiDemo\\DiagnosticApiDemo.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,7 @@
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\2.2.0\\microsoft.aspnetcore.mvc.razor.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.mvc.razorpages\\2.2.0\\microsoft.aspnetcore.mvc.razorpages.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.mvc.taghelpers\\2.2.0\\microsoft.aspnetcore.mvc.taghelpers.2.2.0.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\4.1.1\\microsoft.aspnetcore.mvc.versioning.4.1.1.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.mvc.viewfeatures\\2.2.0\\microsoft.aspnetcore.mvc.viewfeatures.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.razor.design\\2.2.0\\microsoft.aspnetcore.razor.design.2.2.0.nupkg.sha512",

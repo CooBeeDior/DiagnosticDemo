@@ -1,4 +1,5 @@
-﻿using DiagnosticCore.LogCore;
+﻿using DiagnosticCore.Constant;
+using DiagnosticCore.LogCore;
 using DiagnosticModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DiagnosticAdapter;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 
@@ -194,7 +196,7 @@ namespace DiagnosticCore
             HttpRequestInStopHandle(httpContext);
         }
 
-        [DiagnosticName(DiagnosticUnhandledExceptionName)]
+        [DiagnosticName(DiagnosticsUnhandledExceptionName)]
         public void DiagnosticUnhandledException(HttpContext httpContext, Exception exception)
         {
             DiagnosticUnhandledExceptionHandle(httpContext, exception);
@@ -226,20 +228,22 @@ namespace DiagnosticCore
         {
             var request = httpContext.Request;
             //上一个服务传过来 是父级的跟踪Id
-            var parentTrackId = request.Headers["track-id"].FirstOrDefault();
+            var parentTrackId = request.Headers[HttpConstant.TRACK_ID].FirstOrDefault();
             if (!string.IsNullOrWhiteSpace(parentTrackId))
             {
-                request.Headers.Add("parent-track-id", parentTrackId);
+                request.Headers.Add(HttpConstant.PARENT_TRACK_ID, parentTrackId);
             }
             var trackId = Guid.NewGuid().ToString();
-            request.Headers.Add("track-id", trackId);
+            request.Headers.Add(HttpConstant.TRACK_ID, trackId);
 
             //当前服务追踪的Id
             var chainId = Guid.NewGuid().ToString();
-            request.Headers.Add("chain-id", chainId);
-            request.Headers.Add("track-time", DateTime.Now.Ticks.ToString());
+            request.Headers.Add(HttpConstant.CHAIN_ID, chainId);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            httpContext.Items.Add(DiagnosticConstant.GetItemKeyToLogBuilder(HttpConstant.TRACK_TIME), stopwatch);
             var logInfoBuilder = LogInfoBuilder.CreateBuilder().BuildLogInfo(chainId).TrackId(trackId, parentTrackId).HttpContext(httpContext);
-            httpContext.Items.Add(DiagnosticConstant.GetItemKeyToLogBuilder(this.GetType().FullName), logInfoBuilder);
+            httpContext.Items.Add(DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName), logInfoBuilder);
 
         }
 
@@ -299,7 +303,7 @@ namespace DiagnosticCore
         protected virtual void AfterOnResultExecutedHandle(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext)
         {
 
-            var builder = resultExecutedContext.HttpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(this.GetType().FullName)];
+            var builder = resultExecutedContext.HttpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName)];
             if (builder != null && builder is LogInfoBuilder logInfoBuilder && resultExecutedContext.Result != null)
             {
                 setLogResponse(resultExecutedContext.Result, logInfoBuilder);
@@ -316,13 +320,12 @@ namespace DiagnosticCore
 
         protected virtual void EndRequestHandle(HttpContext httpContext)
         {
-            var builder = httpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(this.GetType().FullName)];
+            var builder = httpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName)];
             if (builder != null && builder is LogInfoBuilder logInfoBuilder)
             {
-                var request = httpContext.Request;
-                var elapsedTime = getElapsedTime(request);
+                var elapsedTime = getElapsedTime(httpContext);
                 logInfoBuilder.ElapsedTime(elapsedTime);
-                Logger.LogInformation(logInfoBuilder);
+                Logger.LogTrace(logInfoBuilder);
 
 
             }
@@ -366,13 +369,12 @@ namespace DiagnosticCore
 
         private LogInfoBuilder createErrorLogBuilder(HttpContext httpContext)
         {
-            var builder = httpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(this.GetType().FullName)];
+            var builder = httpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName)];
             if (builder != null && builder is LogInfoBuilder logInfoBuilder)
             {
-                var request = httpContext.Request;
-                var elapsedTime = getElapsedTime(request);
+                var elapsedTime = getElapsedTime(httpContext);
                 var loginfo = logInfoBuilder.Build();
-                var logInfoBuilderNew = LogInfoBuilder.CreateBuilder().BuildFromLogInfo(loginfo).ParentId(loginfo.Id).ChangeId(Guid.NewGuid().ToString())
+                var logInfoBuilderNew = LogInfoBuilder.CreateBuilder().BuildFromLogInfo(loginfo).ParentId(loginfo.Id)
                     .HttpContext(httpContext).ElapsedTime(elapsedTime);
                 return logInfoBuilderNew;
             }
@@ -435,7 +437,7 @@ namespace DiagnosticCore
             }
             else
             {
-                var property = actionResult.GetType().GetProperty("StatusCode");
+                var property = actionResult.GetType().GetProperty(HttpConstant.StatusCode);
                 int statuscode;
                 if (property != null)
                 {
@@ -455,19 +457,13 @@ namespace DiagnosticCore
 
         }
 
-        private long getElapsedTime(HttpRequest request)
+        private long getElapsedTime(HttpContext context)
         {
-            var trackTime = request.Headers["track-time"].FirstOrDefault();
-            if (trackTime != null)
+
+            var stopwatch = context.Items[DiagnosticConstant.GetItemKeyToLogBuilder(HttpConstant.TRACK_TIME)] as Stopwatch;
+            if (stopwatch != null)
             {
-                long endtime;
-                if (long.TryParse(trackTime, out endtime))
-                {
-                    long elapsedTime = (DateTime.Now.Ticks - endtime) / 1000000;
-
-                    return elapsedTime;
-                }
-
+                return stopwatch.ElapsedMilliseconds;
             }
             return 0;
         }

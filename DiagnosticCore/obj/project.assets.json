@@ -2493,6 +2493,19 @@
           "bin/placeholder/DiagnosticModel.dll": {}
         }
       },
+      "MessageQueueAbstraction/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "PersistenceAbstraction": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MessageQueueAbstraction.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MessageQueueAbstraction.dll": {}
+        }
+      },
       "PersistenceAbstraction/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -7681,6 +7694,11 @@
       "path": "../DiagnosticModel/DiagnosticModel.csproj",
       "msbuildProject": "../DiagnosticModel/DiagnosticModel.csproj"
     },
+    "MessageQueueAbstraction/1.0.0": {
+      "type": "project",
+      "path": "../MessageQueueAbstraction/MessageQueueAbstraction.csproj",
+      "msbuildProject": "../MessageQueueAbstraction/MessageQueueAbstraction.csproj"
+    },
     "PersistenceAbstraction/1.0.0": {
       "type": "project",
       "path": "../PersistenceAbstraction/PersistenceAbstraction.csproj",
@@ -7690,6 +7708,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "DiagnosticModel >= 1.0.0",
+      "MessageQueueAbstraction >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.Abstractions >= 2.2.0",
       "Microsoft.AspNetCore.Http.Abstractions >= 2.2.0",
       "Microsoft.AspNetCore.Mvc >= 2.2.0",
@@ -7733,6 +7752,9 @@
           "projectReferences": {
             "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj"
+            },
+            "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj": {
+              "projectPath": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj"
             },
             "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj"

@@ -26,6 +26,9 @@
         "dependencies": {
           "DiagnosticCore": "1.0.0",
           "ElasticSearchCore": "1.0.0",
+          "MessageQueueAbstraction": "1.0.0",
+          "Microsoft.AspNetCore.Localization": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Versioning": "4.1.1",
           "Microsoft.Extensions.DiagnosticAdapter": "3.1.8",
           "MongodbCore": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery.Reference": "3.1.0.0",
@@ -578,6 +581,17 @@
           "Microsoft.Extensions.Caching.Memory": "2.2.0",
           "Microsoft.Extensions.FileSystemGlobbing": "2.2.0",
           "Microsoft.Extensions.Primitives": "3.1.8"
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Versioning/4.1.1": {
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Versioning.dll": {
+            "assemblyVersion": "4.1.0.0",
+            "fileVersion": "4.1.7301.35616"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
         }
       },
       "Microsoft.AspNetCore.Mvc.ViewFeatures/2.2.0": {
@@ -1902,6 +1916,7 @@
       "DiagnosticCore/1.0.0": {
         "dependencies": {
           "DiagnosticModel": "1.0.0",
+          "MessageQueueAbstraction": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc": "2.2.0",
@@ -1945,6 +1960,17 @@
         },
         "compile": {
           "ElasticSearchCore.dll": {}
+        }
+      },
+      "MessageQueueAbstraction/1.0.0": {
+        "dependencies": {
+          "PersistenceAbstraction": "1.0.0"
+        },
+        "runtime": {
+          "MessageQueueAbstraction.dll": {}
+        },
+        "compile": {
+          "MessageQueueAbstraction.dll": {}
         }
       },
       "MongodbCore/1.0.0": {
@@ -3857,6 +3883,13 @@
       "path": "microsoft.aspnetcore.mvc.taghelpers/2.2.0",
       "hashPath": "microsoft.aspnetcore.mvc.taghelpers.2.2.0.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Mvc.Versioning/4.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ioFhRz5gm2Ny+t758Jab638eTG8Uui++klcH00EgBuU/BQbjkbFY+9xw/CkoAChIcrJsoQP2NKDYJ09zN5jR0g==",
+      "path": "microsoft.aspnetcore.mvc.versioning/4.1.1",
+      "hashPath": "microsoft.aspnetcore.mvc.versioning.4.1.1.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Mvc.ViewFeatures/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -4841,6 +4874,11 @@
       "sha512": ""
     },
     "ElasticSearchCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MessageQueueAbstraction/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

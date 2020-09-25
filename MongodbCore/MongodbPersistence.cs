@@ -5,9 +5,10 @@ using PersistenceAbstraction;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MongodbCore
-{ 
+{
     public class MongodbPersistence : IMongodbPersistence
     {
         private readonly IMongoCollection<BsonDocument> _mongoCollection;
@@ -20,18 +21,18 @@ namespace MongodbCore
             //获取collection
             _mongoCollection = mydb.GetCollection<BsonDocument>(options.ConnectionName);
         }
-        public void Delete<T>(T data) where T : class
+        public Task DeleteAsync<T>(T data) where T : class
         {
             throw new NotImplementedException();
         }
 
-        public void Insert<T>(T data) where T : class
+        public async Task InsertAsync<T>(T data) where T : class
         {
             var bjson = data.ToBsonDocument();
-            _mongoCollection.InsertOne(bjson);
+            await _mongoCollection.InsertOneAsync(bjson);
         }
 
-        public void Update<T>(T data) where T : class
+        public Task UpdateAsync<T>(T data) where T : class
         {
             throw new NotImplementedException();
         }

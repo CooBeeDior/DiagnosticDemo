@@ -22,16 +22,19 @@ namespace DiagnosticCore
 
                 if (listener.Name == HttpClientTracingDiagnosticProcessor.ListenerName)
                 {
-                    listener.Subscribe(new HttpClientTracingDiagnosticObserver<KeyValuePair<string, object>>(listenerData =>
-                    {
+                    //listener.Subscribe(new HttpClientTracingDiagnosticObserver<KeyValuePair<string, object>>(listenerData =>
+                    //{
 
-                    }));
-                    //var target = serviceProvider.GetService<IHttpClientTracingDiagnosticProcessor>() ?? new HttpClientTracingDiagnosticProcessor(serviceProvider);
-                    //listener.SubscribeWithAdapter(target, (a, b, c) => { return true; });
+                    //}));
+                    using (var scope = serviceProvider.CreateScope())
+                    {
+                        var target = scope.ServiceProvider.GetService<IHttpClientTracingDiagnosticProcessor>() ?? new HttpClientTracingDiagnosticProcessor(serviceProvider);
+                        listener.SubscribeWithAdapter(target, (a, b, c) => { return true; });
+                    }
                 }
             }));
 
-         
+
         }
 
         public static void InitializeHostingDiagnostic(IServiceProvider serviceProvider)
@@ -44,8 +47,12 @@ namespace DiagnosticCore
                     //{
 
                     //}));
-                    var target = serviceProvider.GetService<IHostingTracingDiagnosticProcessor>() ?? new HostingTracingDiagnosticProcessor(serviceProvider);
-                    listener.SubscribeWithAdapter(target, (a, b, c) => { return true; });
+                    using (var scope = serviceProvider.CreateScope())
+                    {
+                        var target = scope.ServiceProvider.GetService<IHostingTracingDiagnosticProcessor>() ?? new HostingTracingDiagnosticProcessor(serviceProvider);
+                        listener.SubscribeWithAdapter(target, (a, b, c) => { return true; });
+                    }
+                    
                 }
 
             }));
