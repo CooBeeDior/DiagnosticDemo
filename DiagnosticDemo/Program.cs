@@ -96,12 +96,12 @@ namespace DiagnosticDemo
         {
         }
     }
+
+ 
     class Program
     {
         static async Task Main(string[] args)
-        {
-
-
+        { 
 
             //AllListeners获取所有发布者，Subscribe为发布者注册订阅者MyObserver
             DiagnosticListener.AllListeners.Subscribe(new MyObserver<DiagnosticListener>(listener =>

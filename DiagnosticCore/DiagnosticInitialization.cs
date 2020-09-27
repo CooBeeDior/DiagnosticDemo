@@ -28,7 +28,7 @@ namespace DiagnosticCore
                     //}));
                     using (var scope = serviceProvider.CreateScope())
                     {
-                        var target = scope.ServiceProvider.GetService<IHttpClientTracingDiagnosticProcessor>() ?? new HttpClientTracingDiagnosticProcessor(serviceProvider);
+                        var target = scope.ServiceProvider.GetService<IHttpClientTracingDiagnosticProcessor>()  ;
                         listener.SubscribeWithAdapter(target, (a, b, c) => { return true; });
                     }
                 }
@@ -49,7 +49,7 @@ namespace DiagnosticCore
                     //}));
                     using (var scope = serviceProvider.CreateScope())
                     {
-                        var target = scope.ServiceProvider.GetService<IHostingTracingDiagnosticProcessor>() ?? new HostingTracingDiagnosticProcessor(serviceProvider);
+                        var target = scope.ServiceProvider.GetService<IHostingTracingDiagnosticProcessor>()  ;
                         listener.SubscribeWithAdapter(target, (a, b, c) => { return true; });
                     }
                     

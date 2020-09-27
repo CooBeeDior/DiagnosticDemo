@@ -44,16 +44,14 @@ namespace DiagnosticCore
         public const string DiagnosticsUnhandledExceptionName = "Microsoft.AspNetCore.Diagnostics.UnhandledException";
         public const string HostingUnhandledExceptionName = "Microsoft.AspNetCore.Hosting.UnhandledException";
 
-        protected IServiceProvider ServiceProvider { get; }
+
         protected IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> Logger { get; }
 
 
 
-        public HostingTracingDiagnosticProcessor(IServiceProvider serviceProvider)
-        {
-            ServiceProvider = serviceProvider;
-            Logger = serviceProvider.GetService<IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor>>();
-
+        public HostingTracingDiagnosticProcessor(IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> logger)
+        { 
+            Logger = logger; 
         }
 
 

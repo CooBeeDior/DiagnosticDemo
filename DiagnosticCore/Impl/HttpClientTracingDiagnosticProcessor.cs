@@ -24,11 +24,10 @@ namespace DiagnosticCore
         protected IServiceProvider ServiceProvider { get; }
 
         protected HttpContext HttpContext { get; }
-        public HttpClientTracingDiagnosticProcessor(IServiceProvider serviceProvider)
+        public HttpClientTracingDiagnosticProcessor(IHttpContextAccessor httpContextAccessor, IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor> logger)
         {
-            ServiceProvider = serviceProvider;
-            Logger = serviceProvider.GetService<IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor>>();
-            HttpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+            Logger = logger;
+            HttpContext = httpContextAccessor.HttpContext;
         }
 
         [DiagnosticName(HttpRequestStartName)]

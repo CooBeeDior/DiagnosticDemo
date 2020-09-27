@@ -37,6 +37,12 @@
               "D:\\Work\\DiagnosticDemo\\ElasticSearchCore\\ElasticSearchCore.csproj": {
                 "projectPath": "D:\\Work\\DiagnosticDemo\\ElasticSearchCore\\ElasticSearchCore.csproj"
               },
+              "D:\\Work\\DiagnosticDemo\\FreesqlAbstration\\FreesqlAbstration.csproj": {
+                "projectPath": "D:\\Work\\DiagnosticDemo\\FreesqlAbstration\\FreesqlAbstration.csproj"
+              },
+              "D:\\Work\\DiagnosticDemo\\LocalizerAbstraction\\LocalizerAbstraction.csproj": {
+                "projectPath": "D:\\Work\\DiagnosticDemo\\LocalizerAbstraction\\LocalizerAbstraction.csproj"
+              },
               "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj": {
                 "projectPath": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj"
               },
@@ -55,6 +61,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Localization": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -63,9 +73,21 @@
               "target": "Package",
               "version": "[4.1.1, )"
             },
+            "Microsoft.Extensions.Caching.Redis": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.Extensions.DiagnosticAdapter": {
               "target": "Package",
               "version": "[3.1.8, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[5.6.3, )"
             }
           },
           "imports": [
@@ -337,14 +359,14 @@
         }
       }
     },
-    "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj": {
+    "D:\\Work\\DiagnosticDemo\\FreesqlAbstration\\FreesqlAbstration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj",
-        "projectName": "MessageQueueAbstraction",
-        "projectPath": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj",
+        "projectUniqueName": "D:\\Work\\DiagnosticDemo\\FreesqlAbstration\\FreesqlAbstration.csproj",
+        "projectName": "FreesqlAbstration",
+        "projectPath": "D:\\Work\\DiagnosticDemo\\FreesqlAbstration\\FreesqlAbstration.csproj",
         "packagesPath": "C:\\Users\\coobe\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\obj\\",
+        "outputPath": "D:\\Work\\DiagnosticDemo\\FreesqlAbstration\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -378,6 +400,175 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "FreeSql": {
+              "target": "Package",
+              "version": "[1.9.0, )"
+            },
+            "FreeSql.Extensions.LazyLoading": {
+              "target": "Package",
+              "version": "[1.9.0, )"
+            },
+            "FreeSql.Provider.MySql": {
+              "target": "Package",
+              "version": "[1.9.0, )"
+            },
+            "IdleBus": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\DiagnosticDemo\\LocalizerAbstraction\\LocalizerAbstraction.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\DiagnosticDemo\\LocalizerAbstraction\\LocalizerAbstraction.csproj",
+        "projectName": "LocalizerAbstraction",
+        "projectPath": "D:\\Work\\DiagnosticDemo\\LocalizerAbstraction\\LocalizerAbstraction.csproj",
+        "packagesPath": "C:\\Users\\coobe\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\DiagnosticDemo\\LocalizerAbstraction\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\coobe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget.31huiyi.com/nuget/Bayantu/": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj": {
+                "projectPath": "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Localization": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Localization": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.Extensions.Localization.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj",
+        "projectName": "MessageQueueAbstraction",
+        "projectPath": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj",
+        "packagesPath": "C:\\Users\\coobe\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\coobe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget.31huiyi.com/nuget/Bayantu/": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj": {
+                "projectPath": "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj"
+              },
+              "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj": {
+                "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.2.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

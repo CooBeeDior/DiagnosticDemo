@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiagnosticModel\DiagnosticModel.csproj" />
     <ProjectReference Include="..\PersistenceAbstraction\PersistenceAbstraction.csproj" />
   </ItemGroup>
 

@@ -9,17 +9,26 @@ using System.Threading.Tasks;
 
 namespace MongodbCore
 {
-    public class MongodbPersistence : IMongodbPersistence
+    public class LogMongodbPersistence : IMongodbPersistence 
     {
         private readonly IMongoCollection<BsonDocument> _mongoCollection;
-        public MongodbPersistence(MongoDbOptions options)
+        public LogMongodbPersistence(MongoDbOptions options)
         {
             //连接数据库
             var client = new MongoClient(options.ConnectionString);
             //获取database
-            var mydb = client.GetDatabase(options.ConnectionName);
+            var mydb = client.GetDatabase(options.DatabaseName);
             //获取collection
             _mongoCollection = mydb.GetCollection<BsonDocument>(options.ConnectionName);
+        }
+
+
+
+
+        public async Task GetAsync<T>(T data) where T : class
+        {
+            var bjson = data.ToBsonDocument();
+            await _mongoCollection.FindAsync(bjson);
         }
         public Task DeleteAsync<T>(T data) where T : class
         {

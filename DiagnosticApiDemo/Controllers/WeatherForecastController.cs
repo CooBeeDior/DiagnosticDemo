@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using PersistenceAbstraction;
 
@@ -21,10 +22,12 @@ namespace DiagnosticApiDemo.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger,Func<string, IPersistence> func)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, Func<string, IPersistence> func, IStringLocalizer<WeatherForecastController> stringLocalizer)
         {
             _logger = logger;
- 
+            var c = stringLocalizer["ddd"];
+
+
         }
 
         [HttpGet]
@@ -62,7 +65,7 @@ namespace DiagnosticApiDemo.Controllers
         [HttpPost("exception")]
         public async Task<string> Exception()
         {
-            throw new Exception("手动错误");        
+            throw new Exception("手动错误");
         }
 
         [HttpPut("baidu")]

@@ -1,11 +1,20 @@
-﻿using DiagnosticCore;
+﻿using DiagnosticApiDemo.HostingStartups;
+using DiagnosticCore;
 using ElasticSearchCore;
+using LocalizerAbstraction;
+using MessageQueueAbstraction;
 using Microsoft.AspNetCore.Hosting;
 using MongodbCore;
 using PersistenceAbstraction;
 
 [assembly: HostingStartupAttribute(typeof(DiagnosticServiceStartup))]
 [assembly: HostingStartupAttribute(typeof(ElasticSearchServiceStartup))]
-[assembly: HostingStartupAttribute(typeof(MongodbServiceStartup))]
+[assembly: HostingStartupAttribute(typeof(LogMongodbServiceStartup))]
 [assembly: HostingStartupAttribute(typeof(PersistenceStartup))]
-
+[assembly: HostingStartupAttribute(typeof(MongodbLocalizerStartup))]
+[assembly: HostingStartupAttribute(typeof(ApiVersioningStartup))]
+[assembly: HostingStartupAttribute(typeof(RabbitmqServiceStartup))]
+[assembly: HostingStartupAttribute(typeof(RedisServiceStartup))]
+[assembly: HostingStartupAttribute(typeof(SwaggerStartup))]
+[assembly: HostingStartupAttribute(typeof(CorsStartup))]
+[assembly: HostingStartupAttribute(typeof(FreeSqlStartup))]

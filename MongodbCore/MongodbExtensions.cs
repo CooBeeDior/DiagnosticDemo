@@ -13,14 +13,14 @@ namespace Microsoft.Extensions.DependencyInjection
 
     public static class MongodbExtensions
     {
-        public static void AddMongodb(this IServiceCollection services, Action<MongoDbOptions> action = null)
+        public static void AddLogMongodb(this IServiceCollection services, Action<MongoDbOptions> action = null)
         {
             MongoDbOptions options = new MongoDbOptions();
             action?.Invoke(options);
 
 
             services.AddSingleton(options);
-            services.AddSingleton<IMongodbPersistence, MongodbPersistence>();
+            services.AddSingleton<IMongodbPersistence, LogMongodbPersistence>(); 
             PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>
             {
                 if (name.Equals("Mongodb", StringComparison.OrdinalIgnoreCase))

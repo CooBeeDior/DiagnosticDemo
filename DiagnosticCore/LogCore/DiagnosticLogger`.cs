@@ -3,17 +3,21 @@ using MessageQueueAbstraction;
 using Microsoft.Extensions.Logging;
 using System;
 using Microsoft.Extensions.DependencyInjection;
+using RabbitMQ.Client;
+using System.Text;
+
 namespace DiagnosticCore.LogCore
 {
     public class DiagnosticLogger : ILogger
     {
         private readonly string _categoryName;
 
-        private readonly IPublisher<LogInfo> _publisher;
+        private readonly IRabbitmqChannelManagement _rabbitmqChannelManagement;
         public DiagnosticLogger(string categoryName, IServiceProvider serviceProvider)
         {
             _categoryName = categoryName;
-            _publisher = serviceProvider.GetService<IPublisher<LogInfo>>();
+            _rabbitmqChannelManagement = serviceProvider.GetService<IRabbitmqChannelManagement>();
+
         }
         public IDisposable BeginScope<TState>(TState state)
         {
@@ -54,7 +58,9 @@ namespace DiagnosticCore.LogCore
                     logInfo.ErrorMessage = logInfo.Exception?.Message;
 
                     //通过异步发送LogInfo
-                    _publisher.Publish(logInfo).GetAwaiter().GetResult();
+                    var buffer = Encoding.UTF8.GetBytes(logInfo.ToJson());
+                    var model = _rabbitmqChannelManagement.GetChannel(TraceLogRabbitmqConsumer.NAME);
+                    model.BasicPublish("", TraceLogRabbitmqConsumer.NAME, null, buffer);
 
                 }
 

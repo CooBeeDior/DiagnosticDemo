@@ -5,14 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DiagnosticAdapter" Version="3.1.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DiagnosticCore\DiagnosticCore.csproj" />
     <ProjectReference Include="..\ElasticSearchCore\ElasticSearchCore.csproj" />
+    <ProjectReference Include="..\FreesqlAbstration\FreesqlAbstration.csproj" />
+    <ProjectReference Include="..\LocalizerAbstraction\LocalizerAbstraction.csproj" />
     <ProjectReference Include="..\MessageQueueAbstraction\MessageQueueAbstraction.csproj" />
     <ProjectReference Include="..\MongodbCore\MongodbCore.csproj" />
   </ItemGroup>
