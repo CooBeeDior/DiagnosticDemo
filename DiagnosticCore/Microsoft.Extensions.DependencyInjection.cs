@@ -7,10 +7,11 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DiagnosticExtensions
     {
-        public static void AddDiagnostics(this IServiceCollection services, Action<DiagnosticOptions> options = null)
+        public static void AddDiagnostics(this IServiceCollection services, Action<DiagnosticOptions> action = null)
         {
             DiagnosticOptions diagnosticOptions = new DiagnosticOptions();
-            options?.Invoke(diagnosticOptions);
+            action?.Invoke(diagnosticOptions);
+            services.AddSingleton(diagnosticOptions);
             if (diagnosticOptions.IsEnableHostingTracing)
             {
                 services.AddScoped<IHostingTracingDiagnosticProcessor, HostingTracingDiagnosticProcessor>();

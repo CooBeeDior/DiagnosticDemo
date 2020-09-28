@@ -19,7 +19,7 @@ namespace DiagnosticApiDemo.HostingStartups
                 {
                     var db = new FreeSqlDb()
                     {
-                        Name = "FreeSql",
+                        Name = "FreeSqlDb",
                         DataType = DataType.MySql,
                         ConnectString = "Server=coobeedior.com;Database=log;User=root;Password=root;",
                         IsAutoSyncStructure = true,

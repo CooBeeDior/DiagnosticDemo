@@ -1,10 +1,9 @@
 using DiagnosticCore;
-using LocalizerAbstraction;
-using MessageQueueAbstraction;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,13 +24,13 @@ namespace DiagnosticApiDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-          
-         
             services.AddControllers(options =>
-            { 
+            {
                 options.SuppressAsyncSuffixInActionNames = false;
             });
+
+            services.AddHttpClient("aaa");
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +41,7 @@ namespace DiagnosticApiDemo
             {
                 app.UseDeveloperExceptionPage();
             }
-            //app.UseCors("CorsPolicy");// 启用CORS服务
+            app.UseCors("cors");// 启用CORS服务
             //添加诊断
             app.UseAllDiagnostics();
 
@@ -53,10 +52,16 @@ namespace DiagnosticApiDemo
             //启用中间件服务对swagger-ui，指定Swagger JSON终结点
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "微信Api v1");
-                options.DocumentTitle = "微信接口说明文档";
+                var provider = app.ApplicationServices.GetService<IApiVersionDescriptionProvider>();
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                }
 
             });
+
+            app.UseHangfireServer();//启动Hangfire服务
+            app.UseHangfireDashboard();//启动hangfire面板
 
             IList<CultureInfo> supportedCultures = new List<CultureInfo>
             {

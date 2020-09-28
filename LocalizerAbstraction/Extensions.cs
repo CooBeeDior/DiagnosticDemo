@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             MongodbLocalizerOptions options = new MongodbLocalizerOptions();
             action?.Invoke(options);
+            services.AddSingleton(options);
             //本地序列化
             services.AddLocalization(o =>
             {

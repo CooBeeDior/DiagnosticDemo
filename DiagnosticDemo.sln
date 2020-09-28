@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiagnosticModel", "Diagnost
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageQueueAbstraction", "MessageQueueAbstraction\MessageQueueAbstraction.csproj", "{F9405D3A-15C3-4F1C-8234-A50359E10CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalizerAbstraction", "LocalizerAbstraction\LocalizerAbstraction.csproj", "{C8D16990-59D6-4B45-AD56-86895A94611D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalizerAbstraction", "LocalizerAbstraction\LocalizerAbstraction.csproj", "{C8D16990-59D6-4B45-AD56-86895A94611D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreesqlAbstration", "FreesqlAbstration\FreesqlAbstration.csproj", "{E952B7AD-2E3D-4E09-894C-B69FA36C9EB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreesqlAbstration", "FreesqlAbstration\FreesqlAbstration.csproj", "{E952B7AD-2E3D-4E09-894C-B69FA36C9EB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

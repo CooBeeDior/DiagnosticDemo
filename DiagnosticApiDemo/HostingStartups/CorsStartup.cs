@@ -12,14 +12,8 @@ namespace DiagnosticApiDemo.HostingStartups
         {
             builder.ConfigureServices((context, services) =>
             {
-                //services.AddCors(options => options.AddPolicy("CorsPolicy",
-                // builder =>
-                // {
-                //     builder.AllowAnyMethod()
-                //         .AllowAnyHeader()
-                //         .AllowAnyOrigin()
-                //         .AllowCredentials();
-                // }));// 注册CORS服务
+                services.AddCors(option => option.AddPolicy("cors",
+                    policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));// 注册CORS服务
 
             });
 

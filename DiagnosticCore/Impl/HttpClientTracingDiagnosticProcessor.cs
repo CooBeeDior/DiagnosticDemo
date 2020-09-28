@@ -68,6 +68,13 @@ namespace DiagnosticCore
 
         protected virtual void HttpRequestStartHandle(HttpRequestMessage request)
         {
+           
+
+
+
+        }
+        protected virtual void HttpRequestHandle(HttpRequestMessage request)
+        {
             var loginfoBuilder = HttpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName)] as LogInfoBuilder;
             if (loginfoBuilder != null)
             {
@@ -75,12 +82,6 @@ namespace DiagnosticCore
                 request.Headers.Add(HttpConstant.TRACK_ID, loginfo.TrackId);
             }
 
-
-
-
-        }
-        protected virtual void HttpRequestHandle(HttpRequestMessage request)
-        {
 
         }
         protected virtual void HttpRequestStopHandle(HttpRequestMessage request)

@@ -18,7 +18,6 @@ namespace Microsoft.Extensions.DependencyInjection
             MongoDbOptions options = new MongoDbOptions();
             action?.Invoke(options);
 
-
             services.AddSingleton(options);
             services.AddSingleton<IMongodbPersistence, LogMongodbPersistence>(); 
             PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>

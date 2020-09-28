@@ -1,8 +1,16 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Writers;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace DiagnosticApiDemo.HostingStartups
 {
@@ -15,13 +23,14 @@ namespace DiagnosticApiDemo.HostingStartups
 
                 services.AddSwaggerGen(options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo
-                    {
-                        Version = "v1",
-                        Title = "诊断Api",
-                        Description = "诊断监听的服务",
 
-                    });
+                    //添加xml说明文档
+                    var basePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+                    string xmlPath = Path.Combine(basePath, $"{typeof(Startup).GetTypeInfo().Assembly.GetName().Name}.xml");
+                    options.IncludeXmlComments(xmlPath);
+
+                    options.OperationFilter<SwaggerDefaultValues>();
+
                     // 为 Swagger JSON and UI设置xml文档注释路径
                     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                     {
@@ -30,14 +39,66 @@ namespace DiagnosticApiDemo.HostingStartups
                         In = ParameterLocation.Header,
                         Type = SecuritySchemeType.ApiKey,
                     });
+
                     var openApiSecurityRequirement = new OpenApiSecurityRequirement();
                     openApiSecurityRequirement.Add(new OpenApiSecurityScheme() { Scheme = "Header", Name = "Authorization" }, new List<string>());
                     options.AddSecurityRequirement(openApiSecurityRequirement);
-                    //Json Token认证方式，此方式为全局添加
-                    //options.AddSecurityRequirement( );
+
+                    var provider = services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
+                    foreach (var description in provider.ApiVersionDescriptions)
+                    {
+                        options.SwaggerDoc(description.GroupName, new OpenApiInfo()
+                        {
+                            Title = $"Swagger v{description.ApiVersion}",
+                            Version = description.ApiVersion.ToString(),
+                            Description = "多版本管理（点右上角版本切换）<br/>",
+                            Contact = new OpenApiContact() { Name = "coobeedior", Email = "coobeedior@163.com", Url = new Uri("http://coobeedior.com") }
+
+                        });
+                    }
+
+
                 });
             });
         }
+
+
     }
+
+
+    public class SwaggerDefaultValues : IOperationFilter
+    {
+
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        {
+            foreach (var parameter in operation.Parameters.OfType<OpenApiParameter>())
+            {
+                var description = context.ApiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
+
+                if (parameter.Description == null)
+                {
+                    parameter.Description = description.ModelMetadata.Description;
+                }
+                if (parameter.Example == null)
+                {
+                    parameter.Example = new OpenApiString(description.DefaultValue?.ToString());
+                }
+ 
+
+                //if (parameter.Default == null)
+                //{
+                //    parameter.Default = description.RouteInfo.DefaultValue;
+                //}
+                //parameter.Required |= !description.RouteInfo.IsOptional;
+
+            }
+        }
+    }
+
+
+
+
+
+
 }
 

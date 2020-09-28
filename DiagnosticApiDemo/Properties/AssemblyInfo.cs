@@ -18,3 +18,4 @@ using PersistenceAbstraction;
 [assembly: HostingStartupAttribute(typeof(SwaggerStartup))]
 [assembly: HostingStartupAttribute(typeof(CorsStartup))]
 [assembly: HostingStartupAttribute(typeof(FreeSqlStartup))]
+[assembly: HostingStartupAttribute(typeof(HangfireStartup))]

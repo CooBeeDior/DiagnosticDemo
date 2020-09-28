@@ -21,13 +21,14 @@ namespace DiagnosticApiDemo.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, Func<string, IPersistence> func, IStringLocalizer<WeatherForecastController> stringLocalizer)
+        private readonly HttpClient _httpClient;
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, Func<string, IPersistence> func,
+            IStringLocalizer<WeatherForecastController> stringLocalizer, IHttpClientFactory clientFactory)
         {
             _logger = logger;
             var c = stringLocalizer["ddd"];
 
-
+            _httpClient = clientFactory.CreateClient("aaa");
         }
 
         [HttpGet]
@@ -46,8 +47,8 @@ namespace DiagnosticApiDemo.Controllers
         [HttpGet("baidu")]
         public async Task<string> BaiDu()
         {
-            HttpClient client = new HttpClient();
-            var resp = await client.GetAsync("http://www.baidu.com");
+ 
+            var resp = await _httpClient.GetAsync("http://www.baidu.com");
             var result = await resp.Content.ReadAsStringAsync();
             return result;
         }
@@ -56,8 +57,8 @@ namespace DiagnosticApiDemo.Controllers
         [HttpPost("baidu")]
         public async Task<string> BaiDuPost()
         {
-            HttpClient client = new HttpClient();
-            var resp = await client.GetAsync("http://www.baidu.com");
+          
+            var resp = await _httpClient.GetAsync("http://www.baidu.com");
             var result = await resp.Content.ReadAsStringAsync();
             return result;
         }
@@ -115,9 +116,14 @@ namespace DiagnosticApiDemo.Controllers
             })
             .ToArray();
         }
+        public class Student { 
+        
+        public string Id { get; set; }
+            public string Name { get; set; }
+        }
 
         [HttpGet("baidu")]
-        public async Task<string> BaiDu()
+        public async Task<string> BaiDu(string id)
         {
             HttpClient client = new HttpClient();
             var resp = await client.GetAsync("http://www.baidu.com");
@@ -127,7 +133,7 @@ namespace DiagnosticApiDemo.Controllers
 
 
         [HttpPost("baidu")]
-        public async Task<string> BaiDuPost()
+        public async Task<string> BaiDuPost(Student student)
         {
             HttpClient client = new HttpClient();
             var resp = await client.GetAsync("http://www.baidu.com");

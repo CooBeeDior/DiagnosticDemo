@@ -22,7 +22,14 @@ namespace DiagnosticApiDemo.HostingStartups
                     o.ReportApiVersions = true;
                     o.AssumeDefaultVersionWhenUnspecified = true;
                     o.DefaultApiVersion = new ApiVersion(1, 0);
-                });
+                }).AddVersionedApiExplorer(options =>
+                {
+                    options.GroupNameFormat = "'v'VV";//v1.0 //如果是v1.0.0--"'v'VVV"
+                    options.SubstituteApiVersionInUrl = true;
+                }); ;
+
+
+         
             });
         }
 
