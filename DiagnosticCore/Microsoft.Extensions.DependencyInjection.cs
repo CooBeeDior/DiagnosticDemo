@@ -2,6 +2,7 @@
 using DiagnosticCore.LogCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -14,13 +15,19 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton(diagnosticOptions);
             if (diagnosticOptions.IsEnableHostingTracing)
             {
-                services.AddScoped<IHostingTracingDiagnosticProcessor, HostingTracingDiagnosticProcessor>();
+                services.AddSingleton<IHostingTracingDiagnosticProcessor, HostingTracingDiagnosticProcessor>();
+                services.AddSingleton<ITracingDiagnosticProcessor, HostingTracingDiagnosticProcessor>();
             }
             if (diagnosticOptions.IsEnableHttpClientTracing)
             {
-                services.AddScoped<IHttpClientTracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
-            }       
-            services.AddSingleton<ILoggerProvider, DiagnosticLogProvider>();          
+                services.AddSingleton<IHttpClientTracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
+                services.AddSingleton<ITracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
+            }
+            services.AddSingleton<IObserver<DiagnosticListener>, TracingDiagnosticObserver>();
+            services.AddSingleton<TracingDiagnosticObserver>();
+
+
+            services.AddSingleton<ILoggerProvider, DiagnosticLogProvider>();
             services.Add(new ServiceDescriptor(typeof(IDiagnosticTraceLogger<>), typeof(DiagnosticTraceLogger<>), ServiceLifetime.Singleton));
             services.AddHttpContextAccessor();
         }

@@ -18,7 +18,7 @@ namespace MessageQueueAbstraction
             _rabbitmqChannelManagement = rabbitmqChannelManagement;
             _persistence = func.Invoke("FreeSql");
         }
-        public const string NAME = "TraceLog";
+        public const string NAME = "MicroService.TraceLog";
         public string Name { get { return NAME; } }
 
         public void Subscripe()

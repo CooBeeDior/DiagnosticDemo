@@ -42,7 +42,7 @@ namespace FreesqlAbstration
             services.AddSingleton(ib);
             PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>
             {
-                if (name.Equals("FreeSql", StringComparison.OrdinalIgnoreCase))
+                if (name.Equals(FreeSqlConstant.FREESQLNAME, StringComparison.OrdinalIgnoreCase))
                 {
                     return serviceProvider.GetService<IFreeSqlPersistence>();
                 }

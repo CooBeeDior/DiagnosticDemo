@@ -43,7 +43,7 @@ namespace DiagnosticApiDemo
             }
             app.UseCors("cors");// 启用CORS服务
             //添加诊断
-            app.UseAllDiagnostics();
+            app.UseDiagnostics();
 
             //添加消息队列
             app.UseRabbitmq();
@@ -74,6 +74,7 @@ namespace DiagnosticApiDemo
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture("en-US"),
+              
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });

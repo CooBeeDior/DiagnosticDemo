@@ -14,9 +14,11 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton(options);
             services.AddSingleton<IEsClientProvider, EsClientProvider>(); 
             services.AddSingleton<IElasticSearchPersistence, ElasticSearchPersistence>();
+
+            
             PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>
             {
-                if (name.Equals("ElasticSearch", StringComparison.OrdinalIgnoreCase))
+                if (name.Equals(ElasticsearchConstant.ELASTICSEARCHNAME, StringComparison.OrdinalIgnoreCase))
                 {
                     return serviceProvider.GetService<IElasticSearchPersistence>();
                 }

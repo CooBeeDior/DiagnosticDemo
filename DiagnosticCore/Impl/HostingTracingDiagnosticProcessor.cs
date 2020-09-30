@@ -18,7 +18,7 @@ namespace DiagnosticCore
 
     public class HostingTracingDiagnosticProcessor : IHostingTracingDiagnosticProcessor
     {
-        public readonly static string ListenerName = "Microsoft.AspNetCore";
+        public readonly static string LISTENERNAME = "Microsoft.AspNetCore";
 
         public const string HttpRequestInStartName = "Microsoft.AspNetCore.Hosting.HttpRequestIn.Start";
         public const string BeginRequestName = "Microsoft.AspNetCore.Hosting.BeginRequest";
@@ -44,14 +44,15 @@ namespace DiagnosticCore
         public const string DiagnosticsUnhandledExceptionName = "Microsoft.AspNetCore.Diagnostics.UnhandledException";
         public const string HostingUnhandledExceptionName = "Microsoft.AspNetCore.Hosting.UnhandledException";
 
+        public string ListenerName { get { return LISTENERNAME; } }
 
         protected IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> Logger { get; }
 
 
 
         public HostingTracingDiagnosticProcessor(IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> logger)
-        { 
-            Logger = logger; 
+        {
+            Logger = logger;
         }
 
 

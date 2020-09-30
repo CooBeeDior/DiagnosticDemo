@@ -6,8 +6,9 @@ using System.Text;
 
 namespace DiagnosticCore
 {
-    public interface IHttpClientTracingDiagnosticProcessor
+    public interface IHttpClientTracingDiagnosticProcessor: ITracingDiagnosticProcessor
     {
+
         [DiagnosticName("System.Net.Http.Request")]
         void HttpRequest(HttpRequestMessage request);
 

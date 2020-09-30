@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using PersistenceAbstraction;
-
+using DiagnosticModel;
 namespace DiagnosticApiDemo.Controllers
 {
     [ApiVersion("1.0")]
@@ -22,18 +25,39 @@ namespace DiagnosticApiDemo.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly HttpClient _httpClient;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public WeatherForecastController(ILogger<WeatherForecastController> logger, Func<string, IPersistence> func,
-            IStringLocalizer<WeatherForecastController> stringLocalizer, IHttpClientFactory clientFactory)
+            IStringLocalizer<WeatherForecastController> stringLocalizer, IHttpClientFactory clientFactory, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             var c = stringLocalizer["ddd"];
-
+            _httpContextAccessor = httpContextAccessor;
             _httpClient = clientFactory.CreateClient("aaa");
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        private Task doAysnc()
         {
+            return Task.Factory.StartNew(() =>
+            {
+                id = Thread.CurrentThread.ManagedThreadId;
+                var currentCulture = Thread.CurrentThread.CurrentCulture;
+                var httpContext = _httpContextAccessor.HttpContext;
+
+                System.IO.File.AppendAllLines("d:/f.txt", new List<string>() { Thread.CurrentThread.CurrentCulture.ToJson() });
+            });
+        }
+        int id = 0;
+
+        [HttpGet]
+        public async Task<IEnumerable<WeatherForecast>> Get()
+        {
+            var id2 = Thread.CurrentThread.ManagedThreadId;
+            var httpContext = _httpContextAccessor.HttpContext;
+            await doAysnc().ConfigureAwait(false);
+            var id3 = Thread.CurrentThread.ManagedThreadId;
+            var httpCont1ext = _httpContextAccessor.HttpContext;
+
+            System.IO.File.AppendAllLines("d:/d.txt", new List<string>() { $"{id}--{id2}--{id3}" });
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -47,7 +71,7 @@ namespace DiagnosticApiDemo.Controllers
         [HttpGet("baidu")]
         public async Task<string> BaiDu()
         {
- 
+
             var resp = await _httpClient.GetAsync("http://www.baidu.com");
             var result = await resp.Content.ReadAsStringAsync();
             return result;
@@ -57,7 +81,7 @@ namespace DiagnosticApiDemo.Controllers
         [HttpPost("baidu")]
         public async Task<string> BaiDuPost()
         {
-          
+
             var resp = await _httpClient.GetAsync("http://www.baidu.com");
             var result = await resp.Content.ReadAsStringAsync();
             return result;
@@ -116,9 +140,10 @@ namespace DiagnosticApiDemo.Controllers
             })
             .ToArray();
         }
-        public class Student { 
-        
-        public string Id { get; set; }
+        public class Student
+        {
+
+            public string Id { get; set; }
             public string Name { get; set; }
         }
 

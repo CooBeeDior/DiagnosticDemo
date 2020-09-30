@@ -12,13 +12,14 @@ namespace DiagnosticCore
 {
     public class HttpClientTracingDiagnosticProcessor : IHttpClientTracingDiagnosticProcessor
     {
-        public const string ListenerName = "HttpHandlerDiagnosticListener";
+        public const string LISTENERNAME = "HttpHandlerDiagnosticListener";
         public const string HttpRequestStartName = "System.Net.Http.HttpRequestOut.Start";
         public const string HttpRequestName = "System.Net.Http.Request";
         public const string HttpRequestStopName = "System.Net.Http.HttpRequestOut.Stop";
         public const string HttpResponseName = "System.Net.Http.Response";
         public const string HttpExceptionName = "System.Net.Http.Exception";
 
+        public string ListenerName { get { return LISTENERNAME; } }
 
         protected IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor> Logger { get; }
         protected IServiceProvider ServiceProvider { get; }

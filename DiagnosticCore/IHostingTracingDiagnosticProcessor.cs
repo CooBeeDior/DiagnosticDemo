@@ -10,7 +10,7 @@ using System;
 
 namespace DiagnosticCore
 {
-    public interface IHostingTracingDiagnosticProcessor
+    public interface IHostingTracingDiagnosticProcessor: ITracingDiagnosticProcessor
     {
         [DiagnosticName("Microsoft.AspNetCore.Hosting.HttpRequestIn.Start")]
         void HttpRequestInStart(DefaultHttpContext httpContext);

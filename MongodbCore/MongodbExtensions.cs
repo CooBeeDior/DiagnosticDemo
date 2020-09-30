@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<IMongodbPersistence, LogMongodbPersistence>(); 
             PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>
             {
-                if (name.Equals("Mongodb", StringComparison.OrdinalIgnoreCase))
+                if (name.Equals(MongodbConstant.MONGODBNAME, StringComparison.OrdinalIgnoreCase))
                 {
                     return serviceProvider.GetService<IMongodbPersistence>();
                 }
