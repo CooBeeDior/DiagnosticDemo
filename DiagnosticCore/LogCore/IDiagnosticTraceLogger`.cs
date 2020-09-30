@@ -6,20 +6,20 @@ namespace DiagnosticCore.LogCore
 {
     public interface IDiagnosticTraceLogger<T>
     {
-        void Log(LogLevel logLevel, LogInfoBuilder logbuilder, Exception exception = null);
+        void Log(LogLevel logLevel, TraceInfoBuilder logbuilder, Exception exception = null);
 
 
-        void LogTrace(LogInfoBuilder logbuilder, Exception exception = null);
+        void LogTrace(TraceInfoBuilder logbuilder, Exception exception = null);
 
-        void LogDebug(LogInfoBuilder logbuilder, Exception exception = null);
+        void LogDebug(TraceInfoBuilder logbuilder, Exception exception = null);
 
-        void LogInformation(LogInfoBuilder logbuilder, Exception exception=null);
+        void TraceInformation(TraceInfoBuilder logbuilder, Exception exception=null);
 
-        void LogWarning(LogInfoBuilder logbuilder, Exception exception = null);
+        void LogWarning(TraceInfoBuilder logbuilder, Exception exception = null);
 
-        void LogError(LogInfoBuilder logbuilder, Exception exception = null);
+        void LogError(TraceInfoBuilder logbuilder, Exception exception = null);
 
-        void LogCritical(LogInfoBuilder logbuilder, Exception exception = null);
+        void LogCritical(TraceInfoBuilder logbuilder, Exception exception = null);
 
     }
 }

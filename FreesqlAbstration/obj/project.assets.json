@@ -40,6 +40,19 @@
           "lib/netstandard2.0/FreeSql.dll": {}
         }
       },
+      "FreeSql.Extensions.JsonMap/1.9.0": {
+        "type": "package",
+        "dependencies": {
+          "FreeSql": "1.9.0",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll": {}
+        }
+      },
       "FreeSql.Extensions.LazyLoading/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -632,6 +645,15 @@
           "System.Threading.Timer": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XDocument": "4.3.0"
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -2231,6 +2253,22 @@
         "logo.png"
       ]
     },
+    "FreeSql.Extensions.JsonMap/1.9.0": {
+      "sha512": "Vlz2XZvo4SDltNlv2hmqkuQoXj0U89jJTL9dcbqDfTEivsipAF8gm+K8kt2pB8Sk3k7J64iD5Khov13dG7I9Hw==",
+      "type": "package",
+      "path": "freesql.extensions.jsonmap/1.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "freesql.extensions.jsonmap.1.9.0.nupkg.sha512",
+        "freesql.extensions.jsonmap.nuspec",
+        "lib/net40/FreeSql.Extensions.JsonMap.dll",
+        "lib/net45/FreeSql.Extensions.JsonMap.dll",
+        "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll",
+        "lib/netstandard2.0/FreeSql.Extensions.JsonMap.xml",
+        "logo.png"
+      ]
+    },
     "FreeSql.Extensions.LazyLoading/1.9.0": {
       "sha512": "6yDmlpxmCOVJqn4buQqNgDeGksSq5eJeQz1a3dLxI5rgcsY7XTuvpuaX2696u32eWBjh2nfWPW+Sd06n4H3Tyg==",
       "type": "package",
@@ -2907,6 +2945,37 @@
         "dotnet_library_license.txt",
         "netstandard.library.1.6.1.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -6994,6 +7063,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "FreeSql >= 1.9.0",
+      "FreeSql.Extensions.JsonMap >= 1.9.0",
       "FreeSql.Extensions.LazyLoading >= 1.9.0",
       "FreeSql.Provider.MySql >= 1.9.0",
       "IdleBus >= 1.5.0",
@@ -7048,6 +7118,10 @@
       "netcoreapp3.1": {
         "dependencies": {
           "FreeSql": {
+            "target": "Package",
+            "version": "[1.9.0, )"
+          },
+          "FreeSql.Extensions.JsonMap": {
             "target": "Package",
             "version": "[1.9.0, )"
           },

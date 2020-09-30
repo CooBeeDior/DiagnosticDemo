@@ -11,6 +11,28 @@
           "lib/netstandard2.1/DnsClient.dll": {}
         }
       },
+      "FreeSql/1.9.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/FreeSql.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FreeSql.dll": {}
+        }
+      },
+      "FreeSql.Extensions.JsonMap/1.9.0": {
+        "type": "package",
+        "dependencies": {
+          "FreeSql": "1.9.0",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -1832,6 +1854,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "FreeSql.Extensions.JsonMap": "1.9.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
@@ -1903,6 +1926,40 @@
         "lib/netstandard2.0/DnsClient.xml",
         "lib/netstandard2.1/DnsClient.dll",
         "lib/netstandard2.1/DnsClient.xml"
+      ]
+    },
+    "FreeSql/1.9.0": {
+      "sha512": "cKDqq2IulyacqblHmntIGF5D2o1lDrkYxLWFBw3E4AdAiR5C2JqTjv7ZuURplne/d3UTmMaDriooG49C/BvCpA==",
+      "type": "package",
+      "path": "freesql/1.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "freesql.1.9.0.nupkg.sha512",
+        "freesql.nuspec",
+        "lib/net40/FreeSql.dll",
+        "lib/net40/FreeSql.xml",
+        "lib/net45/FreeSql.dll",
+        "lib/net45/FreeSql.xml",
+        "lib/netstandard2.0/FreeSql.dll",
+        "lib/netstandard2.0/FreeSql.xml",
+        "logo.png"
+      ]
+    },
+    "FreeSql.Extensions.JsonMap/1.9.0": {
+      "sha512": "Vlz2XZvo4SDltNlv2hmqkuQoXj0U89jJTL9dcbqDfTEivsipAF8gm+K8kt2pB8Sk3k7J64iD5Khov13dG7I9Hw==",
+      "type": "package",
+      "path": "freesql.extensions.jsonmap/1.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "freesql.extensions.jsonmap.1.9.0.nupkg.sha512",
+        "freesql.extensions.jsonmap.nuspec",
+        "lib/net40/FreeSql.Extensions.JsonMap.dll",
+        "lib/net45/FreeSql.Extensions.JsonMap.dll",
+        "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll",
+        "lib/netstandard2.0/FreeSql.Extensions.JsonMap.xml",
+        "logo.png"
       ]
     },
     "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {

@@ -196,6 +196,10 @@
               "target": "Package",
               "version": "[3.1.8, )"
             },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
             "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[3.1.8, )"
@@ -258,6 +262,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "FreeSql.Extensions.JsonMap": {
+              "target": "Package",
+              "version": "[1.9.0, )"
+            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -414,6 +422,10 @@
         "netcoreapp3.1": {
           "dependencies": {
             "FreeSql": {
+              "target": "Package",
+              "version": "[1.9.0, )"
+            },
+            "FreeSql.Extensions.JsonMap": {
               "target": "Package",
               "version": "[1.9.0, )"
             },

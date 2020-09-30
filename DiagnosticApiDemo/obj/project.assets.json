@@ -63,6 +63,19 @@
           "lib/netstandard2.0/FreeSql.dll": {}
         }
       },
+      "FreeSql.Extensions.JsonMap/1.9.0": {
+        "type": "package",
+        "dependencies": {
+          "FreeSql": "1.9.0",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll": {}
+        }
+      },
       "FreeSql.Extensions.LazyLoading/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -1227,6 +1240,20 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Http/3.1.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
+          "Microsoft.Extensions.Logging": "3.1.8",
+          "Microsoft.Extensions.Options": "3.1.8"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Http.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Http.dll": {}
         }
       },
       "Microsoft.Extensions.Localization/3.1.8": {
@@ -3404,6 +3431,7 @@
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
           "Microsoft.Extensions.DiagnosticAdapter": "3.1.8",
+          "Microsoft.Extensions.Http": "3.1.8",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
           "PersistenceAbstraction": "1.0.0"
         },
@@ -3418,6 +3446,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "FreeSql.Extensions.JsonMap": "1.9.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
@@ -3452,6 +3481,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "FreeSql": "1.9.0",
+          "FreeSql.Extensions.JsonMap": "1.9.0",
           "FreeSql.Extensions.LazyLoading": "1.9.0",
           "FreeSql.Provider.MySql": "1.9.0",
           "IdleBus": "1.5.0",
@@ -3636,6 +3666,22 @@
         "lib/net45/FreeSql.xml",
         "lib/netstandard2.0/FreeSql.dll",
         "lib/netstandard2.0/FreeSql.xml",
+        "logo.png"
+      ]
+    },
+    "FreeSql.Extensions.JsonMap/1.9.0": {
+      "sha512": "Vlz2XZvo4SDltNlv2hmqkuQoXj0U89jJTL9dcbqDfTEivsipAF8gm+K8kt2pB8Sk3k7J64iD5Khov13dG7I9Hw==",
+      "type": "package",
+      "path": "freesql.extensions.jsonmap/1.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "freesql.extensions.jsonmap.1.9.0.nupkg.sha512",
+        "freesql.extensions.jsonmap.nuspec",
+        "lib/net40/FreeSql.Extensions.JsonMap.dll",
+        "lib/net45/FreeSql.Extensions.JsonMap.dll",
+        "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll",
+        "lib/netstandard2.0/FreeSql.Extensions.JsonMap.xml",
         "logo.png"
       ]
     },
@@ -4962,6 +5008,22 @@
         "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.xml",
         "microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",
         "microsoft.extensions.hosting.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Http/3.1.8": {
+      "sha512": "GRkzBs2wJG6jTGqRrT8l/Sqk4MiO0yQltiekDNw/X7L2l5/gKSud/6Vcjb9b5SPtgn6lxcn8qCmfDtk2kP/cOw==",
+      "type": "package",
+      "path": "microsoft.extensions.http/3.1.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netcoreapp3.1/Microsoft.Extensions.Http.dll",
+        "lib/netcoreapp3.1/Microsoft.Extensions.Http.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
+        "microsoft.extensions.http.3.1.8.nupkg.sha512",
+        "microsoft.extensions.http.nuspec"
       ]
     },
     "Microsoft.Extensions.Localization/3.1.8": {

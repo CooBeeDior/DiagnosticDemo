@@ -15,7 +15,9 @@ using System.Net;
 
 namespace DiagnosticCore
 {
-
+    /// <summary>
+    /// 全局Host服务监听
+    /// </summary>
     public class HostingTracingDiagnosticProcessor : IHostingTracingDiagnosticProcessor
     {
         public readonly static string LISTENERNAME = "Microsoft.AspNetCore";
@@ -214,8 +216,6 @@ namespace DiagnosticCore
 
 
         #region protected  
-        //private LogInfoBuilder _logInfoBuilder = LogInfoBuilder.CreateBuilder();
-
 
         protected virtual void HttpRequestInStartHandle(DefaultHttpContext httpContext)
         {
@@ -240,9 +240,9 @@ namespace DiagnosticCore
             request.Headers.Add(HttpConstant.CHAIN_ID, chainId);
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            httpContext.Items.Add(DiagnosticConstant.GetItemKeyToLogBuilder(HttpConstant.TRACK_TIME), stopwatch);
-            var logInfoBuilder = LogInfoBuilder.CreateBuilder().BuildLogInfo(chainId).TrackId(trackId, parentTrackId).HttpContext(httpContext);
-            httpContext.Items.Add(DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName), logInfoBuilder);
+            httpContext.Items.Add(DiagnosticConstant.GetItemKey(HttpConstant.TRACK_TIME), stopwatch);
+            var tranceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(chainId).TrackId(trackId, parentTrackId).HttpContext(httpContext);
+            httpContext.Items.Add(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName), tranceInfoBuilder);
 
         }
 
@@ -302,10 +302,10 @@ namespace DiagnosticCore
         protected virtual void AfterOnResultExecutedHandle(ActionDescriptor actionDescriptor, ResultExecutedContext resultExecutedContext)
         {
 
-            var builder = resultExecutedContext.HttpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName)];
-            if (builder != null && builder is LogInfoBuilder logInfoBuilder && resultExecutedContext.Result != null)
+            var builder = resultExecutedContext.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)];
+            if (builder != null && builder is TraceInfoBuilder tranceInfoBuilder && resultExecutedContext.Result != null)
             {
-                setLogResponse(resultExecutedContext.Result, logInfoBuilder);
+                setLogResponse(resultExecutedContext.Result, tranceInfoBuilder);
 
             }
         }
@@ -319,12 +319,12 @@ namespace DiagnosticCore
 
         protected virtual void EndRequestHandle(HttpContext httpContext)
         {
-            var builder = httpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName)];
-            if (builder != null && builder is LogInfoBuilder logInfoBuilder)
+            var builder = httpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)];
+            if (builder != null && builder is TraceInfoBuilder tranceInfoBuilder)
             {
-                var elapsedTime = getElapsedTime(httpContext);
-                logInfoBuilder.ElapsedTime(elapsedTime);
-                Logger.LogTrace(logInfoBuilder);
+                var elapsedTime = httpContext.ElapsedTime();
+                tranceInfoBuilder.ElapsedTime(elapsedTime);
+                Logger.LogTrace(tranceInfoBuilder);
 
 
             }
@@ -336,10 +336,10 @@ namespace DiagnosticCore
 
         protected virtual void DiagnosticUnhandledExceptionHandle(HttpContext httpContext, Exception exception)
         {
-            var logInfobuilder = createErrorLogBuilder(httpContext);
-            if (logInfobuilder != null)
+            var tranceInfoBuilder = createErrorLogBuilder(httpContext);
+            if (tranceInfoBuilder != null)
             {
-                Logger.LogError(logInfobuilder, exception);
+                Logger.LogError(tranceInfoBuilder, exception);
             }
 
         }
@@ -349,10 +349,10 @@ namespace DiagnosticCore
 
         protected virtual void HostingUnhandledExceptionHandle(HttpContext httpContext, Exception exception)
         {
-            var logInfobuilder = createErrorLogBuilder(httpContext);
-            if (logInfobuilder != null)
+            var tranceInfoBuilder = createErrorLogBuilder(httpContext);
+            if (tranceInfoBuilder != null)
             {
-                Logger.LogError(logInfobuilder, exception);
+                Logger.LogError(tranceInfoBuilder, exception);
             }
         }
 
@@ -366,78 +366,78 @@ namespace DiagnosticCore
 
         #region private
 
-        private LogInfoBuilder createErrorLogBuilder(HttpContext httpContext)
+        private TraceInfoBuilder createErrorLogBuilder(HttpContext httpContext)
         {
-            var builder = httpContext.Items[DiagnosticConstant.GetItemKeyToLogBuilder(typeof(LogInfoBuilder).FullName)];
-            if (builder != null && builder is LogInfoBuilder logInfoBuilder)
+            var builder = httpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)];
+            if (builder != null && builder is TraceInfoBuilder tranceInfoBuilder)
             {
-                var elapsedTime = getElapsedTime(httpContext);
-                var loginfo = logInfoBuilder.Build();
-                var logInfoBuilderNew = LogInfoBuilder.CreateBuilder().BuildFromLogInfo(loginfo).ParentId(loginfo.Id)
+                var elapsedTime = httpContext.ElapsedTime();
+                var tranceInfo = tranceInfoBuilder.Build();
+                var tranceInfoBuilderNew = TraceInfoBuilder.CreateBuilder().BuildFromTraceInfo(tranceInfo).ParentId(tranceInfo.Id)
                     .HttpContext(httpContext).ElapsedTime(elapsedTime);
-                return logInfoBuilderNew;
+                return tranceInfoBuilderNew;
             }
             return null;
         }
 
-        private void setLogResponse(IActionResult actionResult, LogInfoBuilder logInfoBuilder)
+        private void setLogResponse(IActionResult actionResult, TraceInfoBuilder tranceInfoBuilder)
         {
             if (actionResult is AntiforgeryValidationFailedResult antiforgeryValidationFailedResult)
             {
-                logInfoBuilder.Response(antiforgeryValidationFailedResult?.ToJson()).StatusCode(antiforgeryValidationFailedResult.StatusCode);
+                tranceInfoBuilder.Response(antiforgeryValidationFailedResult?.ToJson()).StatusCode(antiforgeryValidationFailedResult.StatusCode);
             }
             else if (actionResult is ContentResult contentResult)
             {
-                logInfoBuilder.Response(contentResult?.Content).StatusCode(contentResult.StatusCode);
+                tranceInfoBuilder.Response(contentResult?.Content).StatusCode(contentResult.StatusCode ?? 200);
             }
             else if (actionResult is JsonResult jsonResult)
             {
-                logInfoBuilder.Response(jsonResult?.Value?.ToJson()).StatusCode(jsonResult.StatusCode);
+                tranceInfoBuilder.Response(jsonResult?.Value?.ToJson()).StatusCode(jsonResult.StatusCode ?? 200);
             }
             else if (actionResult is ObjectResult objectResult)
             {
-                logInfoBuilder.Response(objectResult?.Value?.ToJson()).StatusCode(objectResult.StatusCode);
+                tranceInfoBuilder.Response(objectResult?.Value?.ToJson()).StatusCode(objectResult.StatusCode ?? 200);
 
             }
             else if (actionResult is PartialViewResult partialViewResult)
             {
-                logInfoBuilder.Response(partialViewResult?.ToJson()).StatusCode(partialViewResult.StatusCode);
+                tranceInfoBuilder.Response(partialViewResult?.ToJson()).StatusCode(partialViewResult.StatusCode ?? 200);
             }
             else if (actionResult is RedirectResult redirectResult)
             {
-                logInfoBuilder.Response(redirectResult?.ToJson()).StatusCode((int)HttpStatusCode.Redirect);
+                tranceInfoBuilder.Response(redirectResult?.ToJson()).StatusCode((int)HttpStatusCode.Redirect);
             }
             else if (actionResult is RedirectToActionResult redirectToActionResult)
             {
-                logInfoBuilder.Response(redirectToActionResult?.ToJson()).StatusCode((int)HttpStatusCode.RedirectMethod);
+                tranceInfoBuilder.Response(redirectToActionResult?.ToJson()).StatusCode((int)HttpStatusCode.RedirectMethod);
             }
             else if (actionResult is RedirectToPageResult redirectToPageResult)
             {
-                logInfoBuilder.Response(redirectToPageResult?.ToJson()).StatusCode((int)HttpStatusCode.Redirect);
+                tranceInfoBuilder.Response(redirectToPageResult?.ToJson()).StatusCode((int)HttpStatusCode.Redirect);
             }
             else if (actionResult is RedirectToRouteResult redirectToRouteResult)
             {
-                logInfoBuilder.Response(redirectToRouteResult?.ToJson()).StatusCode((int)HttpStatusCode.RedirectMethod);
+                tranceInfoBuilder.Response(redirectToRouteResult?.ToJson()).StatusCode((int)HttpStatusCode.RedirectMethod);
             }
             else if (actionResult is StatusCodeResult statusCodeResult)
             {
 
-                logInfoBuilder.Response(statusCodeResult?.ToJson()).StatusCode(statusCodeResult.StatusCode);
+                tranceInfoBuilder.Response(statusCodeResult?.ToJson()).StatusCode(statusCodeResult.StatusCode);
             }
             else if (actionResult is ViewComponentResult viewComponentResult)
             {
 
-                logInfoBuilder.Response(viewComponentResult?.ToJson()).StatusCode(viewComponentResult.StatusCode);
+                tranceInfoBuilder.Response(viewComponentResult?.ToJson()).StatusCode(viewComponentResult.StatusCode ?? 200);
             }
             else if (actionResult is ViewResult viewResult)
             {
 
-                logInfoBuilder.Response(viewResult?.ToJson()).StatusCode(viewResult.StatusCode);
+                tranceInfoBuilder.Response(viewResult?.ToJson()).StatusCode(viewResult.StatusCode ?? 200);
             }
             else
             {
                 var property = actionResult.GetType().GetProperty(HttpConstant.StatusCode);
-                int statuscode;
+                int statuscode = 200;
                 if (property != null)
                 {
                     var code = property.GetValue(actionResult);
@@ -445,27 +445,18 @@ namespace DiagnosticCore
                     {
                         if (int.TryParse(code.ToString(), out statuscode))
                         {
-                            logInfoBuilder.StatusCode(statuscode);
+                            tranceInfoBuilder.StatusCode(statuscode);
                         }
                     }
-               ;
+
                 }
-                logInfoBuilder.Response(actionResult?.ToJson());
+                tranceInfoBuilder.Response(actionResult?.ToJson()).StatusCode(statuscode);
             }
 
 
         }
 
-        private long getElapsedTime(HttpContext context)
-        {
 
-            var stopwatch = context.Items[DiagnosticConstant.GetItemKeyToLogBuilder(HttpConstant.TRACK_TIME)] as Stopwatch;
-            if (stopwatch != null)
-            {
-                return stopwatch.ElapsedMilliseconds;
-            }
-            return 0;
-        }
         #endregion
 
 

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "bSPzN39HQFARvlDHb00B7rTkiYh7ds08+/2H9JMedPslAwsBtpGZpGXA0djtLJCQNX2lFZU3kA6nVSbqVJ3H/g==",
+  "dgSpecHash": "amrtqs/xWGFSq6slg+gUNEDjy+dI5ZDSVywDX/8KYzslndx03MIQXBVyJlXhzOy7f/KHD47AOvRawli8vcTuBQ==",
   "success": true,
   "projectFilePath": "D:\\Work\\DiagnosticDemo\\MessageQueueAbstraction\\MessageQueueAbstraction.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\coobe\\.nuget\\packages\\freesql\\1.9.0\\freesql.1.9.0.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\freesql.extensions.jsonmap\\1.9.0\\freesql.extensions.jsonmap.1.9.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",

@@ -176,3 +176,5 @@ D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\Microsoft.AspNe
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.csproj.CoreCompileInputs.cache
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.MvcApplicationPartsAssemblyInfo.cs
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.MvcApplicationPartsAssemblyInfo.cache
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Http.dll
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\FreeSql.Extensions.JsonMap.dll

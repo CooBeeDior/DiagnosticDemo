@@ -25,13 +25,13 @@ namespace MessageQueueAbstraction
         {
             var channel = _rabbitmqChannelManagement.GetChannel(Name);
             EventingBasicConsumer consumer = new EventingBasicConsumer(channel);
-            consumer.Received += (sender, args) =>
+            consumer.Received += async (sender, args) =>
             {
                 var message = Encoding.UTF8.GetString(args.Body.Span);
-                var loginfo = message.ToObj<LogInfo>();
-                if (loginfo != null)
+                var tranceInfo = message.ToObj<TraceInfo>();
+                if (tranceInfo != null)
                 {
-                    _persistence.InsertAsync(loginfo);
+                    await _persistence.InsertAsync(tranceInfo);
                 }
                 channel.BasicAck(args.DeliveryTag, false);
             };

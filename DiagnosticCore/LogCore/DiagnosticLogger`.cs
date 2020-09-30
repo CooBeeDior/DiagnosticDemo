@@ -37,35 +37,39 @@ namespace DiagnosticCore.LogCore
             }
             if (eventId == DiagnosticConstant.EVENT_ID)
             {
-                LogInfo logInfo = null;
+                TraceInfo traceInfo = null;
                 if (state is string)
                 {
                     var str = state as string;
-                    logInfo = str.ToObj<LogInfo>();
+                    traceInfo = str.ToObj<TraceInfo>();
 
                 }
-                else if (state is LogInfo)
+                else if (state is TraceInfo)
                 {
-                    logInfo = state as LogInfo;
+                    traceInfo = state as TraceInfo;
                 }
-                if (logInfo != null)
+                if (traceInfo != null)
                 {
                     if (exception != null)
                     {
-                        logInfo.Exception = exception;
+                        traceInfo.Exception = exception;
 
                     }
-                    logInfo.ErrorMessage = logInfo.Exception?.Message;
+                    traceInfo.ErrorMessage = traceInfo.Exception?.Message;
 
-                    //通过异步发送LogInfo
-                    var buffer = Encoding.UTF8.GetBytes(logInfo.ToJson());
+                    //通过异步发送TraceInfo
+                    var buffer = Encoding.UTF8.GetBytes(traceInfo.ToJson());
                     var model = _rabbitmqChannelManagement.GetChannel(TraceLogRabbitmqConsumer.NAME);
                     model.BasicPublish("", TraceLogRabbitmqConsumer.NAME, null, buffer);
 
                 }
 
             }
-
+            else
+            {
+                //TraceInfoBuilder.CreateBuilder(). 
+                //model.BasicPublish("", TraceLogRabbitmqConsumer.NAME, null, buffer);
+            }
 
         }
     }

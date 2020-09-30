@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[1.9.0, )"
             },
+            "FreeSql.Extensions.JsonMap": {
+              "target": "Package",
+              "version": "[1.9.0, )"
+            },
             "FreeSql.Extensions.LazyLoading": {
               "target": "Package",
               "version": "[1.9.0, )"

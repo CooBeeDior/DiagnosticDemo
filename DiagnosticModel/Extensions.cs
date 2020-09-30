@@ -56,6 +56,15 @@ namespace DiagnosticModel
         }
 
 
+        public static string ToStr(this HttpResponse response)
+        {
+            if (response.ContentLength > 0)
+            {
+                response.Body?.ToBuffer()?.ToStr();
+            }
+            return null;
+        }
+
         public static byte[] ToBuffer(this Stream sm)
         {
             byte[] buffer = new byte[sm.Length];
@@ -63,18 +72,24 @@ namespace DiagnosticModel
             return buffer;
         }
 
-        public static LogInfoBuilder ToLogInfo(this HttpContext context, Exception exception)
+
+        public static string ToStr(this byte[] buffer)
         {
-            return context.ToLogInfoBuilder(null, exception);
+            return Encoding.UTF8.GetString(buffer);
         }
 
-        public static LogInfoBuilder ToLogInfo(this HttpContext context, string id)
+        public static TraceInfoBuilder ToTraceInfo(this HttpContext context, Exception exception)
         {
-            return context.ToLogInfoBuilder(id, null);
+            return context.ToTraceInfoBuilder(null, exception);
+        }
+
+        public static TraceInfoBuilder ToTraceInfo(this HttpContext context, string id)
+        {
+            return context.ToTraceInfoBuilder(id, null);
         }
 
 
-        public static LogInfoBuilder ToLogInfoBuilder(this HttpContext context, string id = null, Exception exception = null)
+        public static TraceInfoBuilder ToTraceInfoBuilder(this HttpContext context, string id = null, Exception exception = null)
         {
             var request = context.Request;
             var parentTrackId = request.Headers["parent-track-id"].FirstOrDefault();
@@ -94,10 +109,13 @@ namespace DiagnosticModel
             var elapsedTime = (DateTime.Now.Ticks - Convert.ToInt64(trackTime)) / 1000000;//转换为ms
 
 
-            var logInfoBuilder = LogInfoBuilder.CreateBuilder().BuildLogInfo(id).ParentId(parentid).TrackId(trackId, parentTrackId)
+            var tranceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(id).ParentId(parentid).TrackId(trackId, parentTrackId)
                    .HttpContext(context).ElapsedTime(elapsedTime).Log(LogLevel.Trace.ToString(), "", exception);
-            return logInfoBuilder;
+            return tranceInfoBuilder;
         }
+
+
+
 
         #region  private
 

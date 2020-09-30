@@ -6,7 +6,7 @@ D:\Work\DiagnosticDemo\FreesqlAbstration\obj\Debug\netcoreapp3.1\FreesqlAbstrati
 D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\FreesqlAbstration.pdb
 D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\PersistenceAbstraction.dll
 D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
-D:\Work\DiagnosticDemo\FreesqlAbstration\obj\Debug\netcoreapp3.1\FreesqlAbstration.csproj.CoreCompileInputs.cache
 D:\Work\DiagnosticDemo\FreesqlAbstration\obj\Debug\netcoreapp3.1\FreesqlAbstration.csproj.CopyComplete
 D:\Work\DiagnosticDemo\FreesqlAbstration\obj\Debug\netcoreapp3.1\FreesqlAbstration.dll
 D:\Work\DiagnosticDemo\FreesqlAbstration\obj\Debug\netcoreapp3.1\FreesqlAbstration.pdb
+D:\Work\DiagnosticDemo\FreesqlAbstration\obj\Debug\netcoreapp3.1\FreesqlAbstration.csproj.CoreCompileInputs.cache

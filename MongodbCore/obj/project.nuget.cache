@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "k7ErwQ4GD+e/kF6E0ttzffGVNqTICZ5+mkijwd9ghAb8TfFYWZirCzEdydBpkXW2dPod0pQ3CtiP/Lg8bGznUg==",
+  "dgSpecHash": "U4kmRDhtkw+TXLW0Gatgre8vj+XYnO7+YnLcsveMOoKrutm97nljHkffx0htak26CR52TNf1xqF2nebVaK9aYQ==",
   "success": true,
   "projectFilePath": "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\coobe\\.nuget\\packages\\dnsclient\\1.3.1\\dnsclient.1.3.1.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\freesql\\1.9.0\\freesql.1.9.0.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\freesql.extensions.jsonmap\\1.9.0\\freesql.extensions.jsonmap.1.9.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",

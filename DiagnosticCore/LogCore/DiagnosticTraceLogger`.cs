@@ -13,34 +13,34 @@ namespace DiagnosticCore.LogCore
             _logger = logger;
 
         }
-        public void Log(LogLevel logLevel, LogInfoBuilder logbuilder, Exception exception = null)
+        public void Log(LogLevel logLevel, TraceInfoBuilder logbuilder, Exception exception = null)
         {
-            var loginfo = logbuilder.Log(logLevel.ToString(), typeof(T).FullName, exception).Build();
-            _logger.Log(logLevel, DiagnosticConstant.EVENT_ID, loginfo, exception, (loglevel,ex)=> "");
+            var tranceInfo = logbuilder.Log(logLevel.ToString(), typeof(T).FullName, exception).Build();
+            _logger.Log(logLevel, DiagnosticConstant.EVENT_ID, tranceInfo, exception, (loglevel,ex)=> "");
         }
 
-        public void LogTrace(LogInfoBuilder logbuilder, Exception exception = null)
+        public void LogTrace(TraceInfoBuilder logbuilder, Exception exception = null)
         {
             Log(LogLevel.Trace, logbuilder, exception);
         }
-        public void LogDebug(LogInfoBuilder logbuilder, Exception exception = null)
+        public void LogDebug(TraceInfoBuilder logbuilder, Exception exception = null)
         {
             Log(LogLevel.Debug, logbuilder, exception);
         }
 
-        public void LogInformation(LogInfoBuilder logbuilder, Exception exception = null)
+        public void TraceInformation(TraceInfoBuilder logbuilder, Exception exception = null)
         {
             Log(LogLevel.Information, logbuilder, exception);
         }
-        public void LogWarning(LogInfoBuilder logbuilder, Exception exception = null)
+        public void LogWarning(TraceInfoBuilder logbuilder, Exception exception = null)
         {
             Log(LogLevel.Warning, logbuilder, exception);
         }
-        public void LogError(LogInfoBuilder logbuilder, Exception exception = null)
+        public void LogError(TraceInfoBuilder logbuilder, Exception exception = null)
         {
             Log(LogLevel.Error, logbuilder, exception);
         }
-        public void LogCritical(LogInfoBuilder logbuilder, Exception exception = null)
+        public void LogCritical(TraceInfoBuilder logbuilder, Exception exception = null)
         {
             Log(LogLevel.Critical, logbuilder, exception);
         }

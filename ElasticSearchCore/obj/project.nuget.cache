@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "an5pyRi1LA+6nnEMP8bDg8bdQQGO91MfwKM4AZqoT8XI65Iwayk3NzQtGRQcoKGs/f0/8IHspqYkrUEDWwEpog==",
+  "dgSpecHash": "KQBIjZDMpBpyqzM+rfzaFn/94h846+TIXB7sXZRMoI0/Iul+K9dVlbecWSDMgufJPb7f65KudCot6DeVcuottQ==",
   "success": true,
   "projectFilePath": "D:\\Work\\DiagnosticDemo\\ElasticSearchCore\\ElasticSearchCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\coobe\\.nuget\\packages\\elasticsearch.net\\7.9.0\\elasticsearch.net.7.9.0.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\freesql\\1.9.0\\freesql.1.9.0.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\freesql.extensions.jsonmap\\1.9.0\\freesql.extensions.jsonmap.1.9.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",

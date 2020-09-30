@@ -16,6 +16,26 @@
           "MessageQueueAbstraction.dll": {}
         }
       },
+      "FreeSql/1.9.0": {
+        "runtime": {
+          "lib/netstandard2.0/FreeSql.dll": {
+            "assemblyVersion": "1.9.0.0",
+            "fileVersion": "1.9.0.0"
+          }
+        }
+      },
+      "FreeSql.Extensions.JsonMap/1.9.0": {
+        "dependencies": {
+          "FreeSql": "1.9.0",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FreeSql.Extensions.JsonMap.dll": {
+            "assemblyVersion": "1.9.0.0",
+            "fileVersion": "1.9.0.0"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -649,6 +669,7 @@
       "System.Threading.Tasks.Extensions/4.5.1": {},
       "DiagnosticModel/1.0.0": {
         "dependencies": {
+          "FreeSql.Extensions.JsonMap": "1.9.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
@@ -674,6 +695,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FreeSql/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cKDqq2IulyacqblHmntIGF5D2o1lDrkYxLWFBw3E4AdAiR5C2JqTjv7ZuURplne/d3UTmMaDriooG49C/BvCpA==",
+      "path": "freesql/1.9.0",
+      "hashPath": "freesql.1.9.0.nupkg.sha512"
+    },
+    "FreeSql.Extensions.JsonMap/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Vlz2XZvo4SDltNlv2hmqkuQoXj0U89jJTL9dcbqDfTEivsipAF8gm+K8kt2pB8Sk3k7J64iD5Khov13dG7I9Hw==",
+      "path": "freesql.extensions.jsonmap/1.9.0",
+      "hashPath": "freesql.extensions.jsonmap.1.9.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
       "type": "package",

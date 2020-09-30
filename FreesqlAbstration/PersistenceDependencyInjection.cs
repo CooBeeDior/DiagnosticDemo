@@ -29,6 +29,7 @@ namespace FreesqlAbstration
                      .UseLazyLoading(item.IsLazyLoading)
                      .UseNameConvert(item.NameConvertType)
                      .UseMonitorCommand(item.Executing, item.Executed).Build();
+                    freesql.UseJsonMap();
                     return freesql;
                      });
                 if (!isRegisterSucess)

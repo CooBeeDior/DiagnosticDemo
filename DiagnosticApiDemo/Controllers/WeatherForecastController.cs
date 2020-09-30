@@ -11,6 +11,8 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using PersistenceAbstraction;
 using DiagnosticModel;
+using DiagnosticCore;
+
 namespace DiagnosticApiDemo.Controllers
 {
     [ApiVersion("1.0")]
@@ -26,13 +28,15 @@ namespace DiagnosticApiDemo.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ISpiderHttpClient _spider;
         public WeatherForecastController(ILogger<WeatherForecastController> logger, Func<string, IPersistence> func,
-            IStringLocalizer<WeatherForecastController> stringLocalizer, IHttpClientFactory clientFactory, IHttpContextAccessor httpContextAccessor)
+            IStringLocalizer<WeatherForecastController> stringLocalizer, IHttpClientFactory clientFactory, IHttpContextAccessor httpContextAccessor, ISpiderHttpClient spider)
         {
             _logger = logger;
             var c = stringLocalizer["ddd"];
             _httpContextAccessor = httpContextAccessor;
             _httpClient = clientFactory.CreateClient("aaa");
+            _spider = spider;
         }
 
         private Task doAysnc()
@@ -71,8 +75,10 @@ namespace DiagnosticApiDemo.Controllers
         [HttpGet("baidu")]
         public async Task<string> BaiDu()
         {
-
-            var resp = await _httpClient.GetAsync("http://www.baidu.com");
+            _logger.LogInformation("请求百度");
+                       var resp =await _spider.GetAsync("http://www.baidu.com");
+            _logger.LogInformation("请求百度结束11");
+            //var resp = await _httpClient.GetAsync("http://www.baidu.com");
             var result = await resp.Content.ReadAsStringAsync();
             return result;
         }

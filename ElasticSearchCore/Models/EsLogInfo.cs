@@ -3,11 +3,11 @@ using Nest;
 using System;
 
 namespace ElasticSearchCore.Models
-{
-    [ElasticsearchType(IdProperty = "Id", RelationName = "loginfo")]
-    public class EsLogInfo : LogInfo
+{ 
+    [ElasticsearchType(IdProperty = "Id", RelationName = "tranceInfo")]
+    public class EsTraceInfo : TraceInfo
     {
-        public EsLogInfo(string id) : base(id)
+        public EsTraceInfo(string id) : base(id)
         {
         }
         [Keyword]
@@ -24,21 +24,11 @@ namespace ElasticSearchCore.Models
         public override string LogName { get; set; }
         [Keyword]
         public override string LogLevel { get; set; }
+        [Object]
+        public override TraceInfoRequest Request { get; set; }
+        [Object]
+        public override TraceInfoResponse Response { get; set; }
 
-        [Keyword]
-        public override string Url { get; set; }
-        [Keyword]
-        public override string Method { get; set; }
-        [Text]
-        public override string Request { get; set; }
-        [Text]
-        public override string Response { get; set; }
-        [Text]
-        public override string Header { get; set; }
-        [Text]
-        public override string Cookies { get; set; }
-        [Keyword]
-        public override int? StatusCode { get; set; }
         [Keyword]
         public override long ElapsedTime { get; set; }
         [Date]
@@ -60,5 +50,16 @@ namespace ElasticSearchCore.Models
 
         [Keyword]
         public override string ThreadName { get; set; }
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        [Text]
+        public override string Description { get; set; }
     }
+
+
+
+ 
+   
 }
