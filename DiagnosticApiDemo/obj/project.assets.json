@@ -3562,6 +3562,21 @@
         "runtime": {
           "bin/placeholder/PersistenceAbstraction.dll": {}
         }
+      },
+      "SpiderCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http": "2.2.2",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Http": "3.1.8"
+        },
+        "compile": {
+          "bin/placeholder/SpiderCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpiderCore.dll": {}
+        }
       }
     }
   },
@@ -10190,6 +10205,11 @@
       "type": "project",
       "path": "../PersistenceAbstraction/PersistenceAbstraction.csproj",
       "msbuildProject": "../PersistenceAbstraction/PersistenceAbstraction.csproj"
+    },
+    "SpiderCore/1.0.0": {
+      "type": "project",
+      "path": "../SpiderCore/SpiderCore.csproj",
+      "msbuildProject": "../SpiderCore/SpiderCore.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10208,6 +10228,7 @@
       "Microsoft.Extensions.Caching.Redis >= 2.2.0",
       "Microsoft.Extensions.DiagnosticAdapter >= 3.1.8",
       "MongodbCore >= 1.0.0",
+      "SpiderCore >= 1.0.0",
       "Swashbuckle.AspNetCore.SwaggerGen >= 5.6.3",
       "Swashbuckle.AspNetCore.SwaggerUI >= 5.6.3"
     ]
@@ -10260,6 +10281,9 @@
             },
             "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\MongodbCore\\MongodbCore.csproj"
+            },
+            "D:\\Work\\DiagnosticDemo\\SpiderCore\\SpiderCore.csproj": {
+              "projectPath": "D:\\Work\\DiagnosticDemo\\SpiderCore\\SpiderCore.csproj"
             }
           }
         }

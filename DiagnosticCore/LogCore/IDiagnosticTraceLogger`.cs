@@ -13,7 +13,7 @@ namespace DiagnosticCore.LogCore
 
         void LogDebug(TraceInfoBuilder logbuilder, Exception exception = null);
 
-        void TraceInformation(TraceInfoBuilder logbuilder, Exception exception=null);
+        void LogInformation(TraceInfoBuilder logbuilder, Exception exception=null);
 
         void LogWarning(TraceInfoBuilder logbuilder, Exception exception = null);
 

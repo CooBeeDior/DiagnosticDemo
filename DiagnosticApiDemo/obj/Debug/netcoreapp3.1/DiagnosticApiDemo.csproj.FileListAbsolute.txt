@@ -178,3 +178,5 @@ D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDe
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.MvcApplicationPartsAssemblyInfo.cache
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Http.dll
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\FreeSql.Extensions.JsonMap.dll
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\SpiderCore.dll
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\SpiderCore.pdb

@@ -24,16 +24,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 services.AddSingleton<ITracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
             }
             services.AddSingleton<IObserver<DiagnosticListener>, TracingDiagnosticObserver>();
-            services.AddSingleton<TracingDiagnosticObserver>();
-
-            services.AddScoped<ISpiderHttpClient, SpiderHttpClient>();
-            services.AddHttpClient(nameof(SpiderHttpClient), client =>
-            {
-             
-            });
-
+            services.AddSingleton<TracingDiagnosticObserver>(); 
             services.AddSingleton<ILoggerProvider, DiagnosticLogProvider>();
             services.Add(new ServiceDescriptor(typeof(IDiagnosticTraceLogger<>), typeof(DiagnosticTraceLogger<>), ServiceLifetime.Singleton));
+ 
             services.AddHttpContextAccessor();
         }
     }

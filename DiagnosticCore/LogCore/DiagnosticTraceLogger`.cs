@@ -1,6 +1,7 @@
 ﻿using DiagnosticModel;
 using Microsoft.Extensions.Logging;
 using System;
+using System.IO;
 
 namespace DiagnosticCore.LogCore
 {
@@ -15,8 +16,29 @@ namespace DiagnosticCore.LogCore
         }
         public void Log(LogLevel logLevel, TraceInfoBuilder logbuilder, Exception exception = null)
         {
-            var tranceInfo = logbuilder.Log(logLevel.ToString(), typeof(T).FullName, exception).Build();
-            _logger.Log(logLevel, DiagnosticConstant.EVENT_ID, tranceInfo, exception, (loglevel,ex)=> "");
+            var traceInfo = logbuilder.Build();
+            if (string.IsNullOrEmpty(traceInfo.LogLevel))
+            {
+                traceInfo.LogLevel = logLevel.ToString();
+            }
+            if (string.IsNullOrEmpty(traceInfo.LogName))
+            {
+                traceInfo.LogName = typeof(T).FullName;
+            }
+            if (traceInfo.Exception == null)
+            {
+                traceInfo.Exception = exception;
+            }
+            if (string.IsNullOrEmpty(traceInfo.ErrorMessage))
+            {
+                traceInfo.ErrorMessage = exception?.Message;
+            }
+            if (string.IsNullOrEmpty(traceInfo.Description))
+            {
+                traceInfo.Description = $"请求url:{Path.Combine(traceInfo.ServerName, traceInfo?.Request?.Url)}";
+
+            }
+            _logger.Log(logLevel, DiagnosticConstant.EVENT_ID, traceInfo, exception, (loglevel, ex) => "");
         }
 
         public void LogTrace(TraceInfoBuilder logbuilder, Exception exception = null)
@@ -28,7 +50,7 @@ namespace DiagnosticCore.LogCore
             Log(LogLevel.Debug, logbuilder, exception);
         }
 
-        public void TraceInformation(TraceInfoBuilder logbuilder, Exception exception = null)
+        public void LogInformation(TraceInfoBuilder logbuilder, Exception exception = null)
         {
             Log(LogLevel.Information, logbuilder, exception);
         }

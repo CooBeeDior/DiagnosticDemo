@@ -21,7 +21,11 @@ namespace DiagnosticModel
         /// <summary>
         /// 当前服务名称
         /// </summary>
-        public virtual string ServerName { get; set; }
+        public virtual string ServerName { get { return AppDomain.CurrentDomain.FriendlyName; } }
+        /// <summary>
+        /// 请求的服务名称
+        /// </summary>
+        public virtual string TargetServerName { get; set; }
         /// <summary>
         /// 追踪Id(服务级别)
         /// </summary>
@@ -41,7 +45,7 @@ namespace DiagnosticModel
         public virtual string ParentTrackId { get; set; }
 
         [JsonMap]
-        [Column(StringLength =-1)]
+        [Column(StringLength = -1)]
         public virtual TraceInfoRequest Request { get; set; }
         [JsonMap]
         [Column(StringLength = -1)]

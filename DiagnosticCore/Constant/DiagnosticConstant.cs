@@ -8,7 +8,7 @@ namespace DiagnosticCore.LogCore
 
     public class DiagnosticConstant
     {
-        public static readonly EventId EVENT_ID = new EventId(100, "TraceInfoBuilder");
+        public static readonly EventId EVENT_ID = new EventId(123456789, "TraceInfoBuilder");
 
         public static string GetItemKey(string name)
         {

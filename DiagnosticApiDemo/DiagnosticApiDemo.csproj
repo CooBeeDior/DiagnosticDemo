@@ -28,6 +28,7 @@
     <ProjectReference Include="..\LocalizerAbstraction\LocalizerAbstraction.csproj" />
     <ProjectReference Include="..\MessageQueueAbstraction\MessageQueueAbstraction.csproj" />
     <ProjectReference Include="..\MongodbCore\MongodbCore.csproj" />
+    <ProjectReference Include="..\SpiderCore\SpiderCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

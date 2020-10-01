@@ -109,9 +109,9 @@ namespace DiagnosticModel
             var elapsedTime = (DateTime.Now.Ticks - Convert.ToInt64(trackTime)) / 1000000;//转换为ms
 
 
-            var tranceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(id).ParentId(parentid).TrackId(trackId, parentTrackId)
-                   .HttpContext(context).ElapsedTime(elapsedTime).Log(LogLevel.Trace.ToString(), "", exception);
-            return tranceInfoBuilder;
+            var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(id).ParentId(parentid).TrackId(trackId, parentTrackId)
+                   .HttpContext(context).ElapsedTime(elapsedTime).Log(LogLevel.Trace, "", exception);
+            return traceInfoBuilder;
         }
 
 

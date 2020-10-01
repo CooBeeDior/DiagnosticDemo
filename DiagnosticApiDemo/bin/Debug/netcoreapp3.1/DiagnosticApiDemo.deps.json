@@ -38,6 +38,7 @@
           "Microsoft.Extensions.Caching.Redis": "2.2.0",
           "Microsoft.Extensions.DiagnosticAdapter": "3.1.8",
           "MongodbCore": "1.0.0",
+          "SpiderCore": "1.0.0",
           "Swashbuckle.AspNetCore.SwaggerGen": "5.6.3",
           "Swashbuckle.AspNetCore.SwaggerUI": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery.Reference": "3.1.0.0",
@@ -2824,6 +2825,19 @@
         },
         "compile": {
           "PersistenceAbstraction.dll": {}
+        }
+      },
+      "SpiderCore/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http": "2.2.2",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Http": "3.1.8"
+        },
+        "runtime": {
+          "SpiderCore.dll": {}
+        },
+        "compile": {
+          "SpiderCore.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery.Reference/3.1.0.0": {
@@ -5998,6 +6012,11 @@
       "sha512": ""
     },
     "PersistenceAbstraction/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SpiderCore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

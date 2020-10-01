@@ -16,7 +16,7 @@ namespace MessageQueueAbstraction
         public TraceLogRabbitmqConsumer(IRabbitmqChannelManagement rabbitmqChannelManagement, Func<string, IPersistence> func)
         {
             _rabbitmqChannelManagement = rabbitmqChannelManagement;
-            _persistence = func.Invoke("FreeSql");
+            _persistence = func.Invoke("Mongodb");
         }
         public const string NAME = "MicroService.TraceLog";
         public string Name { get { return NAME; } }
@@ -28,10 +28,10 @@ namespace MessageQueueAbstraction
             consumer.Received += async (sender, args) =>
             {
                 var message = Encoding.UTF8.GetString(args.Body.Span);
-                var tranceInfo = message.ToObj<TraceInfo>();
-                if (tranceInfo != null)
+                var traceInfo = message.ToObj<TraceInfo>();
+                if (traceInfo != null)
                 {
-                    await _persistence.InsertAsync(tranceInfo);
+                    await _persistence.InsertAsync(traceInfo);
                 }
                 channel.BasicAck(args.DeliveryTag, false);
             };

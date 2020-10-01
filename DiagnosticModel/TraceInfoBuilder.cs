@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Net;
@@ -19,7 +20,7 @@ namespace DiagnosticModel
         public TraceInfoBuilder BuildTraceInfo(string Id)
         {
             _traceInfo = new TraceInfo(Id);
-            _traceInfo.ServerName = AppDomain.CurrentDomain.FriendlyName;
+
             _traceInfo.HostIPAddress = Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList.FirstOrDefault(address => address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)?.ToString();
             _traceInfo.ThreadId = Thread.CurrentThread.ManagedThreadId;
             _traceInfo.ThreadName = Thread.CurrentThread.Name;
@@ -27,18 +28,40 @@ namespace DiagnosticModel
 
             return this;
         }
-        public TraceInfoBuilder BuildFromTraceInfo(TraceInfo tranceInfo)
+        public TraceInfoBuilder BuildFromTraceInfo(TraceInfo traceInfo, bool isAll = false)
         {
-            if (tranceInfo == null)
+            if (traceInfo == null)
             {
-                throw new ArgumentException($"tranceInfo not null");
+                throw new ArgumentException($"traceInfo not null");
             }
-            _traceInfo = tranceInfo.Clone();
-            _traceInfo.Id = Guid.NewGuid().ToString();
+            if (isAll)
+            {
+                _traceInfo = traceInfo.Clone();
+            }
+            else
+            {
+                _traceInfo = new TraceInfo(Guid.NewGuid().ToString());
+                _traceInfo.ParentId = traceInfo.ParentId;
+                _traceInfo.TrackId = traceInfo.TrackId;
+                _traceInfo.ParentTrackId = traceInfo.ParentTrackId;
+                _traceInfo.HostIPAddress = traceInfo.HostIPAddress;
+                _traceInfo.ClientIpAddress = traceInfo.ClientIpAddress;
+
+
+            }
             _traceInfo.ThreadId = Thread.CurrentThread.ManagedThreadId;
             _traceInfo.ThreadName = Thread.CurrentThread.Name;
             _traceInfo.CreateAt = DateTimeOffset.Now;
             return this;
+        }
+
+        public TraceInfoBuilder BuildFromTraceInfoBuilder(TraceInfoBuilder traceInfoBuilder, bool isAll = false)
+        {
+            if (traceInfoBuilder == null)
+            {
+                throw new ArgumentException($"traceInfoBuilder not null");
+            }
+            return BuildFromTraceInfo(traceInfoBuilder.Build(), isAll);
         }
 
         public TraceInfoBuilder ClearTraceInfo()
@@ -145,10 +168,10 @@ namespace DiagnosticModel
             _traceInfo.ParentId = parentId;
             return this;
         }
-        public TraceInfoBuilder Log(string logLevel, string logName, Exception exception = null)
+        public TraceInfoBuilder Log(LogLevel logLevel, string logName = null, Exception exception = null)
         {
             _traceInfo.LogName = logName;
-            _traceInfo.LogLevel = logLevel;
+            _traceInfo.LogLevel = logLevel.ToString();
             _traceInfo.Exception = exception;
             return this;
         }
@@ -187,7 +210,11 @@ namespace DiagnosticModel
             _traceInfo.Response.StatusCode = statusCode;
             return this;
         }
-
+        public TraceInfoBuilder TargetServerName(string targetServerName)
+        {
+            _traceInfo.TargetServerName = targetServerName;
+            return this;
+        }
         public TraceInfoBuilder Description(string description)
         {
             _traceInfo.Description = description;

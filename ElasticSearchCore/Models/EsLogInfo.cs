@@ -3,8 +3,8 @@ using Nest;
 using System;
 
 namespace ElasticSearchCore.Models
-{ 
-    [ElasticsearchType(IdProperty = "Id", RelationName = "tranceInfo")]
+{
+    [ElasticsearchType(IdProperty = "Id", RelationName = "traceInfo")]
     public class EsTraceInfo : TraceInfo
     {
         public EsTraceInfo(string id) : base(id)
@@ -15,7 +15,7 @@ namespace ElasticSearchCore.Models
         [Keyword]
         public override string ParentId { get; set; }
         [Text]
-        public override string ServerName { get; set; }
+        public override string ServerName { get; }
         [Keyword]
         public override string TrackId { get; set; }
         [Keyword]
@@ -60,6 +60,6 @@ namespace ElasticSearchCore.Models
 
 
 
- 
-   
+
+
 }

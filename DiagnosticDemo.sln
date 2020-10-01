@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalizerAbstraction", "Loc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreesqlAbstration", "FreesqlAbstration\FreesqlAbstration.csproj", "{E952B7AD-2E3D-4E09-894C-B69FA36C9EB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpiderCore", "SpiderCore\SpiderCore.csproj", "{5488367D-4064-4E0B-80FF-B42DF2C1FD3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{E952B7AD-2E3D-4E09-894C-B69FA36C9EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E952B7AD-2E3D-4E09-894C-B69FA36C9EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E952B7AD-2E3D-4E09-894C-B69FA36C9EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5488367D-4064-4E0B-80FF-B42DF2C1FD3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5488367D-4064-4E0B-80FF-B42DF2C1FD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5488367D-4064-4E0B-80FF-B42DF2C1FD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5488367D-4064-4E0B-80FF-B42DF2C1FD3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

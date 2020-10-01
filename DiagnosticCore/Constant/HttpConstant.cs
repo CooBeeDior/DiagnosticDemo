@@ -11,6 +11,11 @@ namespace DiagnosticCore.Constant
         /// </summary>
         public const string TRACK_ID = "track-id";
 
+        /// <summary>
+        /// track-service-name
+        /// </summary>
+        public const string TRACK_SERVICE_NAME = "track-service-name";
+
 
         /// <summary>
         /// parent-track-id

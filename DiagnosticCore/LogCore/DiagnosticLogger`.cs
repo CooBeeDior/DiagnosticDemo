@@ -5,6 +5,8 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
 using System.Text;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace DiagnosticCore.LogCore
 {
@@ -13,10 +15,12 @@ namespace DiagnosticCore.LogCore
         private readonly string _categoryName;
 
         private readonly IRabbitmqChannelManagement _rabbitmqChannelManagement;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public DiagnosticLogger(string categoryName, IServiceProvider serviceProvider)
         {
             _categoryName = categoryName;
             _rabbitmqChannelManagement = serviceProvider.GetService<IRabbitmqChannelManagement>();
+            _httpContextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
 
         }
         public IDisposable BeginScope<TState>(TState state)
@@ -35,42 +39,55 @@ namespace DiagnosticCore.LogCore
             {
                 return;
             }
+            TraceInfo traceInfo = null;
             if (eventId == DiagnosticConstant.EVENT_ID)
             {
-                TraceInfo traceInfo = null;
                 if (state is string)
                 {
                     var str = state as string;
                     traceInfo = str.ToObj<TraceInfo>();
-
                 }
                 else if (state is TraceInfo)
                 {
                     traceInfo = state as TraceInfo;
                 }
-                if (traceInfo != null)
+                else if (state is TraceInfoBuilder)
                 {
-                    if (exception != null)
-                    {
-                        traceInfo.Exception = exception;
-
-                    }
-                    traceInfo.ErrorMessage = traceInfo.Exception?.Message;
-
-                    //通过异步发送TraceInfo
-                    var buffer = Encoding.UTF8.GetBytes(traceInfo.ToJson());
-                    var model = _rabbitmqChannelManagement.GetChannel(TraceLogRabbitmqConsumer.NAME);
-                    model.BasicPublish("", TraceLogRabbitmqConsumer.NAME, null, buffer);
-
+                    var builder = state as TraceInfoBuilder;
+                    traceInfo = builder?.Build();
                 }
+           
 
             }
             else
             {
-                //TraceInfoBuilder.CreateBuilder(). 
-                //model.BasicPublish("", TraceLogRabbitmqConsumer.NAME, null, buffer);
+                if (_httpContextAccessor.HttpContext != null && _httpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
+                {
+                    var parentTraceInfoBuilder = _httpContextAccessor.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)] as TraceInfoBuilder;
+                    if (parentTraceInfoBuilder != null)
+                    {
+                        var parentTraceInfo = parentTraceInfoBuilder.Build();
+                        var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(Guid.NewGuid().ToString()).ParentId(parentTraceInfo.Id).
+                            TrackId(parentTraceInfo.TrackId).ParentTrackId(parentTraceInfo.ParentTrackId)
+                            .Log(logLevel, _categoryName, exception).Description(state?.ToString());
+
+                        traceInfo = traceInfoBuilder.Build();
+
+                    }
+
+
+                }
+            }
+
+            //通过异步发送TraceInfo
+            if (traceInfo != null)
+            {
+                var buffer = Encoding.UTF8.GetBytes(traceInfo.ToJson());
+                var model = _rabbitmqChannelManagement.GetChannel(TraceLogRabbitmqConsumer.NAME);
+                model.BasicPublish("", TraceLogRabbitmqConsumer.NAME, null, buffer);
             }
 
         }
+
     }
 }
