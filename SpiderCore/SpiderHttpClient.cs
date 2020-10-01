@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
+using SpiderCore.RequestStrategies;
 
 namespace SpiderCore
 {
@@ -18,9 +19,17 @@ namespace SpiderCore
         {
             Options = serviceProvider.GetService<SpiderOptions>();
             HttpClient = serviceProvider.GetService<IHttpClientFactory>().CreateClient(nameof(SpiderHttpClient));
-
+            ServiceName = serviceName;
             var service = Options.Services.Where(o => o.ServiceName.Equals(serviceName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-            HttpClient.BaseAddress = new Uri(service.ServiceEntry[0].Url);
+
+            var ip = RequestStrategyFactory.Instance.CreateRequestStrategy(service)?.GetServiceIp(null);
+            if (string.IsNullOrEmpty(ip))
+            {
+                throw new Exception($"{serviceName} not found service ip");
+            }
+
+
+            HttpClient.BaseAddress = new Uri(ip);
             HttpContextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
 
 

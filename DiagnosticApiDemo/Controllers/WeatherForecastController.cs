@@ -79,7 +79,7 @@ namespace DiagnosticApiDemo.Controllers
         {
             _logger.LogInformation("请求百度");
             //var resp =await _spider.GetAsync("http://www.baidu.com");
-            var resp = await _spiderHttpClientFactory.CreateSpiderHttpClient("aaa").PostAsync("/api/Login/GetQrCode");
+            var resp = await _spiderHttpClientFactory.CreateSpiderHttpClient("wechat").PostAsync("/api/Login/GetQrCode");
             var result = await resp.Content.ReadAsStringAsync();
             _logger.LogInformation("请求百度结束11");
    

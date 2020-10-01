@@ -29,7 +29,7 @@ namespace DiagnosticApiDemo
                 options.SuppressAsyncSuffixInActionNames = false;
             });
 
-            services.AddHttpClient("aaa");
+        
 
         }
 
