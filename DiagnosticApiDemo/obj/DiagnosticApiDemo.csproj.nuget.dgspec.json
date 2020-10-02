@@ -96,6 +96,14 @@
               "target": "Package",
               "version": "[3.1.8, )"
             },
+            "MiniProfiler.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "MiniProfiler.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",
               "version": "[5.6.3, )"
@@ -804,7 +812,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj": {
+                "projectPath": "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -816,6 +828,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.7.14, )"
+            },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
               "version": "[2.2.2, )"

@@ -3,6 +3,7 @@
     /// <summary>
     /// 加权随机
     /// </summary>
+    [RequestStrategy(StrategyType.WeightRandom)]
     public class WeightRandomRequestStrategy : WeightRequestStrategy, IRequestStrategy
     {
 
@@ -11,16 +12,28 @@
 
         }
 
-        public string GetServiceIp(object param)
+        public string GetServiceIp(object param = null)
         {
             var requestStrategy = GetRequestStrategy();
-            return requestStrategy.GetServiceIp(null);
+            return requestStrategy.GetServiceIp();
         }
 
-
+        private IRequestStrategy _requestStrategy;
+        private object obj = new object();
         public override IRequestStrategy GetRequestStrategy()
         {
-            return new RandomRequestStrategy(SpiderService);
+            if (_requestStrategy == null)
+            {
+                lock (obj)
+                {
+                    if (_requestStrategy == null)
+                    {
+                        _requestStrategy = new RandomRequestStrategy(TargetSpiderService);
+                    }
+                }
+            }
+            return _requestStrategy;
+     
         }
 
 

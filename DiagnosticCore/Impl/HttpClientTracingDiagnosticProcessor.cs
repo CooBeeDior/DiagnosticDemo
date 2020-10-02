@@ -115,18 +115,22 @@ namespace DiagnosticCore
 
         protected virtual void HttpResponseHandle(HttpResponseMessage response)
         {
-            if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
+            if (response.RequestMessage.Headers.Contains("trace.microservice"))
             {
-                var parentTraceInfoBuilder = HttpContextAccessor.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)] as TraceInfoBuilder;
-                if (parentTraceInfoBuilder != null)
-                {
-                    var serviceName = response.RequestMessage.Headers.GetValues("trace.microservice").FirstOrDefault();
-                    var parentTraceInfo = parentTraceInfoBuilder.Build();
-                    var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildFromTraceInfo(parentTraceInfo).ParentId(parentTraceInfo.Id).HttpRequestMessage(response.RequestMessage)
-                        .HttpResponseMessage(response).ElapsedTime(HttpContextAccessor.HttpContext.ElapsedTime()).TargetServerName(serviceName).Log(LogLevel.Trace) ;
-                   
-                    Logger.LogInformation(traceInfoBuilder);
+                var serviceName = response.RequestMessage.Headers.GetValues("trace.microservice").FirstOrDefault();
 
+                if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
+                {
+                    var parentTraceInfoBuilder = HttpContextAccessor.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)] as TraceInfoBuilder;
+                    if (parentTraceInfoBuilder != null)
+                    {
+                        var parentTraceInfo = parentTraceInfoBuilder.Build();
+                        var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildFromTraceInfo(parentTraceInfo).ParentId(parentTraceInfo.Id).HttpRequestMessage(response.RequestMessage)
+                            .HttpResponseMessage(response).ElapsedTime(HttpContextAccessor.HttpContext.ElapsedTime()).TargetServerName(serviceName).Log(LogLevel.Trace);
+
+                        Logger.LogInformation(traceInfoBuilder);
+
+                    }
                 }
             }
 

@@ -35,7 +35,7 @@ namespace DiagnosticCore.LogCore
             }
             if (string.IsNullOrEmpty(traceInfo.Description))
             {
-                traceInfo.Description = $"请求url:{Path.Combine(traceInfo.ServerName, traceInfo?.Request?.Url)}";
+                traceInfo.Description = $"请求url:{traceInfo.ServerName} {traceInfo?.Request?.Url}";
 
             }
             _logger.Log(logLevel, DiagnosticConstant.EVENT_ID, traceInfo, exception, (loglevel, ex) => "");

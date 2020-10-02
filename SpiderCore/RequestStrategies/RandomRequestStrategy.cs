@@ -5,6 +5,7 @@ namespace SpiderCore.RequestStrategies
     /// <summary>
     /// 随机
     /// </summary>
+    [RequestStrategy(StrategyType.Random)]
     public class RandomRequestStrategy : RequestStrategyBase, IRequestStrategy
     {
 
@@ -13,10 +14,10 @@ namespace SpiderCore.RequestStrategies
         {
             _random = new Random();
         }
-        public string GetServiceIp(object param)
+        public string GetServiceIp(object param = null)
         {
-            var index = _random.Next(0, SpiderService.ServiceEntryies.Count - 1);
-            return SpiderService.ServiceEntryies[index].Url;
+            var index = _random.Next(0, HealthServices.Count - 1);
+            return HealthServices[index].Url;
         }
     }
 }

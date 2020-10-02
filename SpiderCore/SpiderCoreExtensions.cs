@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SpiderCore.RequestStrategies;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,10 +14,11 @@ namespace SpiderCore
             action?.Invoke(options);
 
             services.AddSingleton(options);
-            services.AddHttpClient(nameof(SpiderHttpClient));
+            services.AddHttpClient( );
             services.AddSingleton<ISpiderHttpClientFactory, SpiderHttpClientFactory>();
+            services.AddSingleton<IMonitorHealthJob, MonitorHealthJob>();
             services.AddHttpContextAccessor();
-
+           
             return new SpiderBuilder(options);
         }
     }

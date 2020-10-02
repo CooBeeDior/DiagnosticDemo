@@ -14,7 +14,7 @@ namespace DiagnosticApiDemo.HostingStartups
             //持久化
             builder.ConfigureServices((context, services) =>
             {
-                services.AddHangfire(x=>x.UseSqlServerStorage("Data Source=47.111.87.132;Initial Catalog=hangfire;User ID=dev;Password=Zhouqazwsx123"));
+                services.AddHangfire(x=>x.UseSqlServerStorage("Data Source=.;Initial Catalog=Hangfire;Integrated Security=True"));
             });
 
 

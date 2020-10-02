@@ -1,47 +1,62 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SpiderCore.RequestStrategies
 {
 
     /// <summary>
     /// 加权抽象
-    /// </summary>
+    /// </summary> 
     public abstract class WeightRequestStrategy : RequestStrategyBase
     {
-        private IRequestStrategy _requestStrategy;
+        protected SpiderService TargetSpiderService { get; }
         public WeightRequestStrategy(SpiderService spiderService) : base(spiderService)
         {
-            SpiderService targetSpiderService = new SpiderService()
+            SpiderService targetSpiderService = new SpiderService(spiderService.ServiceName)
             {
-                ServiceName = spiderService.ServiceName,
                 ArithmeticType = spiderService.ArithmeticType,
                 StrategyType = spiderService.StrategyType
 
             };
 
-            var isWeightServices = spiderService.ServiceEntryies.Where(o => o.Weight > 0);
-            var weights = isWeightServices.Select(o => o.Weight).ToArray();
+            var weights = HealthServices.Select(o => o.Weight).ToArray();
             int maxFactor = maxCommonFactor(weights);
 
-            foreach (var item in isWeightServices)
+            foreach (var item in HealthServices)
             {
                 int num = item.Weight / maxFactor;
                 for (int i = 0; i < num; i++)
                 {
-                    SpiderServiceEntry spiderServiceEntry = new SpiderServiceEntry()
+                    SpiderServiceEntry spiderServiceEntry = new SpiderServiceEntry(item.Url)
                     {
-                        Url = item.Url,
                         Weight = item.Weight,
                         IsHealth = item.IsHealth
                     };
                     targetSpiderService.ServiceEntryies.Add(spiderServiceEntry);
                 }
             }
-
-            SpiderService = targetSpiderService;
+            TargetSpiderService = targetSpiderService;
+            HealthServices = targetSpiderService.ServiceEntryies;
         }
 
         public abstract IRequestStrategy GetRequestStrategy();
+
+
+        public override void RefreshHealthService(IList<SpiderServiceEntry> healthServices)
+        {
+            foreach (var healthService in healthServices)
+            {
+                var filterServices = TargetSpiderService.ServiceEntryies.Where(service => service == healthService).ToList();
+                foreach (var filterService in filterServices)
+                {
+                    filterService.IsHealth = healthService.IsHealth;
+                }
+            }
+            base.RefreshHealthService(healthServices);
+        }
+
+
+        #region private
 
         private int maxCommonFactor(params int[] parameters)
         {
@@ -67,6 +82,7 @@ namespace SpiderCore.RequestStrategies
             }
             return res;
         }
+        #endregion
 
     }
 }

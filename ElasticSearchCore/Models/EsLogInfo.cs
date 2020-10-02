@@ -15,7 +15,7 @@ namespace ElasticSearchCore.Models
         [Keyword]
         public override string ParentId { get; set; }
         [Text]
-        public override string ServerName { get; }
+        public override string ServerName { get;  }
         [Keyword]
         public override string TrackId { get; set; }
         [Keyword]

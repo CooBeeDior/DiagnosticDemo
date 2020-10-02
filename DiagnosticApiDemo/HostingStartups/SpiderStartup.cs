@@ -15,12 +15,27 @@ namespace DiagnosticApiDemo.HostingStartups
             {
                 services.AddSpider(options =>
                 {
-                    var s1 = new SpiderServiceEntry() { Url = "http://api.coobeedior.com", Weight = 2 };
-                    var s2 = new SpiderServiceEntry() { Url = "http://47.111.87.132:8012", Weight = 4 };
-                    var spiderService = new SpiderService() { ServiceName = "wechat", StrategyType = StrategyType.WeightRoundRobin };
-                    spiderService.ServiceEntryies.Add(s1);
-                    spiderService.ServiceEntryies.Add(s2);
-                    options.Services.Add(spiderService);
+                    {
+                        var s1 = new SpiderServiceEntry("http://api.coobeedior.com") { Weight = 2 };
+                        var s2 = new SpiderServiceEntry("http://47.111.87.132:8012") { Weight = 4 };
+                        var spiderService = new SpiderService("wechat") { StrategyType = StrategyType.RoundRobin ,HealthUrl= "index" };
+                        spiderService.ServiceEntryies.Add(s1);
+                        spiderService.ServiceEntryies.Add(s2);
+                        options.Services.Add(spiderService);
+                    }
+
+                    //{
+                    //    var s1 = new SpiderServiceEntry() { Url = "http://api.coobeedior.com", Weight = 2 };
+                    //    var s2 = new SpiderServiceEntry() { Url = "http://47.111.87.132:8012", Weight = 4 };
+                    //    var spiderService = new SpiderService() { ServiceName = "name", StrategyType = StrategyType.WeightRoundRobin };
+                    //    spiderService.ServiceEntryies.Add(s1);
+                    //    spiderService.ServiceEntryies.Add(s2);        
+                    //    options.Services.Add(spiderService);
+
+                    //}
+
+
+
                 });
             });
 

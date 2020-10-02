@@ -13,6 +13,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace DiagnosticCore
 {
@@ -227,23 +228,28 @@ namespace DiagnosticCore
         protected virtual void BeginRequestHandle(HttpContext httpContext)
         {
             var request = httpContext.Request;
-            //上一个服务传过来 是父级的跟踪Id
-            var parentTrackId = request.Headers[HttpConstant.TRACK_ID].FirstOrDefault();
-            if (!string.IsNullOrWhiteSpace(parentTrackId))
-            {
-                request.Headers.Add(HttpConstant.PARENT_TRACK_ID, parentTrackId);
-            }
-            var trackId = Guid.NewGuid().ToString();
-            request.Headers.Add(HttpConstant.TRACK_ID, trackId);
+            if (Regex.Match(request.Path,@"^(/v\d\.\d)?/api").Success)
+            { 
+                //上一个服务传过来 是父级的跟踪Id
+                var parentTrackId = request.Headers[HttpConstant.TRACK_ID].FirstOrDefault();
+                if (!string.IsNullOrWhiteSpace(parentTrackId))
+                {
+                    request.Headers.Add(HttpConstant.PARENT_TRACK_ID, parentTrackId);
+                }
+                var trackId = Guid.NewGuid().ToString();
+                request.Headers.Add(HttpConstant.TRACK_ID, trackId);
 
-            //当前服务追踪的Id
-            var chainId = Guid.NewGuid().ToString();
-            request.Headers.Add(HttpConstant.CHAIN_ID, chainId);
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            httpContext.Items.Add(DiagnosticConstant.GetItemKey(HttpConstant.TRACK_TIME), stopwatch);
-            var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(chainId).TrackId(trackId, parentTrackId).HttpContext(httpContext);
-            httpContext.Items.Add(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName), traceInfoBuilder);
+                //当前服务追踪的Id
+                var chainId = Guid.NewGuid().ToString();
+                request.Headers.Add(HttpConstant.CHAIN_ID, chainId);
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                httpContext.Items.Add(DiagnosticConstant.GetItemKey(HttpConstant.TRACK_TIME), stopwatch);
+                var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(chainId).TrackId(trackId, parentTrackId).HttpContext(httpContext);
+                httpContext.Items.Add(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName), traceInfoBuilder);
+
+
+            }
 
         }
 

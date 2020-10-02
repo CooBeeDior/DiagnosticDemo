@@ -5,19 +5,34 @@ namespace SpiderCore.RequestStrategies
     /// <summary>
     /// 轮询
     /// </summary>
+    [RequestStrategy(StrategyType.RoundRobin)]
     public class RoundRobinRequestStrategy : RequestStrategyBase, IRequestStrategy
     {
 
-        private int currentIndex = 0;
+        private int _currentIndex;
+
+        protected int CurrentIndex
+        {
+            get
+            {
+                if (_currentIndex >= HealthServices.Count)
+                {
+                    _currentIndex = 0;
+                }
+                return _currentIndex;
+            }
+            set { _currentIndex = value; }
+        }
         public RoundRobinRequestStrategy(SpiderService spiderService) : base(spiderService)
         {
 
         }
-        public string GetServiceIp(object param)
+        public string GetServiceIp(object param = null)
         {
-            int index = Interlocked.Increment(ref currentIndex);
-            Interlocked.CompareExchange(ref currentIndex, 0, SpiderService.ServiceEntryies.Count);
-            return SpiderService.ServiceEntryies[currentIndex].Url;
+            string url = HealthServices[CurrentIndex].Url;
+            int index = Interlocked.Increment(ref _currentIndex);
+            Interlocked.CompareExchange(ref _currentIndex, 0, HealthServices.Count);
+            return url;
         }
     }
 }

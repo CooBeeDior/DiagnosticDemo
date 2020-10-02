@@ -13,12 +13,13 @@ using PersistenceAbstraction;
 using DiagnosticModel;
 using DiagnosticCore;
 using SpiderCore;
+using StackExchange.Profiling;
 
 namespace DiagnosticApiDemo.Controllers
 {
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("WeatherForecast")]
+    [Route("api/WeatherForecast")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -27,18 +28,20 @@ namespace DiagnosticApiDemo.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly HttpClient _httpClient;
+
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ISpiderHttpClientFactory _spiderHttpClientFactory;
+        private readonly SpiderOptions _spiderOptions;
         public WeatherForecastController(ILogger<WeatherForecastController> logger, Func<string, IPersistence> func,
-            IStringLocalizer<WeatherForecastController> stringLocalizer, IHttpClientFactory clientFactory, IHttpContextAccessor httpContextAccessor,  
-            ISpiderHttpClientFactory spiderHttpClientFactory)
+            IStringLocalizer<WeatherForecastController> stringLocalizer, IHttpContextAccessor httpContextAccessor,
+            ISpiderHttpClientFactory spiderHttpClientFactory, SpiderOptions spiderOptions)
         {
             _logger = logger;
             var c = stringLocalizer["ddd"];
             _httpContextAccessor = httpContextAccessor;
-            _httpClient = clientFactory.CreateClient("aaa");
+
             _spiderHttpClientFactory = spiderHttpClientFactory;
+            _spiderOptions = spiderOptions;
         }
 
         private Task doAysnc()
@@ -57,6 +60,38 @@ namespace DiagnosticApiDemo.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
+            string url1 = string.Empty;
+            string url2 = string.Empty;
+            using (MiniProfiler.Current.Step("Get方法"))
+            {
+                using (MiniProfiler.Current.Step("准备数据"))
+                {
+                    using (MiniProfiler.Current.CustomTiming("SQL", "SELECT * FROM Config"))
+                    {
+                        // 模拟一个SQL查询
+                        Thread.Sleep(500);
+
+                        url1 = "https://www.baidu.com";
+                        url2 = "https://www.sina.com.cn/";
+                    }
+                }
+
+
+                using (MiniProfiler.Current.Step("使用从数据库中查询的数据，进行Http请求"))
+                {
+                    using (MiniProfiler.Current.CustomTiming("HTTP", "GET " + url1))
+                    {
+                        var client = new HttpClient();
+                        var reply =await client.GetAsync(url1);
+                    }
+
+                    using (MiniProfiler.Current.CustomTiming("HTTP", "GET " + url2))
+                    {
+                        var client = new HttpClient();
+                        var reply = await client.GetAsync(url2);
+                    }
+                }
+            }
             var id2 = Thread.CurrentThread.ManagedThreadId;
             var httpContext = _httpContextAccessor.HttpContext;
             await doAysnc().ConfigureAwait(false);
@@ -74,15 +109,29 @@ namespace DiagnosticApiDemo.Controllers
             .ToArray();
         }
 
+        [HttpGet("options")]
+        public async Task<string> Options()
+        {
+
+            //_spiderOptions.HealthUrl = "/ishealth";
+            //_spiderOptions.Services.Add(new SpiderService("service1") { });
+            var cc = _spiderOptions.Services.Where(o => o.ServiceName == "wechat").FirstOrDefault();
+            cc.HealthUrl = "/get";
+            cc.ServiceEntryies.Add(new SpiderServiceEntry("http://www.aaa.com"));
+            return "124";
+        }
+
         [HttpGet("baidu")]
         public async Task<string> BaiDu()
         {
             _logger.LogInformation("请求百度");
             //var resp =await _spider.GetAsync("http://www.baidu.com");
             var resp = await _spiderHttpClientFactory.CreateSpiderHttpClient("wechat").PostAsync("/api/Login/GetQrCode");
+
+            //var r1esp = await _spiderHttpClientFactory.CreateSpiderHttpClient("name").PostAsync("/api/Login/GetQrCode");
             var result = await resp.Content.ReadAsStringAsync();
             _logger.LogInformation("请求百度结束11");
-   
+
 
             return result;
         }
@@ -92,7 +141,7 @@ namespace DiagnosticApiDemo.Controllers
         public async Task<string> BaiDuPost()
         {
 
-            var resp = await _httpClient.GetAsync("http://www.baidu.com");
+            var resp = await _spiderHttpClientFactory.CreateSpiderHttpClient("wechat").PostAsync("/api/Login/GetQrCode");
             var result = await resp.Content.ReadAsStringAsync();
             return result;
         }
@@ -122,7 +171,7 @@ namespace DiagnosticApiDemo.Controllers
     /// </summary>
     [ApiVersion("2.0")]
     [ApiController]
-    [Route("WeatherForecast")]
+    [Route("api/WeatherForecast")]
     public class WeatherForecast2Controller : ControllerBase
     {
         private static readonly string[] Summaries = new[]

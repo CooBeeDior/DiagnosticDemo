@@ -24,4 +24,14 @@ namespace DiagnosticModel
             return serverIpAddresses;
         }
     }
+
+    public static class Url {
+        
+
+        public static string Combine(string baseUri, string relativeOrAbsoluteUri)
+        {
+            var uri= new Uri(new Uri(baseUri), relativeOrAbsoluteUri);
+            return uri.AbsoluteUri;
+        }
+    }
 }

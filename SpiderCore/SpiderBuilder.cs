@@ -32,7 +32,7 @@ namespace SpiderCore
             var service = _spiderOptions.Services.Where(o => o.ServiceName.Equals(name)).FirstOrDefault();
             if (service != null)
             {
-                service = new SpiderService();
+                service = new SpiderService(name);
             }
 
             foreach (var item in serviceEntries)
