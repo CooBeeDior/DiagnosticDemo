@@ -116,8 +116,8 @@ namespace DiagnosticApiDemo.Controllers
             //_spiderOptions.HealthUrl = "/ishealth";
             //_spiderOptions.Services.Add(new SpiderService("service1") { });
             var cc = _spiderOptions.Services.Where(o => o.ServiceName == "wechat").FirstOrDefault();
-            cc.HealthUrl = "/get";
-            cc.ServiceEntryies.Add(new SpiderServiceEntry("http://www.aaa.com"));
+  
+            cc.ServiceEntryies.Add(new SpiderServiceEntry("http://coobeedior.com:8012/"));
             return "124";
         }
 

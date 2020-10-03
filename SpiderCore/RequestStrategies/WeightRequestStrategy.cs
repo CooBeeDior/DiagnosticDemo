@@ -9,6 +9,7 @@ namespace SpiderCore.RequestStrategies
     /// </summary> 
     public abstract class WeightRequestStrategy : RequestStrategyBase
     {
+        private object obj = new object();
         protected SpiderService TargetSpiderService { get; }
         public WeightRequestStrategy(SpiderService spiderService) : base(spiderService)
         {
@@ -18,25 +19,8 @@ namespace SpiderCore.RequestStrategies
                 StrategyType = spiderService.StrategyType
 
             };
-
-            var weights = HealthServices.Select(o => o.Weight).ToArray();
-            int maxFactor = maxCommonFactor(weights);
-
-            foreach (var item in HealthServices)
-            {
-                int num = item.Weight / maxFactor;
-                for (int i = 0; i < num; i++)
-                {
-                    SpiderServiceEntry spiderServiceEntry = new SpiderServiceEntry(item.Url)
-                    {
-                        Weight = item.Weight,
-                        IsHealth = item.IsHealth
-                    };
-                    targetSpiderService.ServiceEntryies.Add(spiderServiceEntry);
-                }
-            }
             TargetSpiderService = targetSpiderService;
-            HealthServices = targetSpiderService.ServiceEntryies;
+            setTargetHealthSerive();
         }
 
         public abstract IRequestStrategy GetRequestStrategy();
@@ -44,15 +28,13 @@ namespace SpiderCore.RequestStrategies
 
         public override void RefreshHealthService(IList<SpiderServiceEntry> healthServices)
         {
-            foreach (var healthService in healthServices)
-            {
-                var filterServices = TargetSpiderService.ServiceEntryies.Where(service => service == healthService).ToList();
-                foreach (var filterService in filterServices)
-                {
-                    filterService.IsHealth = healthService.IsHealth;
-                }
-            }
             base.RefreshHealthService(healthServices);
+            setTargetHealthSerive();
+
+            var requestStrategy = GetRequestStrategy();
+            requestStrategy.RefreshHealthService(TargetSpiderService.ServiceEntryies);
+
+
         }
 
 
@@ -81,6 +63,35 @@ namespace SpiderCore.RequestStrategies
                 }
             }
             return res;
+        }
+
+        private void setTargetHealthSerive()
+        {
+            lock (obj)
+            { 
+                //判断是否新增节点 
+                int count = HealthServices.Except(TargetSpiderService.ServiceEntryies.Distinct()).Count();
+                if (count == 0)
+                {
+                    return;
+                }
+                TargetSpiderService.ServiceEntryies.Clear();
+                var weights = HealthServices.Select(o => o.Weight).ToArray();
+                int maxFactor = maxCommonFactor(weights);
+                foreach (var item in HealthServices)
+                {
+                    int num = item.Weight / maxFactor;
+                    for (int i = 0; i < num; i++)
+                    {
+                        SpiderServiceEntry spiderServiceEntry = new SpiderServiceEntry(item.Url)
+                        {
+                            Weight = item.Weight,
+                            IsHealth = item.IsHealth
+                        };
+                        TargetSpiderService.ServiceEntryies.Add(spiderServiceEntry);
+                    }
+                }
+            }
         }
         #endregion
 

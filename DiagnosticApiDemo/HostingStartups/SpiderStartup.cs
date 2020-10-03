@@ -18,7 +18,7 @@ namespace DiagnosticApiDemo.HostingStartups
                     {
                         var s1 = new SpiderServiceEntry("http://api.coobeedior.com") { Weight = 2 };
                         var s2 = new SpiderServiceEntry("http://47.111.87.132:8012") { Weight = 4 };
-                        var spiderService = new SpiderService("wechat") { StrategyType = StrategyType.RoundRobin ,HealthUrl= "index" };
+                        var spiderService = new SpiderService("wechat") { StrategyType = StrategyType.WeightRoundRobin ,HealthUrl= "index" };
                         spiderService.ServiceEntryies.Add(s1);
                         spiderService.ServiceEntryies.Add(s2);
                         options.Services.Add(spiderService);

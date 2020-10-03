@@ -14,7 +14,7 @@ namespace SpiderCore
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<SpiderHttpClient> _logger;
-        //后期根据serviceName去拿baseUrl
+ 
         private readonly string ServiceName;
         protected readonly SpiderOptions Options;
         private int _retries = 3;

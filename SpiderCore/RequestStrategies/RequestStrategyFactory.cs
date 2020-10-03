@@ -58,12 +58,16 @@ namespace SpiderCore.RequestStrategies
         {
             var spiderService = _spiderOptions.Services.Where(o => o.ServiceName.Equals(serviceName, StringComparison.InvariantCulture)).FirstOrDefault();
             if (spiderService != null && spiderService.ServiceEntryies != null) {
-                foreach (var serviceEntry in spiderService.ServiceEntryies)
+                //foreach (var serviceEntry in spiderService.ServiceEntryies)
+                for (int i = 0; i < spiderService.ServiceEntryies.Count; i++)
                 {
-
+                    var serviceEntry = spiderService.ServiceEntryies[i];
                     var url = Url.Combine(serviceEntry.Url, healthUrl);
                     try
                     {
+                        if (url.Contains("http://47.111.87.132:8012")) {
+                            throw new Exception("1");
+                        }
                         var resp = _httpClient.GetAsync(url).GetAwaiter().GetResult();
                         if (resp.StatusCode == HttpStatusCode.OK)
                         {

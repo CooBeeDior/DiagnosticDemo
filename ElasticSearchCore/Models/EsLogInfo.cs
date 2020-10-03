@@ -15,11 +15,17 @@ namespace ElasticSearchCore.Models
         [Keyword]
         public override string ParentId { get; set; }
         [Text]
-        public override string ServerName { get;  }
+        public override string ServerName { get; set; }
         [Keyword]
         public override string TrackId { get; set; }
         [Keyword]
         public override string ParentTrackId { get; set; }
+
+        /// <summary>
+        /// 请求的服务名称
+        /// </summary>
+        [Keyword]
+        public override string TargetServerName { get; set; }
         [Text]
         public override string LogName { get; set; }
         [Keyword]

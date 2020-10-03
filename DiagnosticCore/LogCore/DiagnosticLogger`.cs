@@ -61,36 +61,38 @@ namespace DiagnosticCore.LogCore
             }
             else
             {
-                try
+                if (_httpContextAccessor.HttpContext != null && _httpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
                 {
-                    //if (_httpContextAccessor.HttpContext != null && _httpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
-                    //{
-                    //    var parentTraceInfoBuilder = _httpContextAccessor.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)] as TraceInfoBuilder;
-                    //    if (parentTraceInfoBuilder != null)
-                    //    {
-                    //        var parentTraceInfo = parentTraceInfoBuilder.Build();
-                    //        var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(Guid.NewGuid().ToString()).ParentId(parentTraceInfo.Id).
-                    //            TrackId(parentTraceInfo.TrackId).ParentTrackId(parentTraceInfo.ParentTrackId)
-                    //            .Log(logLevel, _categoryName, exception).Description(state?.ToString());
+                    var parentTraceInfoBuilder = _httpContextAccessor.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)] as TraceInfoBuilder;
+                    if (parentTraceInfoBuilder != null)
+                    {
+                        var parentTraceInfo = parentTraceInfoBuilder.Build();
+                        var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(Guid.NewGuid().ToString()).ParentId(parentTraceInfo.Id).
+                            TrackId(parentTraceInfo.TrackId).ParentTrackId(parentTraceInfo.ParentTrackId)
+                            .Log(logLevel, _categoryName, exception).Description(state?.ToString());
 
-                    //        traceInfo = traceInfoBuilder.Build();
+                        traceInfo = traceInfoBuilder.Build();
 
-                    //    }
+                    }
 
 
-                    //}
                 }
-                catch (Exception ex)
-                {
-                }
+
             }
 
             //通过异步发送TraceInfo
             if (traceInfo != null)
             {
-                var buffer = Encoding.UTF8.GetBytes(traceInfo.ToJson());
-                var model = _rabbitmqChannelManagement.GetChannel(TraceLogRabbitmqConsumer.NAME);
-                model.BasicPublish("", TraceLogRabbitmqConsumer.NAME, null, buffer);
+                try
+                {
+                    var buffer = Encoding.UTF8.GetBytes(traceInfo.ToJson());
+                    var model = _rabbitmqChannelManagement.GetChannel(TraceLogRabbitmqConsumer.NAME);
+                    model.BasicPublish("", TraceLogRabbitmqConsumer.NAME, null, buffer);
+                }
+                catch
+                {
+
+                }
             }
 
         }

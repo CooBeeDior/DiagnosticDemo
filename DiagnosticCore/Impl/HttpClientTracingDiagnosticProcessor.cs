@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace DiagnosticCore
 {
-    
+
 
     /// <summary>
     /// 全局HttpClient监听
@@ -84,14 +84,14 @@ namespace DiagnosticCore
 
         protected virtual void HttpRequestStartHandle(HttpRequestMessage request)
         {
-             
+
 
         }
         protected virtual void HttpRequestHandle(HttpRequestMessage request)
         {
-            if (request.Headers.Contains("trace.microservice"))
+            if (request?.Headers?.Contains("trace.microservice") == true)
             {
-              
+
                 if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
                 {
                     var traceInfoBuilder = HttpContextAccessor.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)] as TraceInfoBuilder;
@@ -99,7 +99,7 @@ namespace DiagnosticCore
                     {
                         var traceInfo = traceInfoBuilder.Build();
                         request.Headers.Add(HttpConstant.TRACK_ID, traceInfo?.TrackId ?? "");
-       
+
                     }
                 }
             }
@@ -115,7 +115,7 @@ namespace DiagnosticCore
 
         protected virtual void HttpResponseHandle(HttpResponseMessage response)
         {
-            if (response.RequestMessage.Headers.Contains("trace.microservice"))
+            if (response?.RequestMessage?.Headers?.Contains("trace.microservice") == true)
             {
                 var serviceName = response.RequestMessage.Headers.GetValues("trace.microservice").FirstOrDefault();
 

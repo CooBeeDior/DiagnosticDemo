@@ -21,7 +21,7 @@ namespace DiagnosticModel
         /// <summary>
         /// 当前服务名称
         /// </summary>
-        public virtual string ServerName { get { return AppDomain.CurrentDomain.FriendlyName; } }
+        public virtual string ServerName { get; set; }
         /// <summary>
         /// 请求的服务名称
         /// </summary>
