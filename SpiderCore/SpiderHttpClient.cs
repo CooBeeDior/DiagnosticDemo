@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using SpiderCore.RequestStrategies;
 using Microsoft.Extensions.Logging;
+using System.Threading;
 
 namespace SpiderCore
 {
@@ -14,7 +15,7 @@ namespace SpiderCore
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<SpiderHttpClient> _logger;
- 
+
         private readonly string ServiceName;
         protected readonly SpiderOptions Options;
         private int _retries = 3;
@@ -25,23 +26,23 @@ namespace SpiderCore
             _httpContextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
             _logger = serviceProvider.GetService<ILogger<SpiderHttpClient>>();
             ServiceName = serviceName;
-            var service = Options.Services.Where(o => o.ServiceName.Equals(serviceName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-            setHttpClientBaseAddress(service);
-    
+            setHttpClientBaseAddress(serviceName);
+
 
         }
 
-        private void setHttpClientBaseAddress(SpiderService spiderService)
+        private void setHttpClientBaseAddress(string serviceName)
         {
-            if (spiderService == null)
+            var service = Options.Services.Where(o => o.ServiceName.Equals(serviceName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+            if (service == null)
             {
-                throw new Exception($"{spiderService.ServiceName} not exsit");
+                throw new Exception($"{service.ServiceName} not exsit");
             }
-            var requestStrategy = RequestStrategyFactory.Instance.CreateRequestStrategy(spiderService);
+            var requestStrategy = RequestStrategyFactory.Instance.CreateRequestStrategy(service);
             string ip = requestStrategy?.GetServiceIp();
             if (string.IsNullOrEmpty(ip))
             {
-                throw new Exception($"{spiderService.ServiceName} not found service ip");
+                throw new Exception($"{service.ServiceName} not found service ip");
             }
             _httpClient.BaseAddress = new Uri(ip);
         }
@@ -72,7 +73,7 @@ namespace SpiderCore
             HttpResponseMessage response = null;
             currentRetryIndex++;
             try
-            { 
+            {
                 response = await _httpClient.SendAsync(request);
             }
             catch (Exception ex)
@@ -81,8 +82,9 @@ namespace SpiderCore
                 {
                     _logger.LogError(ex, "重试超过次数");
                 }
+                setHttpClientBaseAddress(ServiceName); 
             }
-   
+
             return response;
         }
     }

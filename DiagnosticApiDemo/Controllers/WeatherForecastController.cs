@@ -14,6 +14,8 @@ using DiagnosticModel;
 using DiagnosticCore;
 using SpiderCore;
 using StackExchange.Profiling;
+using MongodbCore;
+using System.Globalization;
 
 namespace DiagnosticApiDemo.Controllers
 {
@@ -37,11 +39,16 @@ namespace DiagnosticApiDemo.Controllers
             ISpiderHttpClientFactory spiderHttpClientFactory, SpiderOptions spiderOptions)
         {
             _logger = logger;
-            var c = stringLocalizer["ddd"];
+
             _httpContextAccessor = httpContextAccessor;
 
             _spiderHttpClientFactory = spiderHttpClientFactory;
             _spiderOptions = spiderOptions;
+
+            var mongodb = func.Invoke(MongodbConstant.MONGODBNAME);
+            var dad = CultureInfo.CurrentUICulture;
+           //mongodb.InsertAsync(new { _id = Guid.NewGuid().ToString(), name = "test", value = "测试哦哦哦", culture = "zh-CN", typename = typeof(WeatherForecastController).FullName }).GetAwaiter().GetResult();
+           var c = stringLocalizer["test"];
         }
 
         private Task doAysnc()
@@ -82,7 +89,7 @@ namespace DiagnosticApiDemo.Controllers
                     using (MiniProfiler.Current.CustomTiming("HTTP", "GET " + url1))
                     {
                         var client = new HttpClient();
-                        var reply =await client.GetAsync(url1);
+                        var reply = await client.GetAsync(url1);
                     }
 
                     using (MiniProfiler.Current.CustomTiming("HTTP", "GET " + url2))
@@ -116,7 +123,7 @@ namespace DiagnosticApiDemo.Controllers
             //_spiderOptions.HealthUrl = "/ishealth";
             //_spiderOptions.Services.Add(new SpiderService("service1") { });
             var cc = _spiderOptions.Services.Where(o => o.ServiceName == "wechat").FirstOrDefault();
-  
+
             cc.ServiceEntryies.Add(new SpiderServiceEntry("http://coobeedior.com:8012/"));
             return "124";
         }

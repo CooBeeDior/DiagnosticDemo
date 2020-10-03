@@ -19,7 +19,7 @@ namespace MongodbCore
             //获取database
             var mydb = client.GetDatabase(options.DatabaseName);
             //获取collection
-            _mongoCollection = mydb.GetCollection<BsonDocument>(options.ConnectionName);
+            _mongoCollection = mydb.GetCollection<BsonDocument>(options.CollectionName);
         }
 
 

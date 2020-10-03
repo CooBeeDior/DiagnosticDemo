@@ -16,10 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             action?.Invoke(options);
             services.AddSingleton(options);
             //本地序列化
-            services.AddLocalization(o =>
-            {
-                o.ResourcesPath = "Resources";
-            });
+            services.AddLocalization();
             services.AddSingleton<IStringLocalizerFactory, MongodbStringLocalizerFactory>();
 
         }

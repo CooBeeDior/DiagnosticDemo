@@ -11,8 +11,13 @@ namespace DiagnosticApiDemo.HostingStartups
         {
             builder.ConfigureServices((context, services) =>
             {
-                //本地化
-                services.AddMongodbLocalizer();
+                //本地化  需要初始化数据
+                services.AddMongodbLocalizer(options =>
+                {
+                    options.ConnectionString = "mongodb://coobeedior.com:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
+                    options.DatabaseName = "diagnosticapi";
+                    options.CollectionName = "localizer";
+                });
             });
         }
     }

@@ -21,7 +21,7 @@ namespace SpiderCore.RequestStrategies
 
     public interface IMonitorHealthJob
     {
-        Task HealthJobAsync();
+        Task StartHealthJobAsync();
     }
     public class MonitorHealthJob : IMonitorHealthJob
     {
@@ -34,30 +34,26 @@ namespace SpiderCore.RequestStrategies
             _httpClient = httpClientFactory.CreateClient();
             _logger = logger;
         }
-        public Task HealthJobAsync()
+        public virtual Task StartHealthJobAsync()
         {
             foreach (var service in _spiderOptions.Services)
             {
-                string healthUrl = string.IsNullOrWhiteSpace(service.HealthUrl) ? _spiderOptions.HealthUrl : service.HealthUrl;
                 int intervalTime = service.IntervalTime == 0 ? _spiderOptions.IntervalTime : service.IntervalTime;
                 int hour = intervalTime / 3600;
                 int minute = intervalTime % 3600 / 60;
                 int second = intervalTime % 3600 % 60;
-
-
                 string cron = $"*/{second} * * * * ?";
-
-
-                RecurringJob.AddOrUpdate(() => doJob(service.ServiceName, healthUrl), cron);
+                RecurringJob.AddOrUpdate(() => RefreshService(service), cron);
             }
 
             return Task.CompletedTask;
         }
 
-        public void doJob(string serviceName, string healthUrl)
+        public virtual void CheckServiceStatus(SpiderService spiderService)
         {
-            var spiderService = _spiderOptions.Services.Where(o => o.ServiceName.Equals(serviceName, StringComparison.InvariantCulture)).FirstOrDefault();
-            if (spiderService != null && spiderService.ServiceEntryies != null) {
+            string healthUrl = string.IsNullOrWhiteSpace(spiderService.HealthUrl) ? _spiderOptions.HealthUrl : spiderService.HealthUrl;
+            if (spiderService != null && spiderService.ServiceEntryies != null)
+            {
                 //foreach (var serviceEntry in spiderService.ServiceEntryies)
                 for (int i = 0; i < spiderService.ServiceEntryies.Count; i++)
                 {
@@ -65,9 +61,7 @@ namespace SpiderCore.RequestStrategies
                     var url = Url.Combine(serviceEntry.Url, healthUrl);
                     try
                     {
-                        if (url.Contains("http://47.111.87.132:8012")) {
-                            throw new Exception("1");
-                        }
+
                         var resp = _httpClient.GetAsync(url).GetAwaiter().GetResult();
                         if (resp.StatusCode == HttpStatusCode.OK)
                         {
@@ -77,6 +71,7 @@ namespace SpiderCore.RequestStrategies
                         {
                             serviceEntry.IsHealth = false;
                         }
+                        _logger.LogTrace($"检查【{spiderService.ServiceName}】服务状态，地址{url}，状态：{serviceEntry.IsHealth}");
                     }
                     catch (Exception ex)
                     {
@@ -85,8 +80,11 @@ namespace SpiderCore.RequestStrategies
                     }
                 }
             }
+        }
 
-
+        public void RefreshService(SpiderService spiderService)
+        {
+            CheckServiceStatus(spiderService);
 
             List<IRequestStrategy> requestStrategies = new List<IRequestStrategy>();
 
@@ -110,13 +108,8 @@ namespace SpiderCore.RequestStrategies
 
         public static void UseMonitorHealthJob(this IApplicationBuilder app)
         {
-            var options = app.ApplicationServices.GetService<SpiderOptions>();
             var monitorHealth = app.ApplicationServices.GetService<IMonitorHealthJob>();
-
-            monitorHealth.HealthJobAsync().GetAwaiter().GetResult();
-
-
-
+            monitorHealth.StartHealthJobAsync().GetAwaiter().GetResult();
         }
     }
 

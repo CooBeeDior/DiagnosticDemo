@@ -15,9 +15,9 @@ namespace DiagnosticApiDemo.HostingStartups
                 //Mongodb
                 services.AddLogMongodb(options =>
                 {
-                    options.ConnectionString = "mongodb://coobeedior.com:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
-                    options.ConnectionName = "log";
+                    options.ConnectionString = "mongodb://coobeedior.com:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false";       
                     options.DatabaseName = "logdb";
+                    options.CollectionName = "log";
                 });
             });
 

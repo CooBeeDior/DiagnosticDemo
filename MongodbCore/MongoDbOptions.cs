@@ -11,7 +11,7 @@ namespace MongodbCore
 
         public string DatabaseName { get; set; }
 
-        public string ConnectionName { get; set; }
+        public string CollectionName { get; set; }
 
  
     }
