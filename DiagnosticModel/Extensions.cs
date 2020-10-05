@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -112,6 +113,15 @@ namespace DiagnosticModel
             var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(id).ParentId(parentid).TrackId(trackId, parentTrackId)
                    .HttpContext(context).ElapsedTime(elapsedTime).Log(LogLevel.Trace, "", exception);
             return traceInfoBuilder;
+        }
+
+        public static async Task<string> ToStr(this HttpContent content)
+        {
+            if (content == null)
+            {
+                return null;
+            }
+            return await content.ReadAsStringAsync();
         }
 
 

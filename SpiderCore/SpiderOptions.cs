@@ -9,6 +9,7 @@ namespace SpiderCore
         public SpiderOptions()
         {
             Services = new List<SpiderService>();
+            SpiderHttpRequestOptions = new SpiderHttpRequestOptions();
         }
 
         /// <summary>
@@ -16,11 +17,57 @@ namespace SpiderCore
         /// </summary>
         public string HealthUrl { get; set; } = "/health";
         /// <summary>
-        /// 全局间隔时间5秒
+        /// 服务心跳 5：5s
         /// </summary>
         public int IntervalTime { get; set; } = 5;
- 
+        /// <summary>
+        /// http请求的一些策略
+        /// </summary>
+        public SpiderHttpRequestOptions SpiderHttpRequestOptions { get; set; }
+
         public IList<SpiderService> Services { get; set; }
+    }
+
+    /// <summary>
+    /// http请求的一些策略
+    /// </summary>
+    public class SpiderHttpRequestOptions
+    {
+        /// <summary>
+        /// http请求超时时间 默认30秒
+        /// </summary>
+        public int Timeout { get; set; } = 30;
+
+        /// <summary>
+        /// http请求异常，重试次数 默认3次
+        /// </summary>
+        public int RetryCount { get; set; } = 3;
+
+        /// <summary>
+        /// http请求最大请求并发数 默认1024
+        /// </summary>
+        public int MaxParallelization { get; set; } = 1024;
+
+        /// <summary>
+        ///熔断： 出错概率节点 默认80% ，80%出错就熔断
+        /// </summary>
+        public double FailureThreshold { get; set; } = 0.8;
+
+        /// <summary>
+        /// 熔断：多长时间内出现{FailureThreshold}概率就熔断
+        /// </summary>
+        public TimeSpan SamplingDuration { get; set; } = TimeSpan.FromSeconds(10);
+
+        /// <summary>
+        /// 熔断：请求多和少的节点，默认100 ,超过100就是多请求，少于100就是少请求
+        /// </summary>
+        public int MinimumThroughput { get; set; } = 100;
+
+        /// <summary>
+        /// 熔断： 熔断时间长度 默认20秒，
+        /// </summary>
+        public TimeSpan DurationOfBreak { get; set; } = TimeSpan.FromSeconds(20);
+
     }
 
 
@@ -52,11 +99,11 @@ namespace SpiderCore
         /// <summary>
         /// 返回200就表示成功
         /// </summary>
-        public string HealthUrl { get; set; }  
+        public string HealthUrl { get; set; }
         /// <summary>
         /// 间隔时间5秒
         /// </summary>
-        public int IntervalTime { get; set; } 
+        public int IntervalTime { get; set; }
 
 
         public IList<SpiderServiceEntry> ServiceEntryies { get; }
@@ -89,7 +136,8 @@ namespace SpiderCore
 
         public override bool Equals(object obj)
         {
-            if (obj == null) {
+            if (obj == null)
+            {
                 return false;
             }
             var target = obj as SpiderServiceEntry;
@@ -97,7 +145,7 @@ namespace SpiderCore
             {
                 return false;
             }
-            return target.Url==this.Url;
+            return target.Url == this.Url;
         }
 
         public override int GetHashCode()

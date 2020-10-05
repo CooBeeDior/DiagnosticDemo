@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dI99m39Ydv9PTGhSzDZFhl6FyhkuoiWgCemIolyDpY8Xa5nCzbdRK/quwlgV3ILPSZ0A6yzCllCGZhR8OmlvcA==",
+  "dgSpecHash": "Jm8hlfLSlhwJe7jbGTx2vipyif3GM9tQhvOxEGbMuxCOUP//upOgHvFUckijvcYVEtuMSBq+0d1y3GnsEj1JlA==",
   "success": true,
   "projectFilePath": "D:\\Work\\DiagnosticDemo\\SpiderCore\\SpiderCore.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,7 @@
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.netcore.platforms\\1.0.1\\microsoft.netcore.platforms.1.0.1.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\polly\\7.2.1\\polly.7.2.1.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\system.appcontext\\4.1.0\\system.appcontext.4.1.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",

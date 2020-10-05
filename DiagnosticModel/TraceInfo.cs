@@ -1,11 +1,13 @@
 ﻿using FreeSql.DataAnnotations;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace DiagnosticModel
 {
+    [DebuggerDisplay("服务名称：{ServerName}   描述信息：{Description}")]
     [Serializable]
     public class TraceInfo
     {
@@ -62,7 +64,7 @@ namespace DiagnosticModel
         /// <summary>
         /// 错误信息
         /// </summary>
-        public virtual Exception Exception { get; set; }
+        public virtual string StackTrace { get; set; }
         /// <summary>
         /// 错误描述
         /// </summary>

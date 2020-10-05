@@ -139,6 +139,10 @@
             "Microsoft.Extensions.Http": {
               "target": "Package",
               "version": "[3.1.8, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.1, )"
             }
           },
           "imports": [

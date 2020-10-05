@@ -25,9 +25,9 @@ namespace DiagnosticCore.LogCore
             {
                 traceInfo.LogName = typeof(T).FullName;
             }
-            if (traceInfo.Exception == null)
+            if (traceInfo.StackTrace == null)
             {
-                traceInfo.Exception = exception;
+                traceInfo.StackTrace = exception?.StackTrace;
             }
             if (string.IsNullOrEmpty(traceInfo.ErrorMessage))
             {

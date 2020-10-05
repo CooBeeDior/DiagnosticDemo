@@ -172,14 +172,14 @@ namespace DiagnosticModel
         {
             _traceInfo.LogName = logName;
             _traceInfo.LogLevel = logLevel.ToString();
-            _traceInfo.Exception = exception;
+            _traceInfo.StackTrace = exception?.StackTrace;
             return this;
         }
 
 
         public TraceInfoBuilder Exception(Exception exception)
         {
-            _traceInfo.Exception = exception;
+            _traceInfo.StackTrace = exception?.StackTrace;
             return this;
         }
 

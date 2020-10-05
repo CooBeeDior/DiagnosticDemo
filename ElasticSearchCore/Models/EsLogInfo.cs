@@ -39,8 +39,8 @@ namespace ElasticSearchCore.Models
         public override long ElapsedTime { get; set; }
         [Date]
         public override DateTimeOffset CreateAt { get; set; }
-        [Ignore]
-        public override Exception Exception { get; set; }
+        [Text]
+        public override string StackTrace { get; set; }
         [Text]
         public override string ErrorMessage { get; set; }
 

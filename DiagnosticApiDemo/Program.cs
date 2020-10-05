@@ -9,10 +9,14 @@ using Microsoft.Extensions.Logging;
 
 namespace DiagnosticApiDemo
 {
+    public interface IA { }
+
+    
     public class Program
     {
+
         public static void Main(string[] args)
-        {
+        { 
             CreateHostBuilder(args).Build().Run();
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         }

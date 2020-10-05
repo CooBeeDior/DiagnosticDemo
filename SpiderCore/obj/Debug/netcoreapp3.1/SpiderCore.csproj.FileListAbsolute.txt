@@ -6,7 +6,7 @@ D:\Work\DiagnosticDemo\SpiderCore\bin\Debug\netcoreapp3.1\SpiderCore.pdb
 D:\Work\DiagnosticDemo\SpiderCore\obj\Debug\netcoreapp3.1\SpiderCore.dll
 D:\Work\DiagnosticDemo\SpiderCore\obj\Debug\netcoreapp3.1\SpiderCore.pdb
 D:\Work\DiagnosticDemo\SpiderCore\obj\Debug\netcoreapp3.1\SpiderCore.csprojAssemblyReference.cache
-D:\Work\DiagnosticDemo\SpiderCore\obj\Debug\netcoreapp3.1\SpiderCore.csproj.CoreCompileInputs.cache
 D:\Work\DiagnosticDemo\SpiderCore\bin\Debug\netcoreapp3.1\DiagnosticModel.dll
 D:\Work\DiagnosticDemo\SpiderCore\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb
 D:\Work\DiagnosticDemo\SpiderCore\obj\Debug\netcoreapp3.1\SpiderCore.csproj.CopyComplete
+D:\Work\DiagnosticDemo\SpiderCore\obj\Debug\netcoreapp3.1\SpiderCore.csproj.CoreCompileInputs.cache

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using SpiderCore.RequestStrategies;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
@@ -32,10 +33,7 @@ namespace DiagnosticApiDemo
             services.AddControllers(options =>
             {
                 options.SuppressAsyncSuffixInActionNames = false;
-            });
-
-
-
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

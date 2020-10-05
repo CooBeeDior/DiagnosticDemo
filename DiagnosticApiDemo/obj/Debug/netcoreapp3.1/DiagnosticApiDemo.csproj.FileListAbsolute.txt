@@ -189,3 +189,4 @@ D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDe
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.MvcApplicationPartsAssemblyInfo.cs
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.MvcApplicationPartsAssemblyInfo.cache
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\wwwroot\index.html
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\Polly.dll

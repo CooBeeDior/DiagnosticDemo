@@ -525,6 +525,15 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
+      "Polly/7.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Polly.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Polly.dll": {}
+        }
+      },
       "runtime.native.System/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -1588,6 +1597,29 @@
         "newtonsoft.json.12.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
+      ]
+    },
+    "Polly/7.2.1": {
+      "sha512": "Od8SnPlpQr+PuAS0YzY3jgtzaDNknlIuAaldN2VEIyTvm/wCg22C5nUkUV1BEG8rIsub5RFMoV/NEQ0tM/+7Uw==",
+      "type": "package",
+      "path": "polly/7.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/Polly.dll",
+        "lib/net461/Polly.pdb",
+        "lib/net461/Polly.xml",
+        "lib/net472/Polly.dll",
+        "lib/net472/Polly.pdb",
+        "lib/net472/Polly.xml",
+        "lib/netstandard1.1/Polly.dll",
+        "lib/netstandard1.1/Polly.pdb",
+        "lib/netstandard1.1/Polly.xml",
+        "lib/netstandard2.0/Polly.dll",
+        "lib/netstandard2.0/Polly.pdb",
+        "lib/netstandard2.0/Polly.xml",
+        "polly.7.2.1.nupkg.sha512",
+        "polly.nuspec"
       ]
     },
     "runtime.native.System/4.0.0": {
@@ -3361,7 +3393,8 @@
       "Hangfire.Core >= 1.7.14",
       "Microsoft.AspNetCore.Http >= 2.2.2",
       "Microsoft.AspNetCore.Http.Abstractions >= 2.2.0",
-      "Microsoft.Extensions.Http >= 3.1.8"
+      "Microsoft.Extensions.Http >= 3.1.8",
+      "Polly >= 7.2.1"
     ]
   },
   "packageFolders": {
@@ -3425,6 +3458,10 @@
           "Microsoft.Extensions.Http": {
             "target": "Package",
             "version": "[3.1.8, )"
+          },
+          "Polly": {
+            "target": "Package",
+            "version": "[7.2.1, )"
           }
         },
         "imports": [

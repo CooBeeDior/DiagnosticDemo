@@ -1,0 +1,14 @@
+D:\Work\DiagnosticDemo\FeignCore\bin\Debug\netcoreapp3.1\FeignCore.deps.json
+D:\Work\DiagnosticDemo\FeignCore\bin\Debug\netcoreapp3.1\FeignCore.dll
+D:\Work\DiagnosticDemo\FeignCore\obj\Debug\netcoreapp3.1\FeignCore.csprojAssemblyReference.cache
+D:\Work\DiagnosticDemo\FeignCore\obj\Debug\netcoreapp3.1\FeignCore.AssemblyInfoInputs.cache
+D:\Work\DiagnosticDemo\FeignCore\obj\Debug\netcoreapp3.1\FeignCore.AssemblyInfo.cs
+D:\Work\DiagnosticDemo\FeignCore\obj\Debug\netcoreapp3.1\FeignCore.csproj.CoreCompileInputs.cache
+D:\Work\DiagnosticDemo\FeignCore\bin\Debug\netcoreapp3.1\FeignCore.pdb
+D:\Work\DiagnosticDemo\FeignCore\bin\Debug\netcoreapp3.1\DiagnosticModel.dll
+D:\Work\DiagnosticDemo\FeignCore\bin\Debug\netcoreapp3.1\SpiderCore.dll
+D:\Work\DiagnosticDemo\FeignCore\bin\Debug\netcoreapp3.1\SpiderCore.pdb
+D:\Work\DiagnosticDemo\FeignCore\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb
+D:\Work\DiagnosticDemo\FeignCore\obj\Debug\netcoreapp3.1\FeignCore.csproj.CopyComplete
+D:\Work\DiagnosticDemo\FeignCore\obj\Debug\netcoreapp3.1\FeignCore.dll
+D:\Work\DiagnosticDemo\FeignCore\obj\Debug\netcoreapp3.1\FeignCore.pdb

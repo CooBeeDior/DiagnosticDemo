@@ -6,4 +6,3 @@ D:\Work\DiagnosticDemo\PersistenceAbstraction\obj\Debug\netcoreapp3.1\Persistenc
 D:\Work\DiagnosticDemo\PersistenceAbstraction\obj\Debug\netcoreapp3.1\PersistenceAbstraction.dll
 D:\Work\DiagnosticDemo\PersistenceAbstraction\obj\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
 D:\Work\DiagnosticDemo\PersistenceAbstraction\obj\Debug\netcoreapp3.1\PersistenceAbstraction.csproj.CoreCompileInputs.cache
-D:\Work\DiagnosticDemo\PersistenceAbstraction\obj\Debug\netcoreapp3.1\PersistenceAbstraction.csprojAssemblyReference.cache
