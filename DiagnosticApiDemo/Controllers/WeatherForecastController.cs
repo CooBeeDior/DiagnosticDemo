@@ -17,7 +17,8 @@ using StackExchange.Profiling;
 using MongodbCore;
 using System.Globalization;
 using FeignCore;
-
+using FeignCore.Apis;
+using WebApiClient;
 namespace DiagnosticApiDemo.Controllers
 {
     [ApiVersion("1.0")]
@@ -69,7 +70,8 @@ namespace DiagnosticApiDemo.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            var res = await _userApi.GetQrCode();
+            var res = await _userApi.GetQrCode().Retry(3).WhenCatch<HttpRequestException>()
+    .WhenResult(r => r.Age <= 0); ;
             string url1 = string.Empty;
             string url2 = string.Empty;
             using (MiniProfiler.Current.Step("Get方法"))
