@@ -6,7 +6,7 @@ using WebApiClient;
 using WebApiClient.Attributes;
 namespace FeignCore.Apis
 {
-    [HttpHost("http://api.coobeedior.com")]
+    [HttpHost("http://api.coobeedior1234.com")]
     //[Service("wechat")]
     [Log]
     public interface IUserApi : IHttpApi
