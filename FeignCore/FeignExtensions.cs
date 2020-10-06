@@ -1,15 +1,18 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DiagnosticModel;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SpiderCore;
 using SpiderCore.RequestStrategies;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WebApiClient;
 using WebApiClient.Attributes;
+using WebApiClient.AuthTokens;
 using WebApiClient.Contexts;
 
 namespace FeignCore
@@ -29,21 +32,25 @@ namespace FeignCore
         }
     }
 
-    [Service("user")]
+    [Service("wechat")]
+    [Log]
     public interface IUserApi : IHttpApi
     {
-        [HttpGet("api/users/{account}")]
-        [JsonReturn]
-        ITask<string> GetExpectJsonAsync([Required] string account, CancellationToken token = default);
+        [HttpPost("/api/Login/GetQrCode")]
+        //[JsonReturn]
+        Task<object> GetQrCode(CancellationToken token = default);
 
     }
-    public class OAuthTokenAttribute : ApiActionAttribute, IApiActionAttribute
+    public class OAuthTokenAttribute : AuthTokenFilter
     {
-        public override Task BeforeRequestAsync(ApiActionContext context)
+        protected override Task<TokenResult> RequestRefreshTokenAsync(string refresh_token)
         {
-            //context.GetService<>() //获取token
-            context.RequestMessage.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("");
-            return Task.CompletedTask;
+            throw new NotImplementedException();
+        }
+
+        protected override Task<TokenResult> RequestTokenResultAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -85,10 +92,14 @@ namespace FeignCore
 
         public override Task BeforeRequestAsync(ApiActionContext context)
         {
+            var options = context.GetService<SpiderOptions>();
+            var spiderService = options.Services.Where(o => o.ServiceName == this.Name).FirstOrDefault();
             //注册中心 根据name获取url 
-            var requestStrategy = RequestStrategyFactory.Instance.CreateRequestStrategy(new SpiderService(this.Name));
+            var requestStrategy = RequestStrategyFactory.Instance.CreateRequestStrategy(spiderService);
             string baseurl = requestStrategy.GetServiceIp();
-            context.HttpApiConfig.HttpClient.BaseAddress = new System.Uri(baseurl);
+            context.HttpApiConfig.HttpHost = new System.Uri(baseurl);
+ 
+            context.RequestMessage.RequestUri= new System.Uri(Url.Combine(baseurl, context.RequestMessage.RequestUri.LocalPath));
             return Task.CompletedTask;
         }
     }

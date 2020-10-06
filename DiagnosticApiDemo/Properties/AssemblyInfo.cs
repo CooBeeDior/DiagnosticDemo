@@ -21,3 +21,4 @@ using PersistenceAbstraction;
 [assembly: HostingStartupAttribute(typeof(HangfireStartup))]
 [assembly: HostingStartupAttribute(typeof(SpiderStartup))]
 [assembly: HostingStartupAttribute(typeof(MiniProfilerStartup))]
+[assembly: HostingStartupAttribute(typeof(FeignStartup))]

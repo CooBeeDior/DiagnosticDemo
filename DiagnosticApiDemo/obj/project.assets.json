@@ -1359,6 +1359,21 @@
           "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll": {}
         }
       },
+      "Microsoft.Extensions.Options.ConfigurationExtensions/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Configuration.Binder": "2.1.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Options": "2.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {}
+        }
+      },
       "Microsoft.Extensions.Primitives/3.1.8": {
         "type": "package",
         "compile": {
@@ -3697,6 +3712,22 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "WebApiClient.JIT/1.1.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Memory": "2.1.0",
+          "Microsoft.Extensions.Http": "2.1.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "2.1.0",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netcoreapp2.1/WebApiClient.JIT.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/WebApiClient.JIT.dll": {}
+        }
+      },
       "DiagnosticCore/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -3752,6 +3783,21 @@
         },
         "runtime": {
           "bin/placeholder/ElasticSearchCore.dll": {}
+        }
+      },
+      "FeignCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
+          "SpiderCore": "1.0.0",
+          "WebApiClient.JIT": "1.1.4"
+        },
+        "compile": {
+          "bin/placeholder/FeignCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FeignCore.dll": {}
         }
       },
       "FreesqlAbstration/1.0.0": {
@@ -5437,6 +5483,19 @@
         "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
         "microsoft.extensions.options.3.1.8.nupkg.sha512",
         "microsoft.extensions.options.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Options.ConfigurationExtensions/2.1.0": {
+      "sha512": "w/MP147fSqlIcCymaNpLbjdJsFVkSJM9Sz+jbWMr1gKMDVxoOS8AuFjJkVyKU/eydYxHIR/K1Hn3wisJBW5gSg==",
+      "type": "package",
+      "path": "microsoft.extensions.options.configurationextensions/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.xml",
+        "microsoft.extensions.options.configurationextensions.2.1.0.nupkg.sha512",
+        "microsoft.extensions.options.configurationextensions.nuspec"
       ]
     },
     "Microsoft.Extensions.Primitives/3.1.8": {
@@ -11051,6 +11110,32 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
+    "WebApiClient.JIT/1.1.4": {
+      "sha512": "uTAXUdt3iUhURhB6Wlk6ccEEYHXmysYSz/VN/KO++VsJ9czTaeMEGOxjfvp10OnH+IMWbDIs9hvDdfdEXCnSkQ==",
+      "type": "package",
+      "path": "webapiclient.jit/1.1.4",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/WebApiClient.Analyzers.deps.json",
+        "analyzers/dotnet/cs/WebApiClient.Analyzers.dll",
+        "lib/net45/WebApiClient.JIT.dll",
+        "lib/net45/WebApiClient.JIT.xml",
+        "lib/net46/WebApiClient.JIT.dll",
+        "lib/net46/WebApiClient.JIT.xml",
+        "lib/netcoreapp2.1/WebApiClient.JIT.dll",
+        "lib/netcoreapp2.1/WebApiClient.JIT.xml",
+        "lib/netstandard1.3/WebApiClient.JIT.dll",
+        "lib/netstandard1.3/WebApiClient.JIT.xml",
+        "lib/netstandard2.0/WebApiClient.JIT.dll",
+        "lib/netstandard2.0/WebApiClient.JIT.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1",
+        "webapiclient.jit.1.1.4.nupkg.sha512",
+        "webapiclient.jit.nuspec"
+      ]
+    },
     "DiagnosticCore/1.0.0": {
       "type": "project",
       "path": "../DiagnosticCore/DiagnosticCore.csproj",
@@ -11065,6 +11150,11 @@
       "type": "project",
       "path": "../ElasticSearchCore/ElasticSearchCore.csproj",
       "msbuildProject": "../ElasticSearchCore/ElasticSearchCore.csproj"
+    },
+    "FeignCore/1.0.0": {
+      "type": "project",
+      "path": "../FeignCore/FeignCore.csproj",
+      "msbuildProject": "../FeignCore/FeignCore.csproj"
     },
     "FreesqlAbstration/1.0.0": {
       "type": "project",
@@ -11101,6 +11191,7 @@
     ".NETCoreApp,Version=v3.1": [
       "DiagnosticCore >= 1.0.0",
       "ElasticSearchCore >= 1.0.0",
+      "FeignCore >= 1.0.0",
       "FreesqlAbstration >= 1.0.0",
       "Hangfire.AspNetCore >= 1.7.14",
       "Hangfire.SqlServer >= 1.7.14",
@@ -11156,6 +11247,9 @@
             },
             "D:\\Work\\DiagnosticDemo\\ElasticSearchCore\\ElasticSearchCore.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\ElasticSearchCore\\ElasticSearchCore.csproj"
+            },
+            "D:\\Work\\DiagnosticDemo\\FeignCore\\FeignCore.csproj": {
+              "projectPath": "D:\\Work\\DiagnosticDemo\\FeignCore\\FeignCore.csproj"
             },
             "D:\\Work\\DiagnosticDemo\\FreesqlAbstration\\FreesqlAbstration.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\FreesqlAbstration\\FreesqlAbstration.csproj"

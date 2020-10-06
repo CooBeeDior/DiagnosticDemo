@@ -190,3 +190,6 @@ D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDe
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.MvcApplicationPartsAssemblyInfo.cache
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\wwwroot\index.html
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\Polly.dll
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\WebApiClient.JIT.dll
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\FeignCore.dll
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\FeignCore.pdb

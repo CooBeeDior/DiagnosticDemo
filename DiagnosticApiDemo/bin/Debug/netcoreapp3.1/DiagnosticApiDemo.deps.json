@@ -26,6 +26,7 @@
         "dependencies": {
           "DiagnosticCore": "1.0.0",
           "ElasticSearchCore": "1.0.0",
+          "FeignCore": "1.0.0",
           "FreesqlAbstration": "1.0.0",
           "Hangfire.AspNetCore": "1.7.14",
           "Hangfire.SqlServer": "1.7.14",
@@ -149,7 +150,7 @@
           "Microsoft.Extensions.Logging.EventSource": "3.1.0.0",
           "Microsoft.Extensions.Logging.TraceSource": "3.1.0.0",
           "Microsoft.Extensions.ObjectPool.Reference": "3.1.0.0",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "3.1.0.0",
+          "Microsoft.Extensions.Options.ConfigurationExtensions.Reference": "3.1.0.0",
           "Microsoft.Extensions.Options.DataAnnotations": "3.1.0.0",
           "Microsoft.Extensions.WebEncoders.Reference": "3.1.0.0",
           "Microsoft.JSInterop": "3.1.0.0",
@@ -1419,6 +1420,14 @@
         },
         "compile": {
           "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Options.ConfigurationExtensions/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "3.1.8",
+          "Microsoft.Extensions.Configuration.Binder": "3.1.8",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
+          "Microsoft.Extensions.Options": "3.1.8"
         }
       },
       "Microsoft.Extensions.Primitives/3.1.8": {
@@ -2935,6 +2944,24 @@
           "ref/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "WebApiClient.JIT/1.1.4": {
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Memory": "2.2.0",
+          "Microsoft.Extensions.Http": "3.1.8",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "2.1.0",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/WebApiClient.JIT.dll": {
+            "assemblyVersion": "1.1.4.0",
+            "fileVersion": "1.1.4.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.1/WebApiClient.JIT.dll": {}
+        }
+      },
       "DiagnosticCore/1.0.0": {
         "dependencies": {
           "DiagnosticModel": "1.0.0",
@@ -2984,6 +3011,19 @@
         },
         "compile": {
           "ElasticSearchCore.dll": {}
+        }
+      },
+      "FeignCore/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
+          "SpiderCore": "1.0.0",
+          "WebApiClient.JIT": "1.1.4"
+        },
+        "runtime": {
+          "FeignCore.dll": {}
+        },
+        "compile": {
+          "FeignCore.dll": {}
         }
       },
       "FreesqlAbstration/1.0.0": {
@@ -3715,7 +3755,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Options.ConfigurationExtensions/3.1.0.0": {
+      "Microsoft.Extensions.Options.ConfigurationExtensions.Reference/3.1.0.0": {
         "compile": {
           "Microsoft.Extensions.Options.ConfigurationExtensions.dll": {}
         },
@@ -5312,6 +5352,13 @@
       "path": "microsoft.extensions.options/3.1.8",
       "hashPath": "microsoft.extensions.options.3.1.8.nupkg.sha512"
     },
+    "Microsoft.Extensions.Options.ConfigurationExtensions/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-w/MP147fSqlIcCymaNpLbjdJsFVkSJM9Sz+jbWMr1gKMDVxoOS8AuFjJkVyKU/eydYxHIR/K1Hn3wisJBW5gSg==",
+      "path": "microsoft.extensions.options.configurationextensions/2.1.0",
+      "hashPath": "microsoft.extensions.options.configurationextensions.2.1.0.nupkg.sha512"
+    },
     "Microsoft.Extensions.Primitives/3.1.8": {
       "type": "package",
       "serviceable": true,
@@ -6334,6 +6381,13 @@
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
+    "WebApiClient.JIT/1.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uTAXUdt3iUhURhB6Wlk6ccEEYHXmysYSz/VN/KO++VsJ9czTaeMEGOxjfvp10OnH+IMWbDIs9hvDdfdEXCnSkQ==",
+      "path": "webapiclient.jit/1.1.4",
+      "hashPath": "webapiclient.jit.1.1.4.nupkg.sha512"
+    },
     "DiagnosticCore/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -6345,6 +6399,11 @@
       "sha512": ""
     },
     "ElasticSearchCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FeignCore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -6909,7 +6968,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Options.ConfigurationExtensions/3.1.0.0": {
+    "Microsoft.Extensions.Options.ConfigurationExtensions.Reference/3.1.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

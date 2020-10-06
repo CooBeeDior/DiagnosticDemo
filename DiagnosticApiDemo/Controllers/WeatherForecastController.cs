@@ -16,6 +16,7 @@ using SpiderCore;
 using StackExchange.Profiling;
 using MongodbCore;
 using System.Globalization;
+using FeignCore;
 
 namespace DiagnosticApiDemo.Controllers
 {
@@ -34,12 +35,13 @@ namespace DiagnosticApiDemo.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ISpiderHttpClientFactory _spiderHttpClientFactory;
         private readonly SpiderOptions _spiderOptions;
+        private readonly IUserApi _userApi;
         public WeatherForecastController(ILogger<WeatherForecastController> logger, Func<string, IPersistence> func,
             IStringLocalizer<WeatherForecastController> stringLocalizer, IHttpContextAccessor httpContextAccessor,
-            ISpiderHttpClientFactory spiderHttpClientFactory, SpiderOptions spiderOptions)
+            ISpiderHttpClientFactory spiderHttpClientFactory, SpiderOptions spiderOptions, IUserApi userApi)
         {
             _logger = logger;
-
+            _userApi = userApi;
             _httpContextAccessor = httpContextAccessor;
 
             _spiderHttpClientFactory = spiderHttpClientFactory;
@@ -67,6 +69,7 @@ namespace DiagnosticApiDemo.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
+            var res = await _userApi.GetQrCode();
             string url1 = string.Empty;
             string url2 = string.Empty;
             using (MiniProfiler.Current.Step("Get方法"))

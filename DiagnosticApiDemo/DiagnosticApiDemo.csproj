@@ -36,6 +36,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DiagnosticCore\DiagnosticCore.csproj" />
     <ProjectReference Include="..\ElasticSearchCore\ElasticSearchCore.csproj" />
+    <ProjectReference Include="..\FeignCore\FeignCore.csproj" />
     <ProjectReference Include="..\FreesqlAbstration\FreesqlAbstration.csproj" />
     <ProjectReference Include="..\LocalizerAbstraction\LocalizerAbstraction.csproj" />
     <ProjectReference Include="..\MessageQueueAbstraction\MessageQueueAbstraction.csproj" />
