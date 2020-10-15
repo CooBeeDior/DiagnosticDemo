@@ -23,10 +23,10 @@ namespace DiagnosticCore
         }
 
         public virtual void OnNext(DiagnosticListener value)
-        {
+        {  
             var traceDiagnostic = _traceDiagnostics.FirstOrDefault(i => i.ListenerName == value.Name);
             if (traceDiagnostic != null)
-            {
+            { 
                 //适配订阅
                 value.SubscribeWithAdapter(traceDiagnostic);
             }

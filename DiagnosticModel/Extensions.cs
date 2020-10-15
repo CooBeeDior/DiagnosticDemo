@@ -37,7 +37,7 @@ namespace DiagnosticModel
 
             if (response.Body.CanRead && response.Body.CanSeek)
             {
-                encoding = encoding ?? Encoding.UTF8;
+                encoding ??= Encoding.UTF8;
                 StreamReader reader = new StreamReader(response.Body, encoding);
                 var result = reader.ReadToEndAsync().ConfigureAwait(false).GetAwaiter().GetResult();
 

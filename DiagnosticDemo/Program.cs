@@ -151,7 +151,7 @@ namespace DiagnosticDemo
 
 
             HttpClient client = new HttpClient();
-            var resp = await client.GetAsync("http://www.baid1u.com");
+            var resp = await client.GetAsync("http://www.baidu.com");
 
             var result = await resp.Content.ReadAsStringAsync();
 

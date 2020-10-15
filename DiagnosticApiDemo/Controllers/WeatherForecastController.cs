@@ -19,8 +19,12 @@ using System.Globalization;
 using FeignCore;
 using FeignCore.Apis;
 using WebApiClient;
+using ProtoBuf;
+using System.Net.Http.Headers;
+using ProtobufCore;
+
 namespace DiagnosticApiDemo.Controllers
-{
+{ 
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/WeatherForecast")]
@@ -50,28 +54,22 @@ namespace DiagnosticApiDemo.Controllers
 
             var mongodb = func.Invoke(MongodbConstant.MONGODBNAME);
             var dad = CultureInfo.CurrentUICulture;
-           //mongodb.InsertAsync(new { _id = Guid.NewGuid().ToString(), name = "test", value = "测试哦哦哦", culture = "zh-CN", typename = typeof(WeatherForecastController).FullName }).GetAwaiter().GetResult();
-           var c = stringLocalizer["test"];
+              var c = stringLocalizer["test"];
+            var activity = System.Diagnostics.Activity.Current;
+            activity?.AddTag("1", "1");
+            activity?.AddBaggage("1", "1");
         }
 
-        private Task doAysnc()
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                id = Thread.CurrentThread.ManagedThreadId;
-                var currentCulture = Thread.CurrentThread.CurrentCulture;
-                var httpContext = _httpContextAccessor.HttpContext;
 
-                System.IO.File.AppendAllLines("d:/f.txt", new List<string>() { Thread.CurrentThread.CurrentCulture.ToJson() });
-            });
-        }
-        int id = 0;
 
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            var res = await _userApi.GetQrCode().Retry(3).WhenCatch<HttpRequestException>()
-    .WhenResult(r => r.Age <= 0); ;
+            var activity = System.Diagnostics.Activity.Current;
+            activity?.AddTag("2", "2");
+            activity?.AddBaggage("2", "2");
+            var res = await _userApi.GetQrCode().Retry(3);
+
             string url1 = string.Empty;
             string url2 = string.Empty;
             using (MiniProfiler.Current.Step("Get方法"))
@@ -104,13 +102,7 @@ namespace DiagnosticApiDemo.Controllers
                     }
                 }
             }
-            var id2 = Thread.CurrentThread.ManagedThreadId;
-            var httpContext = _httpContextAccessor.HttpContext;
-            await doAysnc().ConfigureAwait(false);
-            var id3 = Thread.CurrentThread.ManagedThreadId;
-            var httpCont1ext = _httpContextAccessor.HttpContext;
 
-            System.IO.File.AppendAllLines("d:/d.txt", new List<string>() { $"{id}--{id2}--{id3}" });
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -136,6 +128,12 @@ namespace DiagnosticApiDemo.Controllers
         [HttpGet("baidu")]
         public async Task<string> BaiDu()
         {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
+            var response = await client.GetAsync("http://localhost:5000/api/weatherforecast");
+            var result1 = await response.Content.ReadAsAsync<IEnumerable<WeatherForecast>>(new[] { new ProtoBufFormatter() });
+
+
             _logger.LogInformation("请求百度");
             //var resp =await _spider.GetAsync("http://www.baidu.com");
             var resp = await _spiderHttpClientFactory.CreateSpiderHttpClient("wechat").PostAsync("/api/Login/GetQrCode");

@@ -34,7 +34,10 @@ namespace DiagnosticCore.Constant
 
         public const string StatusCode = "StatusCode";
 
+        /// <summary>
+        /// trace.microservice
+        /// </summary>
+        public const string TRACEMICROSERVICE = "trace.microservice";
 
-     
     }
 }

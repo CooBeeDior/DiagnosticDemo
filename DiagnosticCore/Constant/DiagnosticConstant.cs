@@ -14,5 +14,7 @@ namespace DiagnosticCore.LogCore
         {
             return $"trace.{name?.ToLower()}";
         }
+
+
     }
 }

@@ -1,10 +1,8 @@
-D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\LocalizerAbstraction.deps.json
-D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\LocalizerAbstraction.dll
-D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.AssemblyInfoInputs.cache
-D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.AssemblyInfo.cs
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\snappy32.dll
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\snappy64.dll
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\libzstd.dll
+D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\LocalizerAbstraction.deps.json
+D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\LocalizerAbstraction.dll
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\LocalizerAbstraction.pdb
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\DiagnosticModel.dll
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\MongodbCore.dll
@@ -13,7 +11,9 @@ D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\MongodbCore.
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
 D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.csprojAssemblyReference.cache
+D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.AssemblyInfoInputs.cache
+D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.AssemblyInfo.cs
+D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.csproj.CoreCompileInputs.cache
 D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.csproj.CopyComplete
 D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.dll
 D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.pdb
-D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.csproj.CoreCompileInputs.cache

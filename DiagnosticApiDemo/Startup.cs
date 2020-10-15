@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
+using ProtobufCore;
 using SpiderCore.RequestStrategies;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
@@ -29,10 +32,24 @@ namespace DiagnosticApiDemo
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {  // If using Kestrel:
+            services.Configure<KestrelServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+
+            // If using IIS:
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
             services.AddControllers(options =>
             {
                 options.SuppressAsyncSuffixInActionNames = false;
+                options.InputFormatters.Add(new ProtobufInputFormatter());
+                options.OutputFormatters.Add(new ProtobufOutputFormatter());
+                //Header Accept:application/x-protobuf
+                options.FormatterMappings.SetMediaTypeMappingForFormat("protobuf", MediaTypeHeaderValue.Parse("application/x-protobuf"));
             }); 
         }
 
@@ -55,7 +72,7 @@ namespace DiagnosticApiDemo
             app.UseMiniProfiler();
 
             app.UseSwagger();
-            //启用中间件服务对swagger-ui，指定Swagger JSON终结点
+            //启用中间件服务对swagger-ui，指定Swagger JSON终结点 {url}/swagger
             app.UseSwaggerUI(options =>
             {
                 options.IndexStream = () => GetType().GetTypeInfo().Assembly.GetManifestResourceStream($"DiagnosticApiDemo.wwwroot.index.html");
@@ -71,8 +88,8 @@ namespace DiagnosticApiDemo
 
 
             app.UseHangfireServer();//启动Hangfire服务
-            app.UseHangfireDashboard();//启动hangfire面板
-            app.UseMonitorHealthJob();
+            app.UseHangfireDashboard();//启动hangfire面板 {url}/hangfire
+            //app.UseMonitorHealthJob(); //启动服务健康检查
 
             IList<CultureInfo> supportedCultures = new List<CultureInfo>
             {

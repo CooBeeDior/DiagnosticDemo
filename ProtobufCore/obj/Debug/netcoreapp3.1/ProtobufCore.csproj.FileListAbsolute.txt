@@ -1,0 +1,9 @@
+D:\Work\DiagnosticDemo\ProtobufCore\bin\Debug\netcoreapp3.1\ProtobufCore.deps.json
+D:\Work\DiagnosticDemo\ProtobufCore\bin\Debug\netcoreapp3.1\ProtobufCore.dll
+D:\Work\DiagnosticDemo\ProtobufCore\bin\Debug\netcoreapp3.1\ProtobufCore.pdb
+D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.csprojAssemblyReference.cache
+D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.AssemblyInfoInputs.cache
+D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.AssemblyInfo.cs
+D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.csproj.CoreCompileInputs.cache
+D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.dll
+D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.pdb

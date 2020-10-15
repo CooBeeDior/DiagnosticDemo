@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace DiagnosticModel
-{
+{ 
     [DebuggerDisplay("服务名称：{ServerName}   描述信息：{Description}")]
     [Serializable]
     public class TraceInfo

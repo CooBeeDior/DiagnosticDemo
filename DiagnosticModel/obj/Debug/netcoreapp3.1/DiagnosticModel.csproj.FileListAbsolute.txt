@@ -1,9 +1,9 @@
 D:\Work\DiagnosticDemo\DiagnosticModel\bin\Debug\netcoreapp3.1\DiagnosticModel.deps.json
 D:\Work\DiagnosticDemo\DiagnosticModel\bin\Debug\netcoreapp3.1\DiagnosticModel.dll
+D:\Work\DiagnosticDemo\DiagnosticModel\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb
+D:\Work\DiagnosticDemo\DiagnosticModel\obj\Debug\netcoreapp3.1\DiagnosticModel.csprojAssemblyReference.cache
 D:\Work\DiagnosticDemo\DiagnosticModel\obj\Debug\netcoreapp3.1\DiagnosticModel.AssemblyInfoInputs.cache
 D:\Work\DiagnosticDemo\DiagnosticModel\obj\Debug\netcoreapp3.1\DiagnosticModel.AssemblyInfo.cs
-D:\Work\DiagnosticDemo\DiagnosticModel\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb
+D:\Work\DiagnosticDemo\DiagnosticModel\obj\Debug\netcoreapp3.1\DiagnosticModel.csproj.CoreCompileInputs.cache
 D:\Work\DiagnosticDemo\DiagnosticModel\obj\Debug\netcoreapp3.1\DiagnosticModel.dll
 D:\Work\DiagnosticDemo\DiagnosticModel\obj\Debug\netcoreapp3.1\DiagnosticModel.pdb
-D:\Work\DiagnosticDemo\DiagnosticModel\obj\Debug\netcoreapp3.1\DiagnosticModel.csproj.CoreCompileInputs.cache
-D:\Work\DiagnosticDemo\DiagnosticModel\obj\Debug\netcoreapp3.1\DiagnosticModel.csprojAssemblyReference.cache

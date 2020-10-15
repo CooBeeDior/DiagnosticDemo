@@ -67,19 +67,13 @@ namespace DiagnosticCore.LogCore
                     if (parentTraceInfoBuilder != null)
                     {
                         var parentTraceInfo = parentTraceInfoBuilder.Build();
-                        var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(Guid.NewGuid().ToString()).ParentId(parentTraceInfo.Id).
-                            TrackId(parentTraceInfo.TrackId).ParentTrackId(parentTraceInfo.ParentTrackId)
+                        var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildTraceInfo(Guid.NewGuid().ToString()).ParentId(parentTraceInfo.Id)
+                            .TrackId(parentTraceInfo.TrackId).ParentTrackId(parentTraceInfo.ParentTrackId)
                             .Log(logLevel, _categoryName, exception).Description(state?.ToString());
-
-                        traceInfo = traceInfoBuilder.Build();
-
-                    }
-
-
-                }
-
-            }
-
+                        traceInfo = traceInfoBuilder.Build(); 
+                    } 
+                } 
+            } 
             //通过异步发送TraceInfo
             if (traceInfo != null)
             {

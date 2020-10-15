@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DiagnosticAdapter;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -32,23 +33,23 @@ namespace DiagnosticCore
         public string ListenerName { get { return LISTENERNAME; } }
 
 
-        protected IServiceProvider ServiceProvider { get; }
-
-
 
         protected IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor> Logger { get; }
 
         protected readonly IHttpContextAccessor HttpContextAccessor;
-        public HttpClientTracingDiagnosticProcessor(IHttpContextAccessor httpContextAccessor, IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor> logger)
+
+        protected readonly DiagnosticOptions Options;
+        public HttpClientTracingDiagnosticProcessor(IHttpContextAccessor httpContextAccessor, IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor> logger, DiagnosticOptions options)
         {
             Logger = logger;
             HttpContextAccessor = httpContextAccessor;
-
+            Options = options;
         }
 
         [DiagnosticName(HttpRequestStartName)]
         public void HttpRequestStart(HttpRequestMessage request)
         {
+            var activity = System.Diagnostics.Activity.Current;
             HttpRequestStartHandle(request);
         }
 
@@ -89,9 +90,12 @@ namespace DiagnosticCore
         }
         protected virtual void HttpRequestHandle(HttpRequestMessage request)
         {
-            if (request?.Headers?.Contains("trace.microservice") == true)
-            {
 
+            var activity1 = System.Diagnostics.Activity.Current;
+            activity1?.AddTag("3", "3");
+            activity1?.AddBaggage("3", "3");
+            if (Options.RequestRule?.Invoke(request) ?? true)
+            {
                 if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
                 {
                     var traceInfoBuilder = HttpContextAccessor.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)] as TraceInfoBuilder;
@@ -104,9 +108,6 @@ namespace DiagnosticCore
                 }
             }
 
-
-
-
         }
         protected virtual void HttpRequestStopHandle(HttpRequestMessage request)
         {
@@ -115,9 +116,12 @@ namespace DiagnosticCore
 
         protected virtual void HttpResponseHandle(HttpResponseMessage response)
         {
-            if (response?.RequestMessage?.Headers?.Contains("trace.microservice") == true)
+            var activity1 = System.Diagnostics.Activity.Current;
+            activity1?.AddTag("4", "4");
+            activity1?.AddBaggage("4", "4");
+            if (Options.RequestRule?.Invoke(response.RequestMessage) ?? true)
             {
-                var serviceName = response.RequestMessage.Headers.GetValues("trace.microservice").FirstOrDefault();
+                var serviceName = response.RequestMessage.Headers.GetValues(HttpConstant.TRACEMICROSERVICE).FirstOrDefault();
 
                 if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
                 {
@@ -133,10 +137,6 @@ namespace DiagnosticCore
                     }
                 }
             }
-
-
-
-
 
         }
 
