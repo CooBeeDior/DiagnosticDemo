@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5UXcQPFlvApPt7JJoi+efHf0IgOcwiVoNUF27jnHxtiEt+WhKo9inP4WXDhIUBfyDfcgsMmc239WD1wRfJVnzg==",
+  "dgSpecHash": "ee9Bauvb8KT6oTG/Y9cyAkKfKJ6BNrUren7LnIhtiuEbP0A6ybvWCUCT+2pmhVGXPMPFEc+m8XI7pKbuuyNUgQ==",
   "success": true,
   "projectFilePath": "D:\\Work\\DiagnosticDemo\\LocalizerAbstraction\\LocalizerAbstraction.csproj",
   "expectedPackageFiles": [
@@ -74,7 +74,7 @@
     "C:\\Users\\coobe\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\system.console\\4.3.0\\system.console.4.3.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
-    "C:\\Users\\coobe\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.5.0\\system.diagnostics.diagnosticsource.4.5.0.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\system.diagnostics.tracing\\4.3.0\\system.diagnostics.tracing.4.3.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\system.dynamic.runtime\\4.0.11\\system.dynamic.runtime.4.0.11.nupkg.sha512",

@@ -7929,7 +7929,8 @@
       "Microsoft.Extensions.DiagnosticAdapter >= 3.1.8",
       "Microsoft.Extensions.Http >= 3.1.8",
       "Microsoft.Extensions.Logging.Abstractions >= 3.1.8",
-      "PersistenceAbstraction >= 1.0.0"
+      "PersistenceAbstraction >= 1.0.0",
+      "System.Diagnostics.DiagnosticSource >= 4.7.1"
     ]
   },
   "packageFolders": {
@@ -8015,6 +8016,10 @@
           "Microsoft.Extensions.Logging.Abstractions": {
             "target": "Package",
             "version": "[3.1.8, )"
+          },
+          "System.Diagnostics.DiagnosticSource": {
+            "target": "Package",
+            "version": "[4.7.1, )"
           }
         },
         "imports": [

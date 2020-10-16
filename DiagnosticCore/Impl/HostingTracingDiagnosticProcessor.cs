@@ -53,10 +53,11 @@ namespace DiagnosticCore
         protected IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> Logger { get; }
 
 
-
-        public HostingTracingDiagnosticProcessor(IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> logger)
+        protected DiagnosticOptions Options { get; }
+        public HostingTracingDiagnosticProcessor(IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> logger, DiagnosticOptions options)
         {
             Logger = logger;
+            Options = options;
         }
 
 
@@ -220,26 +221,20 @@ namespace DiagnosticCore
         #region protected  
 
         protected virtual void HttpRequestInStartHandle(DefaultHttpContext httpContext)
-        {
+        { 
             var activity1 = System.Diagnostics.Activity.Current;
-            activity1?.AddTag("5", "5");
-            activity1?.AddBaggage("5", "5");
-            activity1.Start();
+            //本服务串联
+            var spanId = activity1.SpanId;
+            //服务器串联
+            var traceId = activity1.TraceId;
         }
 
 
         protected virtual void BeginRequestHandle(HttpContext httpContext)
-        {
-
-            var activity1 = System.Diagnostics.Activity.Current;
-            activity1.Stop();
-            activity1?.AddTag("6", "6");
-            activity1?.AddBaggage("6", "6");
-
-
-            var request = httpContext.Request;
-            if (Regex.Match(request.Path, @"^(/v\d\.\d)?/api").Success)
+        { 
+            if (Options.RequestRule.Invoke(httpContext.Request))
             {
+                var request = httpContext.Request;
                 //上一个服务传过来 是父级的跟踪Id
                 var parentTrackId = request.Headers[HttpConstant.TRACK_ID].FirstOrDefault();
                 if (!string.IsNullOrWhiteSpace(parentTrackId))
@@ -321,11 +316,14 @@ namespace DiagnosticCore
             var activity1 = System.Diagnostics.Activity.Current;
             activity1?.AddTag("7", "7");
             activity1?.AddBaggage("7", "7");
-            var builder = resultExecutedContext.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)];
-            if (builder != null && builder is TraceInfoBuilder traceInfoBuilder && resultExecutedContext.Result != null)
+            if (Options.RequestRule.Invoke(resultExecutedContext.HttpContext.Request))
             {
-                setLogResponse(resultExecutedContext.Result, traceInfoBuilder);
+                var builder = resultExecutedContext.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)];
+                if (builder != null && builder is TraceInfoBuilder traceInfoBuilder && resultExecutedContext.Result != null)
+                {
+                    setLogResponse(resultExecutedContext.Result, traceInfoBuilder);
 
+                }
             }
         }
 

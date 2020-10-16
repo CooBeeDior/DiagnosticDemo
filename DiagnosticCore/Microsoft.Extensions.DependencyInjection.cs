@@ -29,6 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.Add(new ServiceDescriptor(typeof(IDiagnosticTraceLogger<>), typeof(DiagnosticTraceLogger<>), ServiceLifetime.Singleton));
  
             services.AddHttpContextAccessor();
+ 
         }
     }
 

@@ -10,7 +10,9 @@ namespace DiagnosticCore
     {
         public static void UseDiagnostics(this IApplicationBuilder app)
         {
-            DiagnosticInitialization.InitializeDiagnostic(app.ApplicationServices); 
+            Activity.DefaultIdFormat = ActivityIdFormat.W3C;
+            DiagnosticInitialization.InitializeDiagnostic(app.ApplicationServices);
+            app.UseMiddleware<DiagnosticMiddleware>();
         }
 
    

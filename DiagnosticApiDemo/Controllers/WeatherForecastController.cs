@@ -24,7 +24,7 @@ using System.Net.Http.Headers;
 using ProtobufCore;
 
 namespace DiagnosticApiDemo.Controllers
-{ 
+{
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/WeatherForecast")]
@@ -54,7 +54,7 @@ namespace DiagnosticApiDemo.Controllers
 
             var mongodb = func.Invoke(MongodbConstant.MONGODBNAME);
             var dad = CultureInfo.CurrentUICulture;
-              var c = stringLocalizer["test"];
+            var c = stringLocalizer["test"];
             var activity = System.Diagnostics.Activity.Current;
             activity?.AddTag("1", "1");
             activity?.AddBaggage("1", "1");
@@ -64,7 +64,7 @@ namespace DiagnosticApiDemo.Controllers
 
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
-        {
+        { 
             var activity = System.Diagnostics.Activity.Current;
             activity?.AddTag("2", "2");
             activity?.AddBaggage("2", "2");

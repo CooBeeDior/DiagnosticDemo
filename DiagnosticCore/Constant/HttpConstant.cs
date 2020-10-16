@@ -37,7 +37,9 @@ namespace DiagnosticCore.Constant
         /// <summary>
         /// trace.microservice
         /// </summary>
-        public const string TRACEMICROSERVICE = "trace.microservice";
+        public const string TRACEMICROSERVICE = "trace-microservice";
 
+
+ 
     }
 }

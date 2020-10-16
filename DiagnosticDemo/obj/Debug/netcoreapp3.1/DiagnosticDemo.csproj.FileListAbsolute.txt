@@ -37,3 +37,4 @@ D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.csp
 D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.dll
 D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.pdb
 D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.genruntimeconfig.cache
+D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.csprojAssemblyReference.cache

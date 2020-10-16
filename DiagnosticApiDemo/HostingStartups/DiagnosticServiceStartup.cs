@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using DiagnosticCore.Constant;
+using System.Text.RegularExpressions;
 
 namespace DiagnosticApiDemo.HostingStartups
 {
@@ -17,16 +18,17 @@ namespace DiagnosticApiDemo.HostingStartups
                 //添加诊断跟踪
                 services.AddDiagnostics(options =>
                 {
-                    options.RequestRule = (request) =>
-                    {
-                        if (request.Headers.Contains(HttpConstant.TRACEMICROSERVICE))
+                    options.SetRequestRequestRucle((request) =>
+                    { 
+                        if (request.Headers.ContainsKey(HttpConstant.TRACEMICROSERVICE)
+                         && Regex.Match(request.Path, @"^(/v\d\.\d)?/api").Success)
                         {
                             return true;
                         }
                         return false;
-                    };
+                    });
                 });
-                //services.AddTransient<IStartupFilter, DiagnosticStartupFilter>();
+ 
             });
         }
     }

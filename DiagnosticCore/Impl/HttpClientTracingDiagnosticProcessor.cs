@@ -94,7 +94,7 @@ namespace DiagnosticCore
             var activity1 = System.Diagnostics.Activity.Current;
             activity1?.AddTag("3", "3");
             activity1?.AddBaggage("3", "3");
-            if (Options.RequestRule?.Invoke(request) ?? true)
+            if (Options.RequestRule.Invoke(HttpContextAccessor.HttpContext.Request))
             {
                 if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
                 {
@@ -119,7 +119,7 @@ namespace DiagnosticCore
             var activity1 = System.Diagnostics.Activity.Current;
             activity1?.AddTag("4", "4");
             activity1?.AddBaggage("4", "4");
-            if (Options.RequestRule?.Invoke(response.RequestMessage) ?? true)
+            if (Options.RequestRule.Invoke(HttpContextAccessor.HttpContext.Request))
             {
                 var serviceName = response.RequestMessage.Headers.GetValues(HttpConstant.TRACEMICROSERVICE).FirstOrDefault();
 
@@ -143,16 +143,19 @@ namespace DiagnosticCore
 
         protected virtual void HttpExceptionHandle(HttpRequestMessage request, Exception exception)
         {
-            if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
+            if (Options.RequestRule.Invoke(HttpContextAccessor.HttpContext.Request))
             {
-                var parentTraceInfoBuilder = HttpContextAccessor.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)] as TraceInfoBuilder;
-                if (parentTraceInfoBuilder != null)
+                if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
                 {
-                    var parentTraceInfo = parentTraceInfoBuilder.Build();
-                    var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildFromTraceInfo(parentTraceInfo).ParentId(parentTraceInfo.Id).HttpRequestMessage(request)
-                         .ElapsedTime(HttpContextAccessor.HttpContext.ElapsedTime()).Exception(exception).Log(LogLevel.Trace);
-                    Logger.LogInformation(traceInfoBuilder);
+                    var parentTraceInfoBuilder = HttpContextAccessor.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)] as TraceInfoBuilder;
+                    if (parentTraceInfoBuilder != null)
+                    {
+                        var parentTraceInfo = parentTraceInfoBuilder.Build();
+                        var traceInfoBuilder = TraceInfoBuilder.CreateBuilder().BuildFromTraceInfo(parentTraceInfo).ParentId(parentTraceInfo.Id).HttpRequestMessage(request)
+                             .ElapsedTime(HttpContextAccessor.HttpContext.ElapsedTime()).Exception(exception).Log(LogLevel.Trace);
+                        Logger.LogInformation(traceInfoBuilder);
 
+                    }
                 }
             }
         }
