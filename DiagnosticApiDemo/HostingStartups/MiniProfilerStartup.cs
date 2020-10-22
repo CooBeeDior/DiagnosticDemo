@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Profiling;
+using Microsoft.AspNetCore.Builder;
 
 namespace DiagnosticApiDemo.HostingStartups
 {
@@ -20,10 +21,23 @@ namespace DiagnosticApiDemo.HostingStartups
                     options.RouteBasePath = "/profiler";
                  
                 });//.AddEntityFramework(); ;
-          
+                services.AddSingleton<IStartupFilter, MiniProfilerStartupFilter>();
             });
 
 
+        }
+
+        public class MiniProfilerStartupFilter : IStartupFilter
+        {
+            public Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)
+            {
+                return app =>
+                {
+                    //路由：  /profiler/results
+                    app.UseMiniProfiler();
+                    next(app);
+                };
+            }
         }
     }
 }

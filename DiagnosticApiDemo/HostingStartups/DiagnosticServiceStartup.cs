@@ -5,6 +5,10 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using DiagnosticCore.Constant;
 using System.Text.RegularExpressions;
+using SpiderCore;
+using DiagnosticCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Builder;
 
 namespace DiagnosticApiDemo.HostingStartups
 {
@@ -16,22 +20,27 @@ namespace DiagnosticApiDemo.HostingStartups
             builder.ConfigureServices((context, services) =>
             {
                 //添加诊断跟踪
-                services.AddDiagnostics(options =>
-                {
-                    options.SetRequestRequestRucle((request) =>
-                    { 
-                        if (request.Headers.ContainsKey(HttpConstant.TRACEMICROSERVICE)
-                         && Regex.Match(request.Path, @"^(/v\d\.\d)?/api").Success)
-                        {
-                            return true;
-                        }
-                        return false;
-                    });
-                });
- 
+                services.AddDiagnostics();
+                services.AddSingleton<IStartupFilter, DiagnosticStartupFilter>();
             });
         }
     }
+
+
+    public class DiagnosticStartupFilter : IStartupFilter
+    {
+        public Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)
+        {
+            return app =>
+            {
+                //添加诊断
+                app.UseDiagnostics();
+                next(app);
+            };
+        }
+    }
+
+
 
 
 }

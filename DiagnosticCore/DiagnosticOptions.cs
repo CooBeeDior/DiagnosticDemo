@@ -10,10 +10,11 @@ namespace DiagnosticCore
     {
         public DiagnosticOptions()
         {
-            RequestRule = (request) => true;
+            RequestRule = (serviceProvider, request) => true;
         }
 
-        public DiagnosticOptions(Func<HttpRequest, bool> requestRule)
+
+        public DiagnosticOptions(Func<IServiceProvider, HttpRequest, bool> requestRule)
         {
             if (requestRule == null)
             {
@@ -35,10 +36,10 @@ namespace DiagnosticCore
         /// <summary>
         /// 请求规则 返回true则上报提交日志
         /// </summary>
-        public Func<HttpRequest, bool> RequestRule { get; private set; }
+        public Func<IServiceProvider, HttpRequest, bool> RequestRule { get; private set; }
 
 
-        public void SetRequestRequestRucle(Func<HttpRequest, bool> requestRule)
+        public void SetRequestRequestRule(Func<IServiceProvider, HttpRequest, bool> requestRule)
         {
             if (requestRule == null)
             {

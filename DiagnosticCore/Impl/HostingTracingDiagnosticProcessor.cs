@@ -52,12 +52,13 @@ namespace DiagnosticCore
 
         protected IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> Logger { get; }
 
-
-        protected DiagnosticOptions Options { get; }
-        public HostingTracingDiagnosticProcessor(IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> logger, DiagnosticOptions options)
+        protected DiagnosticOptions Options { get; } 
+        protected IServiceProvider ServiceProvider { get; }
+        public HostingTracingDiagnosticProcessor(IServiceProvider serviceProvider, IDiagnosticTraceLogger<HostingTracingDiagnosticProcessor> logger, DiagnosticOptions options)
         {
             Logger = logger;
             Options = options;
+            ServiceProvider = serviceProvider;
         }
 
 
@@ -221,7 +222,7 @@ namespace DiagnosticCore
         #region protected  
 
         protected virtual void HttpRequestInStartHandle(DefaultHttpContext httpContext)
-        { 
+        {
             var activity1 = System.Diagnostics.Activity.Current;
             //本服务串联
             var spanId = activity1.SpanId;
@@ -231,8 +232,8 @@ namespace DiagnosticCore
 
 
         protected virtual void BeginRequestHandle(HttpContext httpContext)
-        { 
-            if (Options.RequestRule.Invoke(httpContext.Request))
+        {
+            if (Options.RequestRule.Invoke(ServiceProvider,httpContext.Request))
             {
                 var request = httpContext.Request;
                 //上一个服务传过来 是父级的跟踪Id
@@ -316,7 +317,7 @@ namespace DiagnosticCore
             var activity1 = System.Diagnostics.Activity.Current;
             activity1?.AddTag("7", "7");
             activity1?.AddBaggage("7", "7");
-            if (Options.RequestRule.Invoke(resultExecutedContext.HttpContext.Request))
+            if (Options.RequestRule.Invoke(ServiceProvider,resultExecutedContext.HttpContext.Request))
             {
                 var builder = resultExecutedContext.HttpContext.Items[DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)];
                 if (builder != null && builder is TraceInfoBuilder traceInfoBuilder && resultExecutedContext.Result != null)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DiagnosticCore.Constant;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,22 +16,17 @@ namespace DiagnosticCore
         private readonly RequestDelegate _next;
         private readonly ILogger<DiagnosticMiddleware> _logger;
         private readonly DiagnosticOptions _options;
-
-        public DiagnosticMiddleware(RequestDelegate next, ILogger<DiagnosticMiddleware> logger, DiagnosticOptions options)
+        private readonly IServiceProvider _serviceProvider;
+        public DiagnosticMiddleware(IServiceProvider serviceProvider, RequestDelegate next, ILogger<DiagnosticMiddleware> logger, DiagnosticOptions options)
         {
             _next = next;
             _logger = logger;
-            _options = options; 
+            _options = options;
+            _serviceProvider = serviceProvider;
         }
-        
+
         public async Task InvokeAsync(HttpContext context)
-        {
-
-            if (_options.RequestRule.Invoke(context.Request))
-            {
-                var activity = Activity.Current; 
-
-            }
+        { 
             await _next(context);
         }
     }

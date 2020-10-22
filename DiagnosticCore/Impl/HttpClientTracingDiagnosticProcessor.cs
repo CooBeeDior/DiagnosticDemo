@@ -7,6 +7,7 @@ using Microsoft.Extensions.DiagnosticAdapter;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -39,11 +40,14 @@ namespace DiagnosticCore
         protected readonly IHttpContextAccessor HttpContextAccessor;
 
         protected readonly DiagnosticOptions Options;
-        public HttpClientTracingDiagnosticProcessor(IHttpContextAccessor httpContextAccessor, IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor> logger, DiagnosticOptions options)
+
+        protected IServiceProvider ServiceProvider { get; }
+        public HttpClientTracingDiagnosticProcessor(IHttpContextAccessor httpContextAccessor, IDiagnosticTraceLogger<HttpClientTracingDiagnosticProcessor> logger, DiagnosticOptions options, IServiceProvider serviceProvider)
         {
             Logger = logger;
             HttpContextAccessor = httpContextAccessor;
             Options = options;
+            ServiceProvider = serviceProvider;
         }
 
         [DiagnosticName(HttpRequestStartName)]
@@ -94,7 +98,7 @@ namespace DiagnosticCore
             var activity1 = System.Diagnostics.Activity.Current;
             activity1?.AddTag("3", "3");
             activity1?.AddBaggage("3", "3");
-            if (Options.RequestRule.Invoke(HttpContextAccessor.HttpContext.Request))
+            if (Options.RequestRule.Invoke(ServiceProvider, HttpContextAccessor?.HttpContext?.Request))
             {
                 if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
                 {
@@ -119,9 +123,13 @@ namespace DiagnosticCore
             var activity1 = System.Diagnostics.Activity.Current;
             activity1?.AddTag("4", "4");
             activity1?.AddBaggage("4", "4");
-            if (Options.RequestRule.Invoke(HttpContextAccessor.HttpContext.Request))
+            if (Options.RequestRule.Invoke(ServiceProvider, HttpContextAccessor?.HttpContext?.Request))
             {
-                var serviceName = response.RequestMessage.Headers.GetValues(HttpConstant.TRACEMICROSERVICE).FirstOrDefault();
+                string serviceName = null;
+                if (response.RequestMessage.Headers.TryGetValues(HttpConstant.TRACEMICROSERVICE, out IEnumerable<string> serviceNames))
+                {
+                    serviceName = serviceNames?.FirstOrDefault();
+                }
 
                 if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
                 {
@@ -143,7 +151,7 @@ namespace DiagnosticCore
 
         protected virtual void HttpExceptionHandle(HttpRequestMessage request, Exception exception)
         {
-            if (Options.RequestRule.Invoke(HttpContextAccessor.HttpContext.Request))
+            if (Options.RequestRule.Invoke(ServiceProvider, HttpContextAccessor?.HttpContext?.Request))
             {
                 if (HttpContextAccessor.HttpContext != null && HttpContextAccessor.HttpContext.Items.ContainsKey(DiagnosticConstant.GetItemKey(typeof(TraceInfoBuilder).FullName)))
                 {

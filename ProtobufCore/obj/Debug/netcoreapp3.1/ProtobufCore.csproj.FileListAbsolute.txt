@@ -6,3 +6,4 @@ D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.Assembl
 D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.csproj.CoreCompileInputs.cache
 D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.dll
 D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.pdb
+D:\Work\DiagnosticDemo\ProtobufCore\obj\Debug\netcoreapp3.1\ProtobufCore.csprojAssemblyReference.cache

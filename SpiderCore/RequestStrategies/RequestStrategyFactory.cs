@@ -61,7 +61,7 @@ namespace SpiderCore.RequestStrategies
                     var url = Url.Combine(serviceEntry.Url, healthUrl);
                     try
                     {
-
+                        _httpClient.DefaultRequestHeaders.Add("health", "1");
                         var resp = _httpClient.GetAsync(url).GetAwaiter().GetResult();
                         if (resp.StatusCode == HttpStatusCode.OK)
                         {

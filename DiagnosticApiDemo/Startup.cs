@@ -60,57 +60,10 @@ namespace DiagnosticApiDemo
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseStaticFiles();
-            app.UseCors("cors");// 启用CORS服务
-            //添加诊断
-            app.UseDiagnostics();
-
-            //添加消息队列
-            app.UseRabbitmq();
-
-            //  /profiler/results
-            app.UseMiniProfiler();
-
-            app.UseSwagger();
-            //启用中间件服务对swagger-ui，指定Swagger JSON终结点 {url}/swagger
-            app.UseSwaggerUI(options =>
-            {
-                options.IndexStream = () => GetType().GetTypeInfo().Assembly.GetManifestResourceStream($"DiagnosticApiDemo.wwwroot.index.html");
-                var provider = app.ApplicationServices.GetService<IApiVersionDescriptionProvider>();
-                foreach (var description in provider.ApiVersionDescriptions)
-                {
-                    options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-                }
-                options.DefaultModelsExpandDepth(-1); //设置为 - 1 可不显示models
-                //options.DocExpansion(DocExpansion.List );//设置为none可折叠所有方法
-            });
-
-
-
-            app.UseHangfireServer();//启动Hangfire服务
-            app.UseHangfireDashboard();//启动hangfire面板 {url}/hangfire
-            //app.UseMonitorHealthJob(); //启动服务健康检查
-
-            IList<CultureInfo> supportedCultures = new List<CultureInfo>
-            {
-                //英文
-                new CultureInfo("en-US"),
-                //中文
-                new CultureInfo("zh-CN"),
-            };
-            //添加本地化机制
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("en-US"),
-              
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
-
+            app.UseStaticFiles(); 
 
             app.UseRouting();
-
-         
+             
 
             app.UseEndpoints(endpoints =>
             {

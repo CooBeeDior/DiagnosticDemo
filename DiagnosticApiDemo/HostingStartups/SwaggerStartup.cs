@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi;
@@ -59,12 +60,37 @@ namespace DiagnosticApiDemo.HostingStartups
 
 
                 });
+
+                services.AddSingleton<IStartupFilter, SwaggerStartupFilter>();
             });
         }
 
 
     }
+    public class SwaggerStartupFilter : IStartupFilter
+    {
+        public Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)
+        {
+            return app =>
+            {
 
+                app.UseSwagger();
+                //启用中间件服务对swagger-ui，指定Swagger JSON终结点 {url}/swagger
+                app.UseSwaggerUI(options =>
+                {
+                    options.IndexStream = () => GetType().GetTypeInfo().Assembly.GetManifestResourceStream($"DiagnosticApiDemo.wwwroot.index.html");
+                    var provider = app.ApplicationServices.GetService<IApiVersionDescriptionProvider>();
+                    foreach (var description in provider.ApiVersionDescriptions)
+                    {
+                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                    }
+                    options.DefaultModelsExpandDepth(-1); //设置为 - 1 可不显示models
+                                                          //options.DocExpansion(DocExpansion.List );//设置为none可折叠所有方法
+                });
+                next(app);
+            };
+        }
+    }
 
     public class SwaggerDefaultValues : IOperationFilter
     {

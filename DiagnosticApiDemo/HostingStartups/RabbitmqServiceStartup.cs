@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using MessageQueueAbstraction;
 using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 
 namespace DiagnosticApiDemo.HostingStartups
 {
@@ -23,7 +24,22 @@ namespace DiagnosticApiDemo.HostingStartups
                     options.LoadTypes.Add(typeof(TraceLogRabbitmqConsumer));
                     options.LoadAssemblies.Add(typeof(TraceLogRabbitmqConsumer).Assembly);
                 });
+                services.AddSingleton<IStartupFilter, RabbitmqStartupFilter>();
             });
+        }
+    }
+
+    public class RabbitmqStartupFilter : IStartupFilter
+    {
+        public Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)
+        {
+            return app =>
+            {
+
+                //添加消息队列
+                app.UseRabbitmq();
+                next(app);
+            };
         }
     }
 }

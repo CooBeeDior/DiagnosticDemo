@@ -23,7 +23,7 @@ namespace FeignCore.Actions
             var requestStrategy = RequestStrategyFactory.Instance.CreateRequestStrategy(spiderService);
             string baseurl = requestStrategy.GetServiceIp();
             context.HttpApiConfig.HttpHost = new System.Uri(baseurl);
-
+            context.RequestMessage.Headers.Add("trace-microservice", Name);
             //context.RequestMessage.RequestUri = new System.Uri(Url.Combine(baseurl, context.RequestMessage.RequestUri.LocalPath));
             return Task.CompletedTask;
         }
