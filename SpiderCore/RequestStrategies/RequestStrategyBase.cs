@@ -15,7 +15,7 @@ namespace SpiderCore.RequestStrategies
 
         public RequestStrategyBase(SpiderService spiderService)
         {
-            if (spiderService == null || spiderService.ServiceEntryies == null || !spiderService.ServiceEntryies.Any())
+            if (spiderService == null || spiderService.ServiceEntryies == null)
             {
                 throw new ArgumentNullException(nameof(spiderService));
             }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class Extensions
+    public static class LocalizerAbstraction
     {
 
         public static void AddMongodbLocalizer(this IServiceCollection services, Action<MongodbLocalizerOptions> action = null)

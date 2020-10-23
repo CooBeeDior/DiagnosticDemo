@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
 
 namespace SpiderCore.RequestStrategies
-{ 
+{
     /// <summary>
     /// 源地址哈希
     /// </summary>
@@ -33,8 +34,18 @@ namespace SpiderCore.RequestStrategies
             {
                 throw new ArgumentNullException(nameof(param));
             }
+            if (HealthServices.Count == 0)
+            {
+                throw new NotFoundServiceException(SpiderService.ServiceName);
+            }
             var ip = _requestStrategy.GetServiceIp();
-            return dictionary.GetOrAdd(param.ToString(), ip);
+
+            var targetIp = dictionary.GetOrAdd(param.ToString(), ip);
+            if (!HealthServices.Any(o => o.Url == targetIp))
+            {
+                targetIp = GetServiceIp(param);
+            }
+            return targetIp;
         }
     }
 }

@@ -2,8 +2,7 @@
 using System.Linq;
 
 namespace SpiderCore.RequestStrategies
-{
-
+{ 
     /// <summary>
     /// 加权抽象
     /// </summary> 

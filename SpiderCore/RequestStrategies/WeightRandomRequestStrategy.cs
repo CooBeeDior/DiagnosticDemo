@@ -14,6 +14,10 @@
 
         public string GetServiceIp(object param = null)
         {
+            if (HealthServices.Count == 0)
+            {
+                throw new NotFoundServiceException(SpiderService.ServiceName);
+            }
             var requestStrategy = GetRequestStrategy();
             return requestStrategy.GetServiceIp();
         }

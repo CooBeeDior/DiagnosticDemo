@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SpiderCore;
 using SpiderCore.RequestStrategies;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpiderCore
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class SpiderCoreExtensions
     {

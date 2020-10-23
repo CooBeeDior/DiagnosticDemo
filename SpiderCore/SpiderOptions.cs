@@ -92,10 +92,10 @@ namespace SpiderCore
         /// 请求策略类型 默认：轮询
         /// </summary>
         public StrategyType StrategyType { get; set; } = StrategyType.RoundRobin;
-
+        /// <summary>
+        /// 请求服务名称
+        /// </summary>
         public string ServiceName { get; }
-
-
         /// <summary>
         /// 返回200就表示成功
         /// </summary>

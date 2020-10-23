@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FeignCore;
+using Microsoft.Extensions.DependencyInjection;
 namespace DiagnosticApiDemo.HostingStartups
 {
     public class FeignStartup : IHostingStartup

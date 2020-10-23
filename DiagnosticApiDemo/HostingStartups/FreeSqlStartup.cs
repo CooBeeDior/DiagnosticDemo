@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FreesqlAbstration;
-using FreeSql;
+﻿using FreeSql;
 using FreeSql.Internal;
-
+using FreesqlAbstration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 namespace DiagnosticApiDemo.HostingStartups
 {
     public class FreeSqlStartup : IHostingStartup

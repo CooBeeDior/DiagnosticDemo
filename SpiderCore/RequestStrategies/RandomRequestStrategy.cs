@@ -16,6 +16,10 @@ namespace SpiderCore.RequestStrategies
         }
         public string GetServiceIp(object param = null)
         {
+            if (HealthServices.Count == 0)
+            {
+                throw new NotFoundServiceException(SpiderService.ServiceName);
+            }
             var index = _random.Next(0, HealthServices.Count - 1);
             return HealthServices[index].Url;
         }

@@ -1,12 +1,10 @@
 ﻿using FreeSql;
-using FreeSql.Internal;
+using FreesqlAbstration;
 using Microsoft.Extensions.DependencyInjection;
 using PersistenceAbstraction;
 using System;
-using System.Collections.Generic;
-using System.Data.Common;
 
-namespace FreesqlAbstration
+namespace Microsoft.Extensions.DependencyInjection
 {
 
     public static class FreeSqlExtensions
