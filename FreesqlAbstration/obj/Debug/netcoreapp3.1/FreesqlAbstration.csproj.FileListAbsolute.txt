@@ -1,8 +1,8 @@
 D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\FreesqlAbstration.deps.json
 D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\FreesqlAbstration.dll
 D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\FreesqlAbstration.pdb
-D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\PersistenceAbstraction.dll
-D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
+D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\TransPortServiceAbstraction.dll
+D:\Work\DiagnosticDemo\FreesqlAbstration\bin\Debug\netcoreapp3.1\TransPortServiceAbstraction.pdb
 D:\Work\DiagnosticDemo\FreesqlAbstration\obj\Debug\netcoreapp3.1\FreesqlAbstration.csprojAssemblyReference.cache
 D:\Work\DiagnosticDemo\FreesqlAbstration\obj\Debug\netcoreapp3.1\FreesqlAbstration.AssemblyInfoInputs.cache
 D:\Work\DiagnosticDemo\FreesqlAbstration\obj\Debug\netcoreapp3.1\FreesqlAbstration.AssemblyInfo.cs

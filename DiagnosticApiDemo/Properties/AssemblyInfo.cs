@@ -5,12 +5,12 @@ using LocalizerAbstraction;
 using MessageQueueAbstraction;
 using Microsoft.AspNetCore.Hosting;
 using MongodbCore;
-using PersistenceAbstraction;
+using TransPortServiceAbstraction;
 
 [assembly: HostingStartup(typeof(DiagnosticServiceStartup))]
 [assembly: HostingStartup(typeof(ElasticSearchServiceStartup))]
 [assembly: HostingStartup(typeof(LogMongodbServiceStartup))]
-[assembly: HostingStartup(typeof(PersistenceStartup))]
+[assembly: HostingStartup(typeof(TransPortServiceStartup))]
 [assembly: HostingStartup(typeof(MongodbLocalizerStartup))]
 [assembly: HostingStartup(typeof(ApiVersioningStartup))]
 [assembly: HostingStartup(typeof(RabbitmqServiceStartup))]

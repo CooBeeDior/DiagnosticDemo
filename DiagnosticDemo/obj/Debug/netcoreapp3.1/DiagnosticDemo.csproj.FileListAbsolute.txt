@@ -30,6 +30,7 @@ D:\Work\DiagnosticDemo\DiagnosticDemo\bin\Debug\netcoreapp3.1\Microsoft.Extensio
 D:\Work\DiagnosticDemo\DiagnosticDemo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 D:\Work\DiagnosticDemo\DiagnosticDemo\bin\Debug\netcoreapp3.1\Microsoft.Net.Http.Headers.dll
 D:\Work\DiagnosticDemo\DiagnosticDemo\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.csprojAssemblyReference.cache
 D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.AssemblyInfoInputs.cache
 D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.AssemblyInfo.cs
 D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.csproj.CoreCompileInputs.cache
@@ -37,4 +38,3 @@ D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.csp
 D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.dll
 D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.pdb
 D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.genruntimeconfig.cache
-D:\Work\DiagnosticDemo\DiagnosticDemo\obj\Debug\netcoreapp3.1\DiagnosticDemo.csprojAssemblyReference.cache

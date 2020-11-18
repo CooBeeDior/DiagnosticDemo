@@ -5,14 +5,14 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 namespace DiagnosticApiDemo.HostingStartups
 { 
-    public class PersistenceStartup : IHostingStartup
+    public class TransPortServiceStartup : IHostingStartup
     {
         public void Configure(IWebHostBuilder builder)
         {
             //持久化
             builder.ConfigureServices((context, services) =>
             {
-                services.AddPersistence();
+                services.AddTransPortService();
             });
 
 

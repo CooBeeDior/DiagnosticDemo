@@ -2177,7 +2177,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "PersistenceAbstraction/1.0.0": {
+      "TransPortServiceAbstraction/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -2185,10 +2185,10 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
         },
         "compile": {
-          "bin/placeholder/PersistenceAbstraction.dll": {}
+          "bin/placeholder/TransPortServiceAbstraction.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PersistenceAbstraction.dll": {}
+          "bin/placeholder/TransPortServiceAbstraction.dll": {}
         }
       }
     }
@@ -7054,10 +7054,10 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "PersistenceAbstraction/1.0.0": {
+    "TransPortServiceAbstraction/1.0.0": {
       "type": "project",
-      "path": "../PersistenceAbstraction/PersistenceAbstraction.csproj",
-      "msbuildProject": "../PersistenceAbstraction/PersistenceAbstraction.csproj"
+      "path": "../TransPortServiceAbstraction/TransPortServiceAbstraction.csproj",
+      "msbuildProject": "../TransPortServiceAbstraction/TransPortServiceAbstraction.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7068,7 +7068,7 @@
       "FreeSql.Provider.MySql >= 1.9.0",
       "IdleBus >= 1.5.0",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 3.1.8",
-      "PersistenceAbstraction >= 1.0.0"
+      "TransPortServiceAbstraction >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -7102,8 +7102,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj": {
-              "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj"
+            "D:\\Work\\DiagnosticDemo\\TransPortServiceAbstraction\\TransPortServiceAbstraction.csproj": {
+              "projectPath": "D:\\Work\\DiagnosticDemo\\TransPortServiceAbstraction\\TransPortServiceAbstraction.csproj"
             }
           }
         }

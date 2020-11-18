@@ -3814,8 +3814,8 @@
           "Microsoft.Extensions.DiagnosticAdapter": "3.1.8",
           "Microsoft.Extensions.Http": "3.1.8",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
-          "PersistenceAbstraction": "1.0.0",
-          "System.Diagnostics.DiagnosticSource": "4.7.1"
+          "System.Diagnostics.DiagnosticSource": "4.7.1",
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DiagnosticCore.dll": {}
@@ -3849,7 +3849,7 @@
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.Options": "3.1.8",
           "NEST": "7.9.0",
-          "PersistenceAbstraction": "1.0.0"
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "compile": {
           "bin/placeholder/ElasticSearchCore.dll": {}
@@ -3883,7 +3883,7 @@
           "FreeSql.Provider.MySql": "1.9.0",
           "IdleBus": "1.5.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
-          "PersistenceAbstraction": "1.0.0"
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "compile": {
           "bin/placeholder/FreesqlAbstration.dll": {}
@@ -3914,8 +3914,8 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "DiagnosticModel": "1.0.0",
-          "PersistenceAbstraction": "1.0.0",
-          "RabbitMQ.Client": "6.2.1"
+          "RabbitMQ.Client": "6.2.1",
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "compile": {
           "bin/placeholder/MessageQueueAbstraction.dll": {}
@@ -3937,28 +3937,14 @@
           "MongoDB.Driver": "2.11.2",
           "MongoDB.Driver.Core": "2.11.2",
           "Newtonsoft.Json": "12.0.3",
-          "PersistenceAbstraction": "1.0.0",
-          "System.Diagnostics.DiagnosticSource": "4.7.1"
+          "System.Diagnostics.DiagnosticSource": "4.7.1",
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "compile": {
           "bin/placeholder/MongodbCore.dll": {}
         },
         "runtime": {
           "bin/placeholder/MongodbCore.dll": {}
-        }
-      },
-      "PersistenceAbstraction/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
-        },
-        "compile": {
-          "bin/placeholder/PersistenceAbstraction.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/PersistenceAbstraction.dll": {}
         }
       },
       "ProtobufCore/1.0.0": {
@@ -3992,6 +3978,20 @@
         },
         "runtime": {
           "bin/placeholder/SpiderCore.dll": {}
+        }
+      },
+      "TransPortServiceAbstraction/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
+        },
+        "compile": {
+          "bin/placeholder/TransPortServiceAbstraction.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TransPortServiceAbstraction.dll": {}
         }
       }
     }
@@ -11441,11 +11441,6 @@
       "path": "../MongodbCore/MongodbCore.csproj",
       "msbuildProject": "../MongodbCore/MongodbCore.csproj"
     },
-    "PersistenceAbstraction/1.0.0": {
-      "type": "project",
-      "path": "../PersistenceAbstraction/PersistenceAbstraction.csproj",
-      "msbuildProject": "../PersistenceAbstraction/PersistenceAbstraction.csproj"
-    },
     "ProtobufCore/1.0.0": {
       "type": "project",
       "path": "../ProtobufCore/ProtobufCore.csproj",
@@ -11455,6 +11450,11 @@
       "type": "project",
       "path": "../SpiderCore/SpiderCore.csproj",
       "msbuildProject": "../SpiderCore/SpiderCore.csproj"
+    },
+    "TransPortServiceAbstraction/1.0.0": {
+      "type": "project",
+      "path": "../TransPortServiceAbstraction/TransPortServiceAbstraction.csproj",
+      "msbuildProject": "../TransPortServiceAbstraction/TransPortServiceAbstraction.csproj"
     }
   },
   "projectFileDependencyGroups": {

@@ -6,10 +6,10 @@ D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\LocalizerAbs
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\LocalizerAbstraction.pdb
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\DiagnosticModel.dll
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\MongodbCore.dll
-D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\PersistenceAbstraction.dll
+D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\TransPortServiceAbstraction.dll
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\MongodbCore.pdb
 D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb
-D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
+D:\Work\DiagnosticDemo\LocalizerAbstraction\bin\Debug\netcoreapp3.1\TransPortServiceAbstraction.pdb
 D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.csprojAssemblyReference.cache
 D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.AssemblyInfoInputs.cache
 D:\Work\DiagnosticDemo\LocalizerAbstraction\obj\Debug\netcoreapp3.1\LocalizerAbstraction.AssemblyInfo.cs

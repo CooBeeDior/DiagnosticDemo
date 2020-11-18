@@ -1,5 +1,5 @@
 ﻿using ElasticSearchCore;
-using PersistenceAbstraction;
+using TransPortServiceAbstraction;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -13,14 +13,14 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddSingleton(options);
             services.AddSingleton<IEsClientProvider, EsClientProvider>(); 
-            services.AddSingleton<IElasticSearchPersistence, ElasticSearchPersistence>();
+            services.AddSingleton<IElasticSearchTransPortService, ElasticSearchTransPortService>();
 
             
-            PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>
+            TransPortServiceDependencyInjection.AddFunc((serviceProvider, name) =>
             {
                 if (name.Equals(ElasticsearchConstant.ELASTICSEARCHNAME, StringComparison.OrdinalIgnoreCase))
                 {
-                    return serviceProvider.GetService<IElasticSearchPersistence>();
+                    return serviceProvider.GetService<IElasticSearchTransPortService>();
                 }
                 return null;
             });

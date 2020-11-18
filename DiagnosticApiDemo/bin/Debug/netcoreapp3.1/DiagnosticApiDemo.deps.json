@@ -3049,8 +3049,8 @@
           "Microsoft.Extensions.DiagnosticAdapter": "3.1.8",
           "Microsoft.Extensions.Http": "3.1.8",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.8",
-          "PersistenceAbstraction": "1.0.0",
-          "System.Diagnostics.DiagnosticSource": "4.7.1"
+          "System.Diagnostics.DiagnosticSource": "4.7.1",
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "runtime": {
           "DiagnosticCore.dll": {}
@@ -3080,7 +3080,7 @@
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.Options": "3.1.8",
           "NEST": "7.9.0",
-          "PersistenceAbstraction": "1.0.0"
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "runtime": {
           "ElasticSearchCore.dll": {}
@@ -3110,7 +3110,7 @@
           "FreeSql.Provider.MySql": "1.9.0",
           "IdleBus": "1.5.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
-          "PersistenceAbstraction": "1.0.0"
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "runtime": {
           "FreesqlAbstration.dll": {}
@@ -3137,8 +3137,8 @@
       "MessageQueueAbstraction/1.0.0": {
         "dependencies": {
           "DiagnosticModel": "1.0.0",
-          "PersistenceAbstraction": "1.0.0",
-          "RabbitMQ.Client": "6.2.1"
+          "RabbitMQ.Client": "6.2.1",
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "runtime": {
           "MessageQueueAbstraction.dll": {}
@@ -3158,26 +3158,14 @@
           "MongoDB.Driver": "2.11.2",
           "MongoDB.Driver.Core": "2.11.2",
           "Newtonsoft.Json": "12.0.3",
-          "PersistenceAbstraction": "1.0.0",
-          "System.Diagnostics.DiagnosticSource": "4.7.1"
+          "System.Diagnostics.DiagnosticSource": "4.7.1",
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "runtime": {
           "MongodbCore.dll": {}
         },
         "compile": {
           "MongodbCore.dll": {}
-        }
-      },
-      "PersistenceAbstraction/1.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
-        },
-        "runtime": {
-          "PersistenceAbstraction.dll": {}
-        },
-        "compile": {
-          "PersistenceAbstraction.dll": {}
         }
       },
       "ProtobufCore/1.0.0": {
@@ -3207,6 +3195,18 @@
         },
         "compile": {
           "SpiderCore.dll": {}
+        }
+      },
+      "TransPortServiceAbstraction/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
+        },
+        "runtime": {
+          "TransPortServiceAbstraction.dll": {}
+        },
+        "compile": {
+          "TransPortServiceAbstraction.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery.Reference/3.1.0.0": {
@@ -6560,17 +6560,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "PersistenceAbstraction/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "ProtobufCore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "SpiderCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TransPortServiceAbstraction/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

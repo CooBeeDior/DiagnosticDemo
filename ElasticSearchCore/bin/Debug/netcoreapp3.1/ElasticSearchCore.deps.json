@@ -12,7 +12,7 @@
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.Options": "3.1.8",
           "NEST": "7.9.0",
-          "PersistenceAbstraction": "1.0.0"
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "runtime": {
           "ElasticSearchCore.dll": {}
@@ -678,13 +678,13 @@
           "DiagnosticModel.dll": {}
         }
       },
-      "PersistenceAbstraction/1.0.0": {
+      "TransPortServiceAbstraction/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
         },
         "runtime": {
-          "PersistenceAbstraction.dll": {}
+          "TransPortServiceAbstraction.dll": {}
         }
       }
     }
@@ -1176,7 +1176,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "PersistenceAbstraction/1.0.0": {
+    "TransPortServiceAbstraction/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

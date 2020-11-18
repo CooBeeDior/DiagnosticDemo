@@ -1,5 +1,5 @@
 ﻿using DiagnosticModel;
-using PersistenceAbstraction;
+using TransPortServiceAbstraction;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
@@ -12,11 +12,11 @@ namespace MessageQueueAbstraction
     public class TraceLogRabbitmqConsumer : IRabbitmqConsumer
     {
         private readonly IRabbitmqChannelManagement _rabbitmqChannelManagement;
-        private readonly IPersistence _persistence;
-        public TraceLogRabbitmqConsumer(IRabbitmqChannelManagement rabbitmqChannelManagement, Func<string, IPersistence> func)
+        private readonly ITransPortService _transPortService;
+        public TraceLogRabbitmqConsumer(IRabbitmqChannelManagement rabbitmqChannelManagement, Func<string, ITransPortService> func)
         {
             _rabbitmqChannelManagement = rabbitmqChannelManagement;
-            _persistence = func.Invoke("Mongodb");
+            _transPortService = func.Invoke("Mongodb");
         }
         public const string NAME = "MicroService.TraceLog";
         public string Name { get { return NAME; } }
@@ -31,7 +31,7 @@ namespace MessageQueueAbstraction
                 var traceInfo = message.ToObj<TraceInfo>();
                 if (traceInfo != null)
                 {
-                    await _persistence.InsertAsync(traceInfo);
+                    await _transPortService.Send(traceInfo);
                 }
                 channel.BasicAck(args.DeliveryTag, false);
             };

@@ -1,6 +1,6 @@
 ﻿using ElasticSearchCore.Models;
 using Nest;
-using PersistenceAbstraction;
+using TransPortServiceAbstraction;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,29 +8,22 @@ using System.Threading.Tasks;
 
 namespace ElasticSearchCore
 {
-    public class ElasticSearchPersistence : IElasticSearchPersistence
+    public class ElasticSearchTransPortService : IElasticSearchTransPortService
     {
         private readonly IEsClientProvider _esClientProvider;
-        public ElasticSearchPersistence(IEsClientProvider esClientProvider)
+        public ElasticSearchTransPortService(IEsClientProvider esClientProvider)
         {
             _esClientProvider = esClientProvider;
         }
 
-        public Task DeleteAsync<T>(T data) where T : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task InsertAsync<T>(T data) where T : class
+      
+        public async Task Send<T>(T data) where T : class
         {
             var indexName = typeof(T).ToIndexName();
             var client = _esClientProvider.GetClient(indexName);
             var resp = await client.CreateDocumentAsync(data); 
         }
 
-        public Task UpdateAsync<T>(T data) where T : class
-        {
-            throw new NotImplementedException();
-        }
+     
     }
 }

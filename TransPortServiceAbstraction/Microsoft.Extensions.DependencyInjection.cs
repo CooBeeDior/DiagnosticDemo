@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PersistenceAbstraction;
+using TransPortServiceAbstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +7,15 @@ using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class PersistenceExtensions
+    public static class TransPortServiceExtensions
     {
-        public static void AddPersistence(this IServiceCollection services)
+        public static void AddTransPortService(this IServiceCollection services)
         {
-            Func<IServiceProvider, Func<string, IPersistence>> func = serviceProvider => (name) =>
+            Func<IServiceProvider, Func<string, ITransPortService>> func = serviceProvider => (name) =>
             {
-                if (PersistenceDependencyInjection.GetFuncs().Any())
+                if (TransPortServiceDependencyInjection.GetFuncs().Any())
                 {
-                    foreach (var item in PersistenceDependencyInjection.GetFuncs())
+                    foreach (var item in TransPortServiceDependencyInjection.GetFuncs())
                     {
                         try
                         {
@@ -35,7 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
             };
 
 
-            services.AddSingleton<Func<string, IPersistence>>(func);
+            services.AddSingleton<Func<string, ITransPortService>>(func);
         }
     }
 }

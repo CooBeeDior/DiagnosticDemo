@@ -19,7 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DiagnosticModel\DiagnosticModel.csproj" />
     <ProjectReference Include="..\MessageQueueAbstraction\MessageQueueAbstraction.csproj" />
-    <ProjectReference Include="..\PersistenceAbstraction\PersistenceAbstraction.csproj" />
+    <ProjectReference Include="..\TransPortServiceAbstraction\TransPortServiceAbstraction.csproj" />
   </ItemGroup>
 
 </Project>

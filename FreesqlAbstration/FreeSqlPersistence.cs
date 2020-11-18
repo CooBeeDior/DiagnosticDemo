@@ -1,14 +1,10 @@
-﻿using PersistenceAbstraction;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 namespace FreesqlAbstration
 {
-    public class FreeSqlPersistence : IFreeSqlPersistence
+    public class FreeSqlTransPortService : IFreeSqlTransPortService
     {
         private readonly IFreeSql _freeSql;
-        public FreeSqlPersistence(IdleBus<IFreeSql> idleBus)
+        public FreeSqlTransPortService(IdleBus<IFreeSql> idleBus)
         {
             _freeSql = idleBus.Get("FreeSqlDb");
         }
@@ -17,7 +13,7 @@ namespace FreesqlAbstration
             await _freeSql.Delete<T>(data).ExecuteAffrowsAsync();
         }
 
-        public async Task InsertAsync<T>(T data) where T : class
+        public async Task Send<T>(T data) where T : class
         {
             await _freeSql.Insert(data).ExecuteAffrowsAsync();
 

@@ -368,9 +368,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj",
-      "projectName": "PersistenceAbstraction",
-      "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj",
+      "projectUniqueName": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\TransPortServiceAbstraction.csproj",
+      "projectName": "TransPortServiceAbstraction",
+      "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\TransPortServiceAbstraction.csproj",
       "packagesPath": "C:\\Users\\coobe\\.nuget\\packages\\",
       "outputPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\obj\\",
       "projectStyle": "PackageReference",

@@ -12,14 +12,14 @@ D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\DiagnosticCore.dll
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\DiagnosticCore.pdb
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\DiagnosticModel.dll
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\MessageQueueAbstraction.dll
-D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\PersistenceAbstraction.dll
+D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\TransPortServiceAbstraction.dll
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb
 D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\MessageQueueAbstraction.pdb
-D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
+D:\Work\DiagnosticDemo\DiagnosticCore\bin\Debug\netcoreapp3.1\TransPortServiceAbstraction.pdb
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.csprojAssemblyReference.cache
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.AssemblyInfoInputs.cache
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.AssemblyInfo.cs
+D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.csproj.CoreCompileInputs.cache
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.csproj.CopyComplete
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.dll
 D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.pdb
-D:\Work\DiagnosticDemo\DiagnosticCore\obj\Debug\netcoreapp3.1\DiagnosticCore.csproj.CoreCompileInputs.cache

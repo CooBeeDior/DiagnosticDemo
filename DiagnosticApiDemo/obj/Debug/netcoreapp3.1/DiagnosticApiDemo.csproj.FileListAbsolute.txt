@@ -174,9 +174,9 @@ D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\FreesqlAbstrati
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\LocalizerAbstraction.dll
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\MessageQueueAbstraction.dll
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\MongodbCore.dll
-D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\PersistenceAbstraction.dll
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\ProtobufCore.dll
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\SpiderCore.dll
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\TransPortServiceAbstraction.dll
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\DiagnosticCore.pdb
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\ElasticSearchCore.pdb
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\FeignCore.pdb
@@ -187,7 +187,7 @@ D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\MongodbCore.pdb
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\ProtobufCore.pdb
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\SpiderCore.pdb
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\DiagnosticModel.pdb
-D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\PersistenceAbstraction.pdb
+D:\Work\DiagnosticDemo\DiagnosticApiDemo\bin\Debug\netcoreapp3.1\TransPortServiceAbstraction.pdb
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.csprojAssemblyReference.cache
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.AssemblyInfoInputs.cache
 D:\Work\DiagnosticDemo\DiagnosticApiDemo\obj\Debug\netcoreapp3.1\DiagnosticApiDemo.AssemblyInfo.cs

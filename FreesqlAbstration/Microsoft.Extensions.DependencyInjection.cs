@@ -1,8 +1,8 @@
 ﻿using FreeSql;
 using FreesqlAbstration;
 using Microsoft.Extensions.DependencyInjection;
-using PersistenceAbstraction;
 using System;
+using TransPortServiceAbstraction;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -37,13 +37,13 @@ namespace Microsoft.Extensions.DependencyInjection
 
             }
            
-            services.AddSingleton<IFreeSqlPersistence, FreeSqlPersistence>();
+            services.AddSingleton<IFreeSqlTransPortService, FreeSqlTransPortService>();
             services.AddSingleton(ib);
-            PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>
+            TransPortServiceDependencyInjection.AddFunc((serviceProvider, name) =>
             {
                 if (name.Equals(FreeSqlConstant.FREESQLNAME, StringComparison.OrdinalIgnoreCase))
                 {
-                    return serviceProvider.GetService<IFreeSqlPersistence>();
+                    return serviceProvider.GetService<IFreeSqlTransPortService>();
                 }
                 return null;
             });

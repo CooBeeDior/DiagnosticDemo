@@ -1807,7 +1807,7 @@
           "bin/placeholder/DiagnosticModel.dll": {}
         }
       },
-      "PersistenceAbstraction/1.0.0": {
+      "TransPortServiceAbstraction/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -1815,10 +1815,10 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
         },
         "compile": {
-          "bin/placeholder/PersistenceAbstraction.dll": {}
+          "bin/placeholder/TransPortServiceAbstraction.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PersistenceAbstraction.dll": {}
+          "bin/placeholder/TransPortServiceAbstraction.dll": {}
         }
       }
     }
@@ -5921,10 +5921,10 @@
       "path": "../DiagnosticModel/DiagnosticModel.csproj",
       "msbuildProject": "../DiagnosticModel/DiagnosticModel.csproj"
     },
-    "PersistenceAbstraction/1.0.0": {
+    "TransPortServiceAbstraction/1.0.0": {
       "type": "project",
-      "path": "../PersistenceAbstraction/PersistenceAbstraction.csproj",
-      "msbuildProject": "../PersistenceAbstraction/PersistenceAbstraction.csproj"
+      "path": "../TransPortServiceAbstraction/TransPortServiceAbstraction.csproj",
+      "msbuildProject": "../TransPortServiceAbstraction/TransPortServiceAbstraction.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5938,8 +5938,8 @@
       "MongoDB.Driver >= 2.11.2",
       "MongoDB.Driver.Core >= 2.11.2",
       "Newtonsoft.Json >= 12.0.3",
-      "PersistenceAbstraction >= 1.0.0",
-      "System.Diagnostics.DiagnosticSource >= 4.7.1"
+      "System.Diagnostics.DiagnosticSource >= 4.7.1",
+      "TransPortServiceAbstraction >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5976,8 +5976,8 @@
             "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj": {
               "projectPath": "D:\\Work\\DiagnosticDemo\\DiagnosticModel\\DiagnosticModel.csproj"
             },
-            "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj": {
-              "projectPath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj"
+            "D:\\Work\\DiagnosticDemo\\TransPortServiceAbstraction\\TransPortServiceAbstraction.csproj": {
+              "projectPath": "D:\\Work\\DiagnosticDemo\\TransPortServiceAbstraction\\TransPortServiceAbstraction.csproj"
             }
           }
         }

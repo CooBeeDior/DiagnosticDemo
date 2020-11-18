@@ -1,11 +1,11 @@
-﻿using PersistenceAbstraction;
+﻿using TransPortServiceAbstraction;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MongodbCore
 {
-    public interface IMongodbPersistence : IPersistence
+    public interface IMongodbTransPortService : ITransPortService
     {
     }
 }

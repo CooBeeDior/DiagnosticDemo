@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongodbCore;
-using PersistenceAbstraction;
+using TransPortServiceAbstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -19,12 +19,12 @@ namespace Microsoft.Extensions.DependencyInjection
             action?.Invoke(options);
 
             services.AddSingleton(options);
-            services.AddSingleton<IMongodbPersistence, LogMongodbPersistence>(); 
-            PersistenceDependencyInjection.AddFunc((serviceProvider, name) =>
+            services.AddSingleton<IMongodbTransPortService, LogMongodbTransPortService>(); 
+            TransPortServiceDependencyInjection.AddFunc((serviceProvider, name) =>
             {
                 if (name.Equals(MongodbConstant.MONGODBNAME, StringComparison.OrdinalIgnoreCase))
                 {
-                    return serviceProvider.GetService<IMongodbPersistence>();
+                    return serviceProvider.GetService<IMongodbTransPortService>();
                 }
                 return null;
             });

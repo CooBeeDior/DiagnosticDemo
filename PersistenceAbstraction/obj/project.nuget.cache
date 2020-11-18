@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SuN9aIU+uPx6qY6DSo99AUdxZOjuTtMHRxetU/uFWGOOU9DoFG4pe3zGwhZp9ELkc+dKXK5PZqDCWaWDOqi1rA==",
+  "dgSpecHash": "ZOKg2ugNujUOZN3txL6Fwtyb4/URDlZJSC/hIxSfLSsWRyIWiu7X3nXxFcCqamuxbh9UR4gD5iPHF6fezNTZHw==",
   "success": true,
-  "projectFilePath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\PersistenceAbstraction.csproj",
+  "projectFilePath": "D:\\Work\\DiagnosticDemo\\PersistenceAbstraction\\TransPortServiceAbstraction.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",

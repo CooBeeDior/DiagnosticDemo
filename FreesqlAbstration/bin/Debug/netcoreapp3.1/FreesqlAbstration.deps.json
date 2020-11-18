@@ -14,7 +14,7 @@
           "FreeSql.Provider.MySql": "1.9.0",
           "IdleBus": "1.5.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8",
-          "PersistenceAbstraction": "1.0.0"
+          "TransPortServiceAbstraction": "1.0.0"
         },
         "runtime": {
           "FreesqlAbstration.dll": {}
@@ -1481,13 +1481,13 @@
           }
         }
       },
-      "PersistenceAbstraction/1.0.0": {
+      "TransPortServiceAbstraction/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.8"
         },
         "runtime": {
-          "PersistenceAbstraction.dll": {}
+          "TransPortServiceAbstraction.dll": {}
         }
       }
     }
@@ -2401,7 +2401,7 @@
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
-    "PersistenceAbstraction/1.0.0": {
+    "TransPortServiceAbstraction/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

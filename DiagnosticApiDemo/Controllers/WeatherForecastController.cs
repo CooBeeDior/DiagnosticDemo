@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using PersistenceAbstraction;
+using TransPortServiceAbstraction;
 using DiagnosticModel;
 using DiagnosticCore;
 using SpiderCore;
@@ -41,7 +41,7 @@ namespace DiagnosticApiDemo.Controllers
         private readonly ISpiderHttpClientFactory _spiderHttpClientFactory;
         private readonly SpiderOptions _spiderOptions;
         private readonly IUserApi _userApi;
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, Func<string, IPersistence> func,
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, Func<string, ITransPortService> func,
             IStringLocalizer<WeatherForecastController> stringLocalizer, IHttpContextAccessor httpContextAccessor,
             ISpiderHttpClientFactory spiderHttpClientFactory, SpiderOptions spiderOptions, IUserApi userApi)
         {
@@ -191,7 +191,7 @@ namespace DiagnosticApiDemo.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecast2Controller(ILogger<WeatherForecastController> logger, Func<string, IPersistence> func)
+        public WeatherForecast2Controller(ILogger<WeatherForecastController> logger, Func<string, ITransPortService> func)
         {
             _logger = logger;
 
