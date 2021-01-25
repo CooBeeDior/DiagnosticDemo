@@ -62,27 +62,27 @@ namespace DiagnosticDemo
         }
     }
 
-    public class HostingTracingDiagnosticProcessor  
+    public class HostingTracingDiagnosticProcessor
     {
         public string ListenerName { get; } = "Microsoft.AspNetCore";
 
         [DiagnosticName("Microsoft.AspNetCore.Hosting.BeginRequest")]
-        public void BeginRequest( HttpContext httpContext)
+        public void BeginRequest(HttpContext httpContext)
         {
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Hosting.EndRequest")]
-        public void EndRequest( HttpContext httpContext)
+        public void EndRequest(HttpContext httpContext)
         {
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Diagnostics.UnhandledException")]
-        public void DiagnosticUnhandledException(  HttpContext httpContext,  Exception exception)
+        public void DiagnosticUnhandledException(HttpContext httpContext, Exception exception)
         {
         }
 
         [DiagnosticName("Microsoft.AspNetCore.Hosting.UnhandledException")]
-        public void HostingUnhandledException(  HttpContext httpContext,  Exception exception)
+        public void HostingUnhandledException(HttpContext httpContext, Exception exception)
         {
         }
 
@@ -97,11 +97,11 @@ namespace DiagnosticDemo
         }
     }
 
- 
+
     class Program
     {
         static async Task Main(string[] args)
-        { 
+        {
 
             //AllListeners获取所有发布者，Subscribe为发布者注册订阅者MyObserver
             DiagnosticListener.AllListeners.Subscribe(new MyObserver<DiagnosticListener>(listener =>
@@ -139,10 +139,10 @@ namespace DiagnosticDemo
                 if (listener.Name == "HttpHandlerDiagnosticListener")
                 {
                     ///**重要** 注:1 通过常规对象订阅
-                    listener.Subscribe(new MyObserver< KeyValuePair<string, object>>(listenerData =>
-                    {
-                        var data = listenerData;
-                    }));
+                    listener.Subscribe(new MyObserver<KeyValuePair<string, object>>(listenerData =>
+                   {
+                       var data = listenerData;
+                   }));
 
                     //listener.SubscribeWithAdapter(new MyDiagnosticListener());
                 }

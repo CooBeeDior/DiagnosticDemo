@@ -32,6 +32,9 @@ namespace DiagnosticCore.Constant
         /// </summary>
         public const string CHAIN_ID = "chain-id";
 
+        /// <summary>
+        /// StatusCode
+        /// </summary>
         public const string StatusCode = "StatusCode";
 
         /// <summary>
