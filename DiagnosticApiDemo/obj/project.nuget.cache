@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "EepDXr8ycx9v3qgeqm9uj5aJ3BMl5UAES2s6x37iBOQpisfUlix5WiGKg8omngHSsKHL+M9TP15qBJ8hE3cRJw==",
+  "dgSpecHash": "COCo2p0ZgJvRvxm/t2Qhdn4eXXuLJ/bEkJPxRlFEIEqMBlrz1vNg2/RW8uJq5lh2xiabW1lejBBFI35+IIcn9w==",
   "success": true,
   "projectFilePath": "D:\\Work\\DiagnosticDemo\\DiagnosticApiDemo\\DiagnosticApiDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\coobe\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\clrstats\\1.0.0\\clrstats.1.0.0.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\com.ctrip.framework.apollo\\2.4.1\\com.ctrip.framework.apollo.2.4.1.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\com.ctrip.framework.apollo.configuration\\2.4.1\\com.ctrip.framework.apollo.configuration.2.4.1.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\cs-script.core\\1.3.1\\cs-script.core.1.3.1.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\dnsclient\\1.3.1\\dnsclient.1.3.1.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\elasticsearch.net\\7.9.0\\elasticsearch.net.7.9.0.nupkg.sha512",
@@ -80,7 +83,7 @@
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.8\\microsoft.extensions.configuration.abstractions.3.1.8.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.8\\microsoft.extensions.configuration.binder.3.1.8.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.8\\microsoft.extensions.dependencyinjection.3.1.8.nupkg.sha512",
-    "C:\\Users\\coobe\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.8\\microsoft.extensions.dependencyinjection.abstractions.3.1.8.nupkg.sha512",
+    "C:\\Users\\coobe\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.11\\microsoft.extensions.dependencyinjection.abstractions.3.1.11.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.extensions.dependencymodel\\3.1.2\\microsoft.extensions.dependencymodel.3.1.2.nupkg.sha512",
     "C:\\Users\\coobe\\.nuget\\packages\\microsoft.extensions.diagnosticadapter\\3.1.8\\microsoft.extensions.diagnosticadapter.3.1.8.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.extensions.fileproviders.abstractions\\2.2.0\\microsoft.extensions.fileproviders.abstractions.2.2.0.nupkg.sha512",

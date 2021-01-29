@@ -1,7 +1,9 @@
+using CLRStats;
 using DiagnosticCore;
 using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -32,13 +34,14 @@ namespace DiagnosticApiDemo
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {  // If using Kestrel:
+        {
+            // If using Kestrel: 启用同步的IO
             services.Configure<KestrelServerOptions>(options =>
             {
                 options.AllowSynchronousIO = true;
             });
 
-            // If using IIS:
+            // If using IIS: 启用同步的IO
             services.Configure<IISServerOptions>(options =>
             {
                 options.AllowSynchronousIO = true;
@@ -50,20 +53,24 @@ namespace DiagnosticApiDemo
                 options.OutputFormatters.Add(new ProtobufOutputFormatter());
                 //Header Accept:application/x-protobuf
                 options.FormatterMappings.SetMediaTypeMappingForFormat("protobuf", MediaTypeHeaderValue.Parse("application/x-protobuf"));
-            }); 
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        { 
+        {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseStaticFiles(); 
+            app.UseStaticFiles();
 
             app.UseRouting();
-             
+
+            //查看应用状态和统计 CPU 内存
+            app.UseCLRStatsDashboard();
 
             app.UseEndpoints(endpoints =>
             {
@@ -71,4 +78,6 @@ namespace DiagnosticApiDemo
             });
         }
     }
+
+
 }

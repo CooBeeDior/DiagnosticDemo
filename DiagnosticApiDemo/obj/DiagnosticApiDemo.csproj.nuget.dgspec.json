@@ -72,6 +72,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "CLRStats": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Com.Ctrip.Framework.Apollo.Configuration": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
             "Hangfire.AspNetCore": {
               "target": "Package",
               "version": "[1.7.14, )"

@@ -6,6 +6,9 @@ namespace MessageQueueAbstraction
 {
     public interface IRabbitmqConsumer
     {
+        /// <summary>
+        /// 监听的名称
+        /// </summary>
         string Name { get; }
         void Subscripe();
     }
